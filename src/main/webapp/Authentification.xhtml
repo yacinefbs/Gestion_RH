@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>AdminLTE 2 | General Form Elements</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="resources/bootstrap/css/font-awesome.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/AdminLTE.min.css"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skinshttp://localhost:8081/Gestion_RH/gestionSocietes.xhtml?q=&search=#popup1
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="resources/dist/css/skins/_all-skins.min.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="hold-transition login-page">
+    
+    
+    
+    <c:set scope="session" var="msgErreurAuthentif" property="x" value="#{beanUtilisateur.messageAuthentification}"/>
+    
+    
+     <h:form>
+    
+        <div class="login-box">
+      <div class="login-logo">
+        <a href="../../index2.html"><b>Admin</b>LTE</a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Veuillez vous connecter pour continuer ... </p>
+        
+        <c:if test="#{msgErreurAuthentif ne null}">
+          <div class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <strong>Désolé !!</strong>
+		    <br />
+		    <p> #{beanUtilisateur.messageAuthentification} </p>
+		  </div>		  
+		</c:if>
+       
+          <div class="form-group has-feedback">
+            <h:inputText id="login" value="#{beanUtilisateur.login}" required="true" requiredMessage="Champs Oblégatoire (*)" class="form-control" placeholder="Email"/>
+            <h:message for="login" style="color:red;"></h:message>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <h:inputSecret id="passe" value="#{beanUtilisateur.passe}" required="true" requiredMessage="Champs Oblégatoire (*)" class="form-control" placeholder="Password"/>
+            <h:message for="passe" style="color:red;"></h:message>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <h:commandButton value="Sign In" action="#{beanUtilisateur.authentificationUtilisateur}"  class="btn btn-primary btn-block btn-flat"/>
+            </div><!-- /.col -->
+          </div>
+       
+
+
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+    
+    
+    
+     </h:form>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- jQuery 2.1.4 -->
+    <script src="resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="resources/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="resources/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="resources/dist/js/demo.js"></script>
+  </body>
+</html>

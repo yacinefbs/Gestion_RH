@@ -1,0 +1,2773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>AdminLTE 2 | General Form Elements</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="resources/bootstrap/css/font-awesome.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/AdminLTE.min.css"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skinshttp://localhost:8081/Gestion_RH/gestionSocietes.xhtml?q=&search=#popup1
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="resources/dist/css/skins/_all-skins.min.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    
+    <style>
+
+    
+    table th{
+    
+    background-color:#C8C6CC;
+    
+    }
+    
+/*     td{ */
+    
+/*     align:center; */
+    
+/*     } */
+    
+    
+    </style>
+    
+    
+    
+    
+    
+    
+    
+  </h:head>
+  
+  
+  <!-- Pour verifier si l'utilisateur est connecter 3ad iban had lapage ***************************** -->
+  
+  <f:view>
+	<ui:insert name="metadata"/>
+    <f:event type="preRenderView" listener="#{beanUtilisateur.verifierSiConnecter}" />
+  
+  
+  
+  <h:body class="hold-transition skin-blue sidebar-mini">
+    
+    <div class="wrapper">
+    
+          <header class="main-header">
+        <!-- Logo -->
+        <a href="../../index2.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>A</b>LT</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Admin</b>LTE</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+            
+            
+            
+            
+            
+            
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success">4</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 4 messages</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Support Team
+                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li><!-- end message -->
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            AdminLTE Design Team
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Developers
+                            <small><i class="fa fa-clock-o"></i> Today</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Sales Department
+                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Reviewers
+                            <small><i class="fa fa-clock-o"></i> 2 days</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              <!-- Notifications: style can be found in dropdown.less -->
+              <li class="dropdown notifications-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 10 notifications</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-users text-red"></i> 5 new members joined
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-user text-red"></i> You changed your username
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">View all</a></li>
+                </ul>
+              </li>
+              
+              
+              
+              
+              
+              <!-- Tasks: style can be found in dropdown.less -->
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">9</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 9 tasks</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Design some buttons
+                            <small class="pull-right">20%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">20% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Create a nice theme
+                            <small class="pull-right">40%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">40% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Some task I need to do
+                            <small class="pull-right">60%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">60% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Make beautiful transitions
+                            <small class="pull-right">80%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">80% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                    </ul>
+                  </li>
+                  <li class="footer">
+                    <a href="#">View all tasks</a>
+                  </li>
+                </ul>
+              </li>
+              
+              
+              
+              
+              
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<!--                   <img src="resources/dist/img/utilisateur.jpg" class="user-image" alt="User Image"/> -->
+					<h:graphicImage value="fichierProjetPfeGrh/photoDesSalaries/#{beanUtilisateur.salarieConnecte.image.substring(beanUtilisateur.salarieConnecte.image.lastIndexOf('/')+1,beanUtilisateur.salarieConnecte.image.length())}" styleClass="user-image" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">#{beanUtilisateur.salarieConnecte.nom} #{beanUtilisateur.salarieConnecte.prenom}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+<!--                     <img src="resources/dist/img/utilisateur.jpg" class="img-circle" alt="User Image"/> -->
+					<h:graphicImage value="fichierProjetPfeGrh/photoDesSalaries/#{beanUtilisateur.salarieConnecte.image.substring(beanUtilisateur.salarieConnecte.image.lastIndexOf('/')+1,beanUtilisateur.salarieConnecte.image.length())}" styleClass="img-circle" class="img-circle" alt="User Image"/>
+                    <p>
+                      #{beanUtilisateur.salarieConnecte.nom} #{beanUtilisateur.salarieConnecte.prenom}
+                      <small>#{beanUtilisateur.salarieConnecte.service.libelle}</small>
+                    </p>
+                  </li>
+                  
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                  <h:form>
+                    <div class="pull-right">
+                      <h:commandButton value="Déconnexion" action="#{beanUtilisateur.deconnexionUtilisateur}" class="btn btn-default btn-flat"/>
+                    </div>
+                  </h:form>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+              
+              
+              
+              
+              
+            </ul>
+          </div>
+        </nav>
+      </header>
+      
+      
+      
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+<!--               <img src="resources/dist/img/utilisateur.jpg" class="img-circle" alt="User Image"/> -->
+			<h:graphicImage value="fichierProjetPfeGrh/photoDesSalaries/#{beanUtilisateur.salarieConnecte.image.substring(beanUtilisateur.salarieConnecte.image.lastIndexOf('/')+1,beanUtilisateur.salarieConnecte.image.length())}" styleClass="img-circle" class="img-circle" alt="User Image"/>
+            </div>
+            <div class="pull-left info">
+              <p>#{beanUtilisateur.salarieConnecte.nom} #{beanUtilisateur.salarieConnecte.prenom}</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+<!--             <li class="header">MAIN NAVIGATION</li> -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Tableau de bord</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i>Gestion des salariés<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="gestionSalaries.xhtml"><i class="fa fa-circle-o"></i>Ajouter salariés</a></li>
+                    <li><a href="gestionSalariesList.xhtml"><i class="fa fa-circle-o"></i>Mod/Supp salariés</a></li>
+                  </ul>
+                </li>
+              	<li><a href="gestionServices.xhtml"><i class="fa fa-circle-o"></i>Gestion des services</a></li>
+              	<li><a href="gestionQualifications.xhtml"><i class="fa fa-circle-o"></i>Gestion des qualifications</a></li>
+				<li><a href="gestionGroupes.xhtml"><i class="fa fa-circle-o"></i>Gestion des groupes</a></li>
+				<li><a href="gestionPlanTravail.xhtml"><i class="fa fa-circle-o"></i>Gestion des plans du travail</a></li>
+				<li>
+                  <a href="#"><i class="fa fa-circle-o"></i>Gestion des barèmes<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                  	<li><a href="gestionBAnc.xhtml"><i class="fa fa-circle-o"></i>Barèmes Ancienneté</a></li>
+                    <li><a href="gestionBConge.xhtml"><i class="fa fa-circle-o"></i>Barèmes Congé</a></li>
+                    <li><a href="gestionBIgr.xhtml"><i class="fa fa-circle-o"></i>Barèmes IGR</a></li>
+                  </ul>
+                </li>
+                <li><a href="gestionOrganismes.xhtml"><i class="fa fa-circle-o"></i>Gestion des organismes</a></li>
+                <li><a href="gestionCotisations.xhtml"><i class="fa fa-circle-o"></i>Gestion des cotisations</a></li>
+                <li><a href="gestionRubriques.xhtml"><i class="fa fa-circle-o"></i>Gestion des rubriques</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Administration</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              	<li><a href="gestionContratsGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des Contrats</a></li>
+                <li><a href="gestionCongesGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des congés</a></li>
+                <li><a href="GestionFInitialesGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des formations initiales</a></li>
+                <li><a href="GestionFProfessionnelleGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des parcours professionnels</a></li>
+              </ul>
+             </li>
+             
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Comptabilité fiancière</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              	<li><a href="gestionBanques.xhtml"><i class="fa fa-circle-o"></i>Gestion des banques</a></li>
+              	<li><a href="gestionAgences.xhtml"><i class="fa fa-circle-o"></i>Gestion des agences</a></li>
+              	<li><a href="gestionAvancesGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des avances</a></li>
+              </ul>
+             </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+      
+      <c:set scope="session" var="koiAfficher" property="x" value="#{beanUtilisateur.afficheKoi}"/>
+      
+      
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+      
+      	<!-- Content Header (Page header) -->
+
+        
+         <!-- Main content -->
+        <section class="content">
+        
+        
+        
+        
+        
+        
+          <!-- =========================================================== -->
+
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+          
+          
+          
+<!-- 	 style="height: 500px;"-->
+        	 <div class="col-md-3">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+<!--                   <img class="profile-user-img img-responsive img-circle" src="resources/dist/img/utilisateur.jpg" alt="User profile picture"/> -->
+                 <h:graphicImage value="fichierProjetPfeGrh/photoDesSalaries/#{beanUtilisateur.salarieConnecte.image.substring(beanUtilisateur.salarieConnecte.image.lastIndexOf('/')+1,beanUtilisateur.salarieConnecte.image.length())}" styleClass="profile-user-img img-responsive img-circle" class="profile-user-img img-responsive img-circle" alt="User Image"/>
+                  <h3 class="profile-username text-center">#{beanUtilisateur.salarieConnecte.nom} #{beanUtilisateur.salarieConnecte.prenom}</h3>
+                  <p class="text-muted text-center">#{beanUtilisateur.salarieConnecte.service.libelle}</p>
+
+                  <ul class="list-group list-group-unbordered">
+                  
+                    <li class="list-group-item">
+                      <b>Poste : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.qualification.poste}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Groupe : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.groupe.libelleGroupe}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Agence Bancaire : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.agence.libelleAgence}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Sociéte : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.societe.nomSociete}</a>
+                    </li>
+                    
+                    <li class="list-group-item">
+                      <b>Sociéte : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.societe.nomSociete}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Sociéte : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.societe.nomSociete}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Sociéte : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.societe.nomSociete}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Sociéte : </b> <br /> <a>#{beanUtilisateur.salarieConnecte.societe.nomSociete}</a>
+                    </li>
+                    
+                  </ul>
+
+                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col -->          
+          
+          
+          
+          <!-- Hna n affichiw kolchi ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'tout'}">
+          
+          <h:form>
+ 
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#00c0ef;">
+                <div class="inner">
+                
+                  <h3>#{beanUtilisateur.chargerLeNombreAbsenceSalarie().get(0)}</h3>
+                  <p>Absences</p>
+                  
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/absence_icon_1_80_x.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('absence')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#00a65a;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreFormationSalarie().get(0)}</h3>
+                  <p>Formations</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/formation_icon_80_x.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('formation')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#f39c12;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreRetardSalarie().get(0)}</h3>
+                  <p>Retards</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/retard_icon_80_x.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('retard')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#dd4b39;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreAvanceSalarie().get(0)}</h3>
+                  <p>Avances sur Salaire</p>
+                </div>
+                <div class="icon">
+                  <i>  <img src="resources/dist/img/prime1.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('avance')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#EB1CEB;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreFormationSalarie().get(0)}</h3>
+                  <p>Boite E-mail</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/email_icone_80_x.png" /> </i>
+                </div>
+                <a href="AcceuilSalarieMailBoiteReception.xhtml" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </a>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#158A8C;">
+                <div class="inner">
+                
+                  <h3>#{beanUtilisateur.chargerLeNombreAbsenceSalarie().get(0)}</h3>
+                  <p>Congés</p>
+                  
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/3.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('conge')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#ABA813;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreAvanceSalarie().get(0)}</h3>
+                  <p>Primes &amp; Avantages</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/credit_icon_80_x.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('prime')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#14CC98;">
+                <div class="inner">
+                
+                  <h3>#{beanUtilisateur.chargerLeNombreAbsenceSalarie().get(0)}</h3>
+                  <p>Prêts</p>
+                  
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/pret.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('pret')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#1CEBEB;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreFormationSalarie().get(0)}</h3>
+                  <p>Heures Supplémentaire</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/heureSup1.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('heuresupp')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#90C3D4;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreFormationSalarie().get(0)}</h3>
+                  <p>Plan Travail</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/planing.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('plantravail')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#D4A190;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreFormationSalarie().get(0)}</h3>
+                  <p>Auto Formation</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/auto_formation.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('autoformation')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->
+            
+            
+            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box" style="background-color:#C390D4;">
+                <div class="inner">
+                  <h3>#{beanUtilisateur.chargerLeNombreFormationSalarie().get(0)}</h3>
+                  <p>Administration</p>
+                </div>
+                <div class="icon">
+                  <i> <img src="resources/dist/img/demande.png" /> </i>
+                </div>
+                <h:commandLink value="" action="#{beanUtilisateur.koiAfficher('administration')}" class="small-box-footer">
+                  Plus infos <i class="fa fa-arrow-circle-right"></i>
+                </h:commandLink>
+              </div>
+            </div><!-- ./col -->         
+          
+          </h:form>
+          
+          </c:if>
+          
+           <!-- Fin Hna n affichiw kolchi ************************************************************* -->  
+           
+           
+           
+           
+           <!-- Hna n affichiw absence ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'absence'}">
+          
+          <h:form>
+          
+      
+          <!-- Absence ************************************************ -->
+          
+         
+               
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #00c0ef;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#00c0ef;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos absences : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+                  
+                  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Absences justifieés : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerAbsenceJustifieUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure début</th>
+                        <th>Heure fin</th>
+                        <th>Durée</th>
+                        <th>Motif</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucune absence justifié."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerAbsenceJustifieUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure début</th>
+                        <th>Heure fin</th>
+                        <th>Durée</th>
+                        <th>Motif</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerAbsenceJustifieUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idAbsence}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateAbsence}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef">
+                    	<h:outputLabel value="#{a.heureDebutAbsence}">
+                    		<f:convertDateTime pattern="HH:mm" />
+                    	</h:outputLabel>
+                    	</font>
+                    	</td>
+                    	<td align="center"><font color="#00c0ef">
+                    	<h:outputLabel value="#{a.heureFinAbsence}">
+                    		<f:convertDateTime pattern="HH:mm" />
+                    	</h:outputLabel>
+                    	</font>
+                    	</td>
+                    	<td align="center">
+                    	<font color="#00c0ef">
+							<h:outputLabel value="#{a.duree}"/>
+                    	</font>
+                    	</td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.motif}"/></font></td>
+                                        	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                  
+
+                  <a style="font-size:20px;text-decoration:underline;"> Absences non justifieés : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerAbsenceNonJustifieUnSalarie().size() eq 0}">
+                  
+                  
+                  <table id="example2" class="table table-bordered table-hover"  style="margin-top:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure début</th>
+                        <th>Heure fin</th>
+                        <th>Durée</th>
+                        <th>Motif</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                   
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucune absence non justifieé"/></font></td>
+                    </tr>
+                  
+                    </tbody>
+                    
+                  </table>
+                  
+                  
+                  
+                  
+                  </c:if>
+                  
+                  
+                  
+                  
+                  <c:if test="#{beanUtilisateur.chargerAbsenceNonJustifieUnSalarie().size() gt 0}">
+     
+                  <table id="example2" class="table table-bordered table-hover"  style="margin-top:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure début</th>
+                        <th>Heure fin</th>
+                        <th>Durée</th>
+                        <th>Motif</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerAbsenceNonJustifieUnSalarie()}">
+                    <tr>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.idAbsence}"/></font></td>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.dateAbsence}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td><font color="#00c0ef">
+                    	<h:outputLabel value="#{a.heureDebutAbsence}">
+                    		<f:convertDateTime pattern="HH:mm" />
+                    	</h:outputLabel>
+                    	</font></td>
+                    	<td><font color="#00c0ef">
+                    	<h:outputLabel value="#{a.heureFinAbsence}">
+                    		<f:convertDateTime pattern="HH:mm" />
+                    	</h:outputLabel>
+                    	</font></td>
+                    	<td>
+                    	<font color="#00c0ef">
+							<h:outputLabel value="#{a.duree}"/>
+                    	</font>
+                    	</td>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.description}"/></font></td>
+                                        	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                  
+                  
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw absence ************************************************************* -->           
+            
+            
+            
+            
+            <!-- Hna n affichiw formation ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'formation'}">
+          
+          
+                    <h:form>
+          
+      
+          <!-- Absence ************************************************ -->
+          
+         
+               
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #00a65a;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#00a65a;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos formations : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				  <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     			  <br />
+                  
+                  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Formations initiales : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerFormationInitialUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+		              <tr>
+		                <th>Date Début</th>
+		                <th>Date Fin</th>
+		                <th>Catégorie</th>
+		                <th>Diplôme</th>
+		                <th>Etablissement</th>
+		                <th>Matiére Principale</th>
+		              </tr>
+		            </thead>
+		            <tbody>
+		               <tr>
+		                <td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucune formation initial enregistrée."/></font></td>
+		               </tr>
+		             </tbody> 
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerFormationInitialUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+		              <tr>
+		                <th>Date Début</th>
+		                <th>Date Fin</th>
+		                <th>Catégorie</th>
+		                <th>Diplôme</th>
+		                <th>Etablissement</th>
+		                <th>Matiére Principale</th>
+		              </tr>
+		            </thead>
+		            <tbody>
+		             <ui:repeat var="a" value="#{beanUtilisateur.chargerFormationInitialUnSalarie()}">
+		               <tr>
+		                <td><font color="#00c0ef"><h:outputLabel value="#{a.dateDebut}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+		                <td><font color="#00c0ef"><h:outputLabel value="#{a.dateFin}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+		                <td><font color="#00c0ef"><h:outputLabel value="#{a.categorieFormation}"></h:outputLabel></font></td>
+		                <td><font color="#00c0ef"><h:outputLabel value="#{a.diplome}"></h:outputLabel></font></td>
+		                <td><font color="#00c0ef"><h:outputLabel value="#{a.etablissement}"/></font></td>
+		                <td><font color="#00c0ef"><h:outputLabel value="#{a.matierePrincipale}"/></font></td>
+		               </tr>
+		              </ui:repeat>
+		             </tbody> 
+                  </table>
+                  
+                  </c:if>
+                  
+
+                  <a style="font-size:20px;text-decoration:underline;"> Formations professionnelles : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerformationProfessionnelleUnSalarie().size() eq 0}">
+                  
+                  
+                  <table id="example2" class="table table-bordered table-hover"  style="margin-top:10px;border-top:solid 2px black;">
+
+		                    <thead>
+		                      <tr>
+		                        <th>Date Début</th>
+		                        <th>Date Fin</th>
+		                        <th>Employeur</th>
+		                        <th>Poste</th>
+		                        <th>Remarque</th>
+		                     </tr>
+		                    </thead>
+		                    <tbody>
+		                    <tr>
+		                    	<td colspan="5"><font color="#00c0ef"><h:outputLabel value="Aucune formation professionnelle enregistrée."/></font></td>
+		                                    	
+		                    </tr>
+		                    </tbody>
+                    
+                  </table>
+                  
+                  
+                  
+                  
+                  </c:if>
+                  
+                  
+                  
+                  
+                  <c:if test="#{beanUtilisateur.chargerformationProfessionnelleUnSalarie().size() gt 0}">
+     
+                  <table id="example2" class="table table-bordered table-hover"  style="margin-top:10px;border-top:solid 2px black;">
+		                    <thead>
+		                      <tr>
+		                        <th>Date Début</th>
+		                        <th>Date Fin</th>
+		                        <th>Employeur</th>
+		                        <th>Poste</th>
+		                        <th>Remarque</th>
+		                     </tr>
+		                    </thead>
+		                    <tbody>
+		                    <ui:repeat var="a" value="#{beanUtilisateur.chargerformationProfessionnelleUnSalarie()}">
+		                    <tr>
+		                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.dateDebut}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+		                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.dateFin}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+		                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.employeur}"></h:outputLabel></font></td>
+		                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.poste}"></h:outputLabel></font></td>
+		                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.remarque}"/></font></td>
+		                                        	
+		                    </tr>
+		                    </ui:repeat>
+		                    </tbody>
+                  </table>
+                  
+                  </c:if>
+                  
+                  
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>
+          
+                
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw formation ************************************************************* -->
+            
+           
+           
+           <!-- Hna n affichiw retard ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'retard'}">
+          
+          
+          
+
+          <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #f39c12;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#f39c12;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos retards : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+              
+              	  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Les retards : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerRetardUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure entrée normale</th>
+                        <th>Heure entrée retard</th>
+                        <th>Durée</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="5"><font color="#00c0ef"><h:outputLabel value="Aucune retard enregisré pour vous."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerRetardUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Heure entrée normale</th>
+                        <th>Heure entrée retard</th>
+                        <th>Durée</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerRetardUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idRetard}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateRetardPointage}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.heureNormalePointage}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.heurePointageEnRetard}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.duree}"/></font></td>                 	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>          
+          
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw retard ************************************************************* -->
+            
+           
+           
+           
+           <!-- Hna n affichiw avance ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'avance'}">
+          
+          
+          
+
+
+          <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #dd4b39;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#dd4b39;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos avances : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+              
+              
+              	  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Les avances sur salaire : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerAvanceUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Montant</th>
+                        <th>Type</th>
+                        <th>modePaiment</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="5"><font color="#00c0ef"><h:outputLabel value="Aucun avance sur salaire enregisré pour vous."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerAvanceUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Montant</th>
+                        <th>Type</th>
+                        <th>modePaiment</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerAvanceUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idAvance}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateAvance}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.montant}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.typeAvance}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.modePaiment}"/></font></td>                 	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>          
+          
+          
+          
+          
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw avance ************************************************************* -->
+           
+           
+           
+           <!-- Hna n affichiw conge ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'conge'}">
+          
+          
+          
+          
+          <h:form>
+          
+         
+         
+               
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #158a8c;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#158a8c;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos congés : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+     				
+     				
+     			                    
+                  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Les congés validés : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerCongeValideUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>Nature</th>
+                        <th>Télephone</th>
+                        <th>Etat</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucun congé validé enregistré pour vous."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerCongeValideUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>Nature</th>
+                        <th>Télephone</th>
+                        <th>Etat</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerCongeValideUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idConge}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateDebutC}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateFinC}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                       	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.nature}"/></font></td>
+                        <td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.telephone}"/></font></td>
+                        <td align="center"><font color="#00c0ef"><h:outputLabel value="Validé"/></font></td>
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                  
+
+                  <a style="font-size:20px;text-decoration:underline;"> Les congés non validés : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerCongeNonValideUnSalarie().size() eq 0}">
+                  
+                  
+                  <table id="example2" class="table table-bordered table-hover"  style="margin-top:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>Nature</th>
+                        <th>Télephone</th>
+                        <th>Etat</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                   
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucune congé non validé enregistré pour vous."/></font></td>
+                    </tr>
+                  
+                    </tbody>
+                    
+                  </table>
+                  
+                  
+                  
+                  
+                  </c:if>
+                  
+                  
+                  
+                  
+                  <c:if test="#{beanUtilisateur.chargerCongeNonValideUnSalarie().size() gt 0}">
+     
+                  <table id="example2" class="table table-bordered table-hover"  style="margin-top:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>Nature</th>
+                        <th>Télephone</th>
+                        <th>Etat</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerCongeNonValideUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idConge}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateDebutC}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateFinC}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                       	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.nature}"/></font></td>
+                        <td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.telephone}"/></font></td>
+                        <td align="center"><font color="#00c0ef"><h:outputLabel value="Validé"/></font></td>
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                  
+                  
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>                    
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw conge ************************************************************* -->
+           
+           
+           
+           <!-- Hna n affichiw prime ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'prime'}">
+          
+          
+          
+          
+          
+          
+          <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #aba813;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#aba813;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos primes et avantages : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+              
+              	  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Les primes et avantages : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerPrimeAvantageUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Montant</th>
+                        <th>modePaiment</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="4"><font color="#00c0ef"><h:outputLabel value="Aucune prime ou avantage enregisré pour vous."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerPrimeAvantageUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Montant</th>
+                        <th>modePaiment</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerPrimeAvantageUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idPrime}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.typePrimeAvantage}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.valeur}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.modePaiement.libellePaiement}"/></font></td>                 	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>          
+          
+          
+          
+          
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw prime ************************************************************* -->
+           
+           
+           
+           <!-- Hna n affichiw pret ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'pret'}">
+          
+          
+          
+          
+         <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #14cc98;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#14cc98;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos prêts : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+              
+              	<a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Les prêts : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerPretUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                      	<th>ID</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>Montant</th>
+                        <th>Montant échéance</th>
+                        <th>Nombre échéances</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucun prêt enregisré pour vous."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerPretUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                      	<th>ID</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                        <th>Montant</th>
+                        <th>Montant échéance</th>
+                        <th>Nombre échéances</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerPretUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idPret}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateDebutPret}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateFinPret}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.montant}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.montantEcheance}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.nbrEcheances}"/></font></td>                 	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form> 
+          
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw pret ************************************************************* -->
+           
+           
+           
+           <!-- Hna n affichiw heuresupp ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'heuresupp'}">
+          
+          
+          
+         <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #1cebeb;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#1cebeb;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste de vos heures supplémentaire : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+	
+                  <div class="box-body">
+                  
+                  
+				       <h:commandButton class="btn btn-primary" value="Retour au menu principal" action="#{beanUtilisateur.koiAfficher('tout')}" style="margin-bottom:10px;"/>
+     
+     				<br />
+              
+              	  <a style="font-size:20px;margin-bottom:20px;text-decoration:underline;"> Les heures supplémentaires : </a>
+                  
+                  <c:if test="#{beanUtilisateur.chargerHeureSupplementaireUnSalarie().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                      	<th>ID</th>
+                        <th>Date</th>
+                        <th>Heure début</th>
+                        <th>Heure fin</th>
+                        <th>Durée</th>
+                        <th>Taux</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucune heure supplémentaire enregistrée pour vous."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                <c:if test="#{beanUtilisateur.chargerHeureSupplementaireUnSalarie().size() gt 0}">
+                
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                      	<th>ID</th>
+                        <th>Date</th>
+                        <th>Heure début</th>
+                        <th>Heure fin</th>
+                        <th>Durée</th>
+                        <th>Taux</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanUtilisateur.chargerHeureSupplementaireUnSalarie()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.heureSup}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateHeureSup}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.heureDebut}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.heureFin}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.duree}"/></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.taux}"/></font></td>                 	
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw heuresupp ************************************************************* -->
+           
+           
+           <!-- Hna n affichiw plantravail ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'plantravail'}">
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw plantravail ************************************************************* -->
+           
+           
+           <!-- Hna n affichiw autoformation ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'autoformation'}">
+          
+          
+          <c:set scope="session" var="rechercheOuNon" property="x" value="#{beanUtilisateur.rechercheAutoFormation}"/>
+          
+          
+      
+                <!-- affichage resultat non recherche -->
+          
+          <c:if test="#{rechercheOuNon eq 'non'}">
+          
+        <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #D4A190;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#D4A190;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste des auto formations : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+				    
+				    
+				<div class="box-header with-border">
+                  <h3 class="box-title">
+                  <h:commandLink class="btn btn-primary" action="#{beanUtilisateur.koiAfficher('tout')}" style="background-color:#00c0ef;border:none;"> <i class="fa fa-arrow-circle-left"></i> &nbsp; Retour au menu principal </h:commandLink>
+                  </h3>
+                  <div class="box-tools pull-right" style="margin-top:5px;">
+                     <div class="has-feedback">
+                         <div class="input-group input-group-sm">
+							<h:inputText value="#{beanUtilisateur.sujetEnRecherche}" class="form-control input-sm" a:placeholder="Tapper le théme de formation à chercher ..." size="70" style="height:32px;" ></h:inputText>
+		                      <span class="input-group-btn">
+		                      <h:commandLink action="#{beanUtilisateur.chercherListeAutoFormationParSujet()}" class="btn btn-info btn-flat" style="height:32px;"><i class="fa fa-search"></i></h:commandLink>
+		                    </span>
+		                  </div>
+                    </div>
+                  </div>
+                </div>
+
+
+				    
+
+				<div id="lundi">
+				
+				    <div class="panel-body">
+				      
+	
+                  <div class="box-body" style="padding:0px;">
+
+     				
+     				<ui:repeat var="t" value="#{beanUtilisateur.chargerListeDesThemeAutoFormation()}">
+     				
+     				<fieldset class="scheduler-border">
+    					<legend style="margin-bottom:-20px;">#{t.designation} :</legend>
+
+     				<br />
+     				<br />
+     				
+     					<ui:repeat var="a" value="#{beanUtilisateur.chargerListeDesAutoFormationUnTheme(t.idAutoFormationTheme)}">
+     					
+    						
+     						            <div class="col-md-3" style="width:100%;margin-left:0px;padding:0px;border-color:#90C3D4;">
+							              <div class="box box-default collapsed-box box-solid" style="border-color:#90C3D4;">
+							                <div class="box-header with-border" style="background-color:#90C3D4;">
+							                  <h3 class="box-title">
+							                  <b>#{a.sujet}</b> 
+							                  &nbsp;
+							                  
+							                  <small>
+							                  <font color="yellow">
+							                  <h:outputLabel value="( #{t.designation} )"/>
+							                  </font> 
+							                  &nbsp;
+							                  <h:outputLabel value="( Lancée le : "/>  
+							                  <h:outputLabel value="#{a.dateLancelent}"> 
+							                  <f:convertDateTime timeStyle="long">   
+							                  </f:convertDateTime> 
+							                  </h:outputLabel>
+							                  <h:outputLabel value=" )"/> 
+							                  
+							                  </small>
+											  
+							                  </h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                 
+							                
+			                	
+							                
+				     						   <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;">
+							                    <thead>
+							                      <tr>
+							                        <th>Nom document</th>
+							                        <th>Taille</th>
+							                        <th>Télechargement</th>
+							                     </tr>
+							                    </thead>
+							                    <tbody>
+							                    <ui:repeat var="d" value="#{beanUtilisateur.chargerListeDocumentUneAutoFormation(a.idAutoFormation)}">
+							                    <tr>
+							                    	<td>#{d.nomReel}</td>
+							                    	<td align="center">#{d.taille} KB</td>
+							                    	<td align="center">
+							                    	<a href="#{request.contextPath}/fichierProjetPfeGrh/fichierDesAutoFormation/#{d.nomSurServeur}" download="#{d.nomReel}" class="btn btn-default btn-xs"  style="background-color:#07F5F1;"> <i class="fa fa-download"></i> </a> 
+							                    	</td>
+				               	
+							                    </tr>
+							                    </ui:repeat>
+							                    </tbody>
+							                    
+							                  </table>
+
+							                 
+							                 
+							                </div>
+							              </div>
+							            </div>
+
+     					
+     					</ui:repeat>
+
+     				   </fieldset>
+     				   
+     				   <hr style="margin-top: 0px;"/>
+     				
+     				</ui:repeat>
+
+          
+
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>
+          
+          </c:if>          
+          
+          
+          
+          <!-- affichage resultat recherche ************************************************************************************************* -->
+          
+          <c:if test="#{rechercheOuNon eq 'oui'}">
+          
+          
+
+        <h:form>
+
+                         
+               <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #D4A190;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#D4A190;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> La liste des auto formations : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+				    
+				    
+				<div class="box-header with-border">
+                  <h3 class="box-title">
+                  <h:commandLink class="btn btn-primary" action="#{beanUtilisateur.koiAfficher('tout')}" style="background-color:#00c0ef;border:none;"> <i class="fa fa-arrow-circle-left"></i> &nbsp; Retour au menu principal </h:commandLink>
+                  &nbsp;
+                  <h:commandLink class="btn btn-primary" action="#{beanUtilisateur.afficherToutesLesAutoFormationSansRecherche()}" style="background-color:#00c0ef;border:none;"> <i class="fa fa-sticky-note-o"></i> &nbsp; Afficher toutes les formations </h:commandLink>
+                  </h3>
+                  <div class="box-tools pull-right" style="margin-top:5px;">
+                     <div class="has-feedback">
+                         <div class="input-group input-group-sm">
+							<h:inputText value="#{beanUtilisateur.sujetEnRecherche}" class="form-control input-sm" a:placeholder="Tapper le théme de formation à chercher ..." size="60" style="height:32px;" ></h:inputText>
+		                      <span class="input-group-btn">
+		                      <h:commandLink action="#{beanUtilisateur.chercherListeAutoFormationParSujet()}" class="btn btn-info btn-flat" style="height:32px;"><i class="fa fa-search"></i></h:commandLink>
+		                    </span>
+		                  </div>
+                    </div>
+                  </div>
+                </div>
+
+
+				    
+
+				<div id="lundi">
+				
+				 <div class="panel-body" style="padding:10px;">
+				      
+	
+                  <div class="box-body" style="padding:0px;width:100%;">
+                  
+                  
+                  
+                  
+						<!-- ila kant resultat de recherche khawya   -->
+						<c:if test="#{beanUtilisateur.chercherListeAutoFormationParSujet().size() eq 0}">
+						
+						
+						<div class="callout callout-success" style="width:100%;">
+		                    <h4> <i class="fa fa-search"></i> &nbsp; Résultats de recherche</h4>
+		                    <p>Le résultat des formations trouvés pour le sujet : &nbsp; <b>  #{beanUtilisateur.sujetEnRecherche} </b></p>
+		                </div>
+						
+						
+						<h:outputLabel value="Aucun resultat trouvé ."></h:outputLabel>
+						
+						</c:if>
+
+
+
+						<!-- ila kant resultat de recherche 3amra   -->
+						<c:if test="#{beanUtilisateur.chercherListeAutoFormationParSujet().size() gt 0}">
+
+
+						<div class="callout callout-success"  style="width:100%;">
+		                    <h4> <i class="fa fa-search"></i> &nbsp; Résultats de recherche</h4>
+		                    <p>Le résultat des formations trouvés pour le sujet : &nbsp; <b> #{beanUtilisateur.sujetEnRecherche} </b> </p>
+		                </div>
+
+     				
+     					<ui:repeat var="a" value="#{beanUtilisateur.chercherListeAutoFormationParSujet()}">
+     					
+		     				<fieldset class="scheduler-border">
+		    				<legend style="margin-bottom:-20px;">#{a.themeAutoFormation.designation} :</legend>
+		    				
+		    				 <br />
+     						<br />
+    						
+     						            <div class="col-md-3" style="width:100%;margin-left:0px;padding:0px;border-color:#90C3D4;">
+							              <div class="box box-default collapsed-box box-solid" style="border-color:#90C3D4;">
+							                <div class="box-header with-border" style="background-color:#90C3D4;">
+							                  <h3 class="box-title">
+							                  <b>#{a.sujet}</b> 
+							                  &nbsp;
+							                  
+							                  <small>
+							                  <font color="yellow">
+							                  <h:outputLabel value="( #{a.themeAutoFormation.designation} )"/>
+							                  </font> 
+							                  &nbsp;
+							                  <h:outputLabel value="( Lancée le : "/>  
+							                  <h:outputLabel value="#{a.dateLancelent}"> 
+							                  <f:convertDateTime timeStyle="long">   
+							                  </f:convertDateTime> 
+							                  </h:outputLabel>
+							                  <h:outputLabel value=" )"/> 
+							                  
+							                  </small>
+											  
+							                  </h3>
+							                  <div class="box-tools pull-right">
+							                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+							                  </div>
+							                </div>
+							                <div class="box-body">
+							                 
+							                
+			                	
+							                
+				     						   <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;">
+							                    <thead>
+							                      <tr>
+							                        <th>Nom document</th>
+							                        <th>Taille</th>
+							                        <th>Télechargement</th>
+							                     </tr>
+							                    </thead>
+							                    <tbody>
+							                    <ui:repeat var="d" value="#{beanUtilisateur.chargerListeDocumentUneAutoFormation(a.idAutoFormation)}">
+							                    <tr>
+							                    	<td>#{d.nomReel}</td>
+							                    	<td align="center">#{d.taille} KB</td>
+							                    	<td align="center">
+							                    	<a href="#{request.contextPath}/fichierProjetPfeGrh/fichierDesAutoFormation/#{d.nomSurServeur}" download="#{d.nomReel}" class="btn btn-default btn-xs"  style="background-color:#07F5F1;"> <i class="fa fa-download"></i> </a> 
+							                    	</td>
+				               	
+							                    </tr>
+							                    </ui:repeat>
+							                    </tbody>
+							                    
+							                  </table>
+
+							                 
+							                 
+							                </div>
+							              </div>
+							            </div>
+
+     					
+     					</fieldset>
+     					
+     					</ui:repeat>
+
+     				   
+     				   
+     				   <hr style="margin-top: 0px;"/>
+     				
+					
+					</c:if>
+
+          
+
+                 
+                      
+                  
+                </div>
+   
+				      </div>
+				    </div>
+				  </div>
+          
+          
+          </div>
+          
+          
+          
+          </h:form>
+         
+          
+          
+          </c:if>
+          
+          
+
+
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw autoformation ************************************************************* -->
+           
+           
+           <!-- Hna n affichiw administration ************************************************************* -->
+          
+          <c:if test="#{koiAfficher eq 'administration'}">
+          
+          
+          
+          
+          
+          
+         
+
+                         
+              <div class="col-md-3" style="width:75%;padding-left:0px;">
+                
+           		<div class="panel panel-default" style="border:solid 1px #C390D4;">
+				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#C390D4;">
+				      <h4 class="panel-title">
+
+				        <a class="collapsed">
+				           <font color="white"> <b> Demande des certificats administratifs : </b> </font>
+				        </a>
+				      </h4>
+				    </div>
+				    
+				    
+				   <h:form>
+				    
+				   <div class="box-header with-border" style="border-bottom:solid 1px #C390D4;">
+	                  <center>
+	                  <h3 class="box-title">
+	                  <h:commandLink class="btn btn-primary" action="#{beanUtilisateur.koiAfficher('tout')}" style="background-color:#00c0ef;border:none;"> <i class="fa fa-arrow-circle-left"></i> &nbsp; Retour au menu principal </h:commandLink>
+	                  </h3>
+	                  </center>
+                   </div>
+				  </h:form> 
+				    
+
+					<div id="lundi">
+				      <div class="panel-body">
+				      
+							<div class="box-body">
+		                  
+		                  
+		                      
+					            <div class="row">
+					            
+					            
+					            <h:form>
+						            <div class="col-md-9" style="width:100%;">
+						              <div class="box box-solid" style="border:solid 1px #90C3D4;background-color:#ecf0f5;">
+						                <div class="box-header with-border" style="background-color:#90C3D4;">
+						                <font color="white">
+						                  <i class="fa fa-sticky-note-o"></i>
+						                  &nbsp;
+						                  <h3 class="box-title"> <b> Attestation de travail </b> </h3>
+						                </font>
+						                </div>
+						                <div class="box-body">
+						                  <dl>
+						                    <dt>Nom certificat : </dt>
+						                    <dd>Attestation de travail</dd>
+						                    <dt>Pourquoi ce certificat ? </dt>
+<!-- 						                    <dd>Le certificat de travail est un document non négligeable. Le salarié doit le garder précieusement durant toute sa vie active.</dd> -->
+										  	<dd>
+										  	L’attestation de travail est une attestation délivrée par l’employeur à un salarié, sur sa demande, permettant d’établir officiellement, vis-à-vis des tiers, que le salarié est bien employé par l’entreprise.
+										  	</dd>
+										  </dl>
+										  
+										  <h:commandLink style="background-color:#90C3D4;" value="" action="#{beanUtilisateur.enregistrerDemandeAttestation('attestationTravail')}" class="btn btn-default"> <i class="fa fa-thumbs-up"></i> <b> Demander </b> </h:commandLink>
+										  
+						                </div>
+						                
+						              </div>
+						            </div>
+						          </h:form>
+						            
+						            
+						            
+
+
+
+								<h:form>
+						            <div class="col-md-9" style="width:100%;">
+						              <div class="box box-solid" style="border:solid 1px #D69927;background-color:#ecf0f5;">
+						                <div class="box-header with-border" style="background-color:#D69927;">
+						                <font color="white">
+						                  <i class="fa fa-sticky-note-o"></i>
+						                  &nbsp;
+						                  <h3 class="box-title"> <b> Bulletin de paie </b> </h3>
+						                </font>
+						                </div>
+						                <div class="box-body">
+						                  <dl>
+						                    <dt>Nom certificat : </dt>
+						                    <dd>Bulletin de paie</dd>
+						                    <dt>Pourquoi ce certificat ? </dt>
+						                    <dd>Le bulletin de paie, est un document fourni par l'employeur attestant du salaire versé au salarié, il détaille le salaire net versé et la partie socialisée du salaire via les cotisations diverses (Salaire de base, heures supplémentaire, primes, CNSS, AMO, etc.). Le bulletin de paie est généralement délivré mensuellement.</dd>
+						                  </dl>
+						                  
+						                  
+						                  <div class="col-md-6">
+											  <div class="form-group">
+							                      <label for="exampleInputtypeContrat">Année : </label>
+							                      	<h:selectOneMenu value="#{beanUtilisateur.bulletinPaie.anneeBultinPaieDemander}" class="form-control" onchange="document.getElementById('affichage').innerHTML = document.getElementById(this.value).innerHTML;">
+							                      		<f:selectItem itemLabel="2010" itemValue="2010"/>
+							                      		<f:selectItem itemLabel="2011" itemValue="2011"/>
+							                      		<f:selectItem itemLabel="2012" itemValue="2012"/>
+							                      		<f:selectItem itemLabel="2013" itemValue="2013"/>
+							                      		<f:selectItem itemLabel="2014" itemValue="2014"/>
+							                      		<f:selectItem itemLabel="2015" itemValue="2015"/>
+							                      		<f:selectItem itemLabel="2016" itemValue="2016"/>
+							                      		<f:selectItem itemLabel="2017" itemValue="2017"/>
+							                      	</h:selectOneMenu>
+							                  </div>
+								  		  </div>
+								  		  
+								  		  
+						                  <div class="col-md-6">
+											  <div class="form-group">
+							                      <label for="exampleInputtypeContrat">Mois : </label>
+							                      	<h:selectOneMenu value="#{beanUtilisateur.bulletinPaie.moisBultinPaieDemander}" class="form-control" onchange="document.getElementById('affichage').innerHTML = document.getElementById(this.value).innerHTML;">
+							                      		<f:selectItem itemLabel="Janvier" itemValue="1"/>
+							                      		<f:selectItem itemLabel="Février" itemValue="2"/>
+							                      		<f:selectItem itemLabel="Mars" itemValue="3"/>
+							                      		<f:selectItem itemLabel="Avril" itemValue="4"/>
+							                      		<f:selectItem itemLabel="Mai" itemValue="5"/>
+							                      		<f:selectItem itemLabel="Juin" itemValue="6"/>							                      		
+							                      		<f:selectItem itemLabel="Juillet" itemValue="7"/>
+							                      		<f:selectItem itemLabel="Août" itemValue="8"/>
+							                      		<f:selectItem itemLabel="Septembre" itemValue="9"/>
+							                      		<f:selectItem itemLabel="Octobre" itemValue="10"/>
+							                      		<f:selectItem itemLabel="Novembre" itemValue="11"/>
+							                      		<f:selectItem itemLabel="Décembre" itemValue="12"/>
+							                      	</h:selectOneMenu>
+							                  </div>
+								  		  </div>
+								  		  
+						                  
+						                  
+										  <h:commandLink style="background-color:#D69927;" value="" action="#{beanUtilisateur.enregistrerDemandeAttestation('bulletinPaie')}" class="btn btn-default"> <i class="fa fa-thumbs-up"></i> <b> Demander </b> </h:commandLink>
+										  
+						                  
+						                </div>
+						              </div>
+						            </div>
+						          </h:form>
+						          
+						          
+						          
+						           
+						            
+						            
+						            
+						            
+					            <h:form>
+						            <div class="col-md-9" style="width:100%;">
+						              <div class="box box-solid" style="border:solid 1px #14CC98;background-color:#ecf0f5;">
+						                <div class="box-header with-border" style="background-color:#14CC98;">
+						                <font color="white">
+						                
+						                  <i class="fa fa-sticky-note-o"></i>
+						                  &nbsp;
+						                  <h3 style="" class="box-title"> <b> Attestation de salaire </b> </h3>
+						                </font>
+						                </div>
+						                <div class="box-body">
+						                  <dl>
+						                    <dt>Nom certificat : </dt>
+						                    <dd>Attestation de salaire</dd>
+						                    <dt>Pourquoi ce certificat ? </dt>
+						                    <dd>L'attestation de salaire est un document rédigé par l'employeur à la suite d'un arrêt de travail ou d'un congé de son salarié, quel qu'en soit le motif.</dd>
+						                    <dd>C'est sur la base de ce document que le salarié peut prétendre à des indemnités journalières auprès de l'Assurance Maladie.</dd>
+						                  </dl>
+						                  
+										  
+										  <h:commandLink style="background-color:#14CC98;" value="" action="#{beanUtilisateur.enregistrerDemandeAttestation('attestationSalaire')}" class="btn btn-default"> <i class="fa fa-thumbs-up"></i> <b> Demander </b> </h:commandLink>
+										  
+						                  
+						                </div>
+						              </div>
+						            </div>
+						          </h:form>
+						            
+						            
+						            
+						            
+						            
+					            
+					            
+					            
+					            <h:form>
+						            <div class="col-md-9" style="width:100%;">
+						              <div class="box box-solid" style="border:solid 1px #D4A190;background-color:#ecf0f5;">
+						                <div class="box-header with-border" style="background-color:#D4A190;">
+						                <font color="white">
+						                  <i class="fa fa-sticky-note-o"></i>
+						                  &nbsp;
+						                  <h3 class="box-title"><b>Attestation de congé</b></h3>
+						                </font>
+						                </div>
+						                <div class="box-body">
+						                  <dl>
+						                    <dt>Nom certificat : </dt>
+						                    <dd>Attestation de congé</dd>
+						                    <dt>Pourquoi ce certificat ? </dt>
+						                    <dd>L'attestation de salaire est un document rédigé par l'employeur à la suite d'une demande de l'employé, cette attestion certifier une période de congé de l'employé.</dd>
+						                  </dl>
+						                  
+						                  
+						                  
+						                  
+						                  
+						                  
+						                  <!--  la liste de vos congé valide */************************************** -->
+						                  
+						               
+						               
+						                  <c:if test="#{beanUtilisateur.chargerCongeValideUnSalarie().size() eq 0}">
+						                  
+						                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+						                    <thead>
+						                      <tr>
+						                        <th>ID</th>
+						                        <th>Date début</th>
+						                        <th>Date fin</th>
+						                        <th>Nature</th>
+						                        <th>Demander</th>
+						                     </tr>
+						                    </thead>
+						                    <tbody>
+						                    <tr>
+						                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucun congé validé enregistré pour vous."/></font></td>
+						                    </tr>
+						                    </tbody>
+						                    
+						                  </table>
+						                  
+						                  </c:if>
+						                
+						                <c:if test="#{beanUtilisateur.chargerCongeValideUnSalarie().size() gt 0}">
+						                
+						                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+						                    <thead>
+						                      <tr>
+						                        <th>ID</th>
+						                        <th>Date début</th>
+						                        <th>Date fin</th>
+						                        <th>Nature</th>
+						                        <th>Demander</th>
+						                     </tr>
+						                    </thead>
+						                    <tbody>
+						                    <ui:repeat var="a" value="#{beanUtilisateur.chargerCongeValideUnSalarie()}">
+						                    <tr>
+						                    	<td align="center" style="vertical-align:center;"><font color="#00c0ef"><h:outputLabel value="#{a.idConge}"/></font></td>
+						                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateDebutC}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+						                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.dateFinC}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+						                       	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.nature}"/></font></td>
+						                        <td align="center">
+						                        <b>
+						                        <h:commandLink value="Demander" action="#{beanUtilisateur.enregistrerAttestationDeConge('attestationConge',a.idConge)}"> &nbsp; <i class="fa fa-thumbs-up"></i></h:commandLink>
+						                        </b>
+						                        </td>
+						                    </tr>
+						                    </ui:repeat>
+						                    </tbody>
+						                    
+						                  </table>
+						                  
+						                  </c:if>
+						               
+						                  
+						                  
+						                  
+						                  <!-- ********************************************************************************************** -->
+						                  
+						                  
+						                  
+						                </div>
+						              </div>
+						            </div>
+						            
+								</h:form>
+						          
+						            
+						           
+						           
+						           
+						            
+						            
+						            
+						            
+						            
+						        </div>
+		                      
+		                      
+		                      
+		                  
+		                  	</div>
+   
+				      </div>
+				    </div>
+				</div>
+          
+          
+             </div>
+          
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+          
+          
+          
+          
+          
+          </c:if>       
+
+           <!-- fin Hna n affichiw administration ************************************************************* -->
+           
+           
+           
+           
+           
+           
+           
+           
+            
+            
+          </div><!-- /.row -->
+        
+        
+        
+        
+        </section>
+        
+        
+      </div>
+      
+      
+      
+     
+     
+     
+     
+     
+     
+     
+        
+        
+        
+        
+       <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 2.3.0
+        </div>
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                    <p>Will be 23 on April 24th</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-user bg-yellow"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                    <p>New phone +1(800)555-1234</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                    <p>nora@example.com</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                    <p>Execution time 5 seconds</p>
+                  </div>
+                </a>
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Custom Template Design
+                    <span class="label label-danger pull-right">70%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Update Resume
+                    <span class="label label-success pull-right">95%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Laravel Integration
+                    <span class="label label-warning pull-right">50%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Back End Framework
+                    <span class="label label-primary pull-right">68%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                  </div>
+                </a>
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+          </div><!-- /.tab-pane -->
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+              <h3 class="control-sidebar-heading">General Settings</h3>
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Report panel usage
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+                <p>
+                  Some information about this general settings option
+                </p>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Allow mail redirect
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+                <p>
+                  Other sets of options are available
+                </p>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Expose author name in posts
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+                <p>
+                  Allow the user to show his name in blog posts
+                </p>
+              </div><!-- /.form-group -->
+
+              <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Show me as online
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Turn off notifications
+                  <input type="checkbox" class="pull-right"/>
+                </label>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Delete chat history
+                  <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                </label>
+              </div><!-- /.form-group -->
+            </form>
+          </div><!-- /.tab-pane -->
+        </div>
+      </aside><!-- /.control-sidebar -->
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+        
+        
+        
+        
+        
+    
+    
+    
+    </div>
+    
+
+    <!-- jQuery 2.1.4 -->
+    <script src="resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="resources/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="resources/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="resources/dist/js/demo.js"></script>
+  </h:body>
+  
+  </f:view>
+  
+  
+</html>

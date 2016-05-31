@@ -1,0 +1,1063 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>AdminLTE 2 | General Form Elements</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="resources/bootstrap/css/font-awesome.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="resources/bootstrap/css/ionicons.min.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/AdminLTE.min.css"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="resources/dist/css/skins/_all-skins.min.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    
+
+	<link rel="stylesheet" href="resources/plugins/iCheck/flat/blue.css"/>
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="resources/plugins/morris/morris.css"/>
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="resources/plugins/jvectormap/jquery-jvectormap-1.2.2.css"/>
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="resources/plugins/datepicker/datepicker3.css"/>
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="resources/plugins/daterangepicker/daterangepicker-bs3.css"/>
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+	
+	
+	
+	<link rel="stylesheet" href="resources/plugins/daterangepicker/daterangepicker-bs3.css"/>
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="resources/plugins/iCheck/all.css"/>
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="resources/plugins/colorpicker/bootstrap-colorpicker.min.css"/>
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="resources/plugins/timepicker/bootstrap-timepicker.min.css"/>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="resources/plugins/select2/select2.min.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/AdminLTE.min.css"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="resources/dist/css/skins/_all-skins.min.css"/>
+	
+	
+	 <!-- mon style pour le calendrier-->
+    <link rel="stylesheet" href="resources/bootstrap/css/calendar.css"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/myStyle.css"/>
+    
+
+	<style>
+
+    
+    table th{
+    
+    background-color:#C8C6CC;
+    
+    }
+    
+    </style>    
+
+
+</h:head>
+  <h:body class="hold-transition skin-blue sidebar-mini">
+  
+  <div class="wrapper">
+  
+  
+  
+  
+  
+  
+  <header class="main-header">
+        <!-- Logo -->
+        <a href="../../index2.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>A</b>LT</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Admin</b>LTE</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Messages: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                  <span class="label label-success">4</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 4 messages</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Support Team
+                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li><!-- end message -->
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            AdminLTE Design Team
+                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Developers
+                            <small><i class="fa fa-clock-o"></i> Today</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Sales Department
+                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="pull-left">
+                            <img src="resources/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <h4>
+                            Reviewers
+                            <small><i class="fa fa-clock-o"></i> 2 days</small>
+                          </h4>
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li>
+              <!-- Notifications: style can be found in dropdown.less -->
+              <li class="dropdown notifications-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 10 notifications</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-users text-red"></i> 5 new members joined
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-user text-red"></i> You changed your username
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">View all</a></li>
+                </ul>
+              </li>
+              <!-- Tasks: style can be found in dropdown.less -->
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">9</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 9 tasks</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Design some buttons
+                            <small class="pull-right">20%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">20% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Create a nice theme
+                            <small class="pull-right">40%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">40% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Some task I need to do
+                            <small class="pull-right">60%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">60% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                      <li><!-- Task item -->
+                        <a href="#">
+                          <h3>
+                            Make beautiful transitions
+                            <small class="pull-right">80%</small>
+                          </h3>
+                          <div class="progress xs">
+                            <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">80% Complete</span>
+                            </div>
+                          </div>
+                        </a>
+                      </li><!-- end task item -->
+                    </ul>
+                  </li>
+                  <li class="footer">
+                    <a href="#">View all tasks</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Alexander Pierce</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                    <p>
+                      Alexander Pierce - Web Developer
+                      <small>Member since Nov. 2012</small>
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <li class="user-body">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Friends</a>
+                    </div>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      
+      
+      
+      
+            <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+            </div>
+            <div class="pull-left info">
+              <p>Alexander Pierce</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+<!--             <li class="header">MAIN NAVIGATION</li> -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Tableau de bord</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                    <li><a href="gestionSalariesList.xhtml"><i class="fa fa-circle-o"></i>Gestion salariés</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Administration</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              	<li><a href="gestionContratsGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des Contrats</a></li>
+                <li><a href="gestionCongesGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des congés</a></li>
+                <li><a href="GestionFInitialesGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des formations initiales</a></li>
+                <li><a href="GestionFProfessionnelleGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des parcours professionnels</a></li>
+                <li><a href="gestionServices.xhtml"><i class="fa fa-circle-o"></i>Gestion des services</a></li>
+              	<li><a href="gestionQualifications.xhtml"><i class="fa fa-circle-o"></i>Gestion des qualifications</a></li>
+                <li><a href="gestionOrganismes.xhtml"><i class="fa fa-circle-o"></i>Gestion des organismes</a></li>
+                <li><a href="gestionCotisations.xhtml"><i class="fa fa-circle-o"></i>Gestion des cotisations</a></li>
+                <li><a href="gestionRubriques.xhtml"><i class="fa fa-circle-o"></i>Gestion des rubriques</a></li>
+              </ul>
+             </li>
+             
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Comptabilité fiancière</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              	<li><a href="gestionBanques.xhtml"><i class="fa fa-circle-o"></i>Gestion des banques</a></li>
+              	<li><a href="gestionAgences.xhtml"><i class="fa fa-circle-o"></i>Gestion des agences</a></li>
+              	<li><a href="gestionAvancesGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des avances</a></li>
+              	<li><a href="gestionPretsGlobals.xhtml"><i class="fa fa-circle-o"></i>Gestion des prêts</a></li>
+              </ul>
+             </li>
+             
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Gestion des barèmes</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              	<li><a href="gestionBAnc.xhtml"><i class="fa fa-circle-o"></i>Barèmes Ancienneté</a></li>
+                    <li><a href="gestionBConge.xhtml"><i class="fa fa-circle-o"></i>Barèmes Congé</a></li>
+                    <li><a href="gestionBIgr.xhtml"><i class="fa fa-circle-o"></i>Barèmes IGR</a></li>
+              </ul>
+             </li>
+             
+             <!-- Gestion du temps -->
+             
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Gestion du temps</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              	<li><a href="gestionPlanTravail.xhtml"><i class="fa fa-circle-o"></i>Gestion des plans du travail</a></li>
+              	<li><a href="gestionGroupes.xhtml"><i class="fa fa-circle-o"></i>Gestion des groupes</a></li>
+              	<li><a href="gestionPointage.xhtml"><i class="fa fa-circle-o"></i>Gestion des pointages</a></li>
+              </ul>
+             </li>
+             
+             <!-- Gestion des forma -->
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+  
+
+  	
+  	
+  	  		
+  	   <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+
+  	
+  		<section class="content-header">
+          <h1>
+            Ajout d'une auto formation :
+            <small></small>
+          </h1>
+          
+        </section>
+        
+        <br />
+  	
+  	
+  	
+  	
+  		<!-- Ajouter une auto formation  -->
+  		
+  		<div class="box-footer" style="background-color:#ecf0f5;">
+            
+            
+            <div class="row">
+
+           
+           
+           
+           <!-- infos info formation ***************************************************************************************** -->
+                       
+          <h:form id="autoFormation" prependId="false" enctype="multipart/form-data">
+            
+
+            <div class="col-md-6">
+
+              <div class="box box-primary">
+                
+                
+                <div class="box-header with-border">
+                  <h3 class="box-title">Infos de la formation :</h3>
+                </div>  
+                
+                 <div class="box-body">
+
+
+                	<p:growl id="msgs" showDetail="true" />
+                
+
+			                	                
+			                
+			                <div class="form-group">
+			                <label for="exampleInputEmail1">Théme :</label>
+			                <div class="input-group input-group-sm" style="z-index:0;">
+
+						          <h:selectOneMenu value="#{beanAutoFormation.idAutoFormationTheme}" class="form-control" style="height:35px;font-size:14px;">
+							          <f:selectItem itemLabel="Sélectionner le théme de la liste" itemValue="0" />
+							          <f:selectItems value="#{beanAutoFormation.chargerListeThemeAutoFormation()}" var="p" itemLabel="#{p.designation}" itemValue="#{p.idAutoFormationTheme}"/>
+							      </h:selectOneMenu>  
+							      
+							      <span class="input-group-btn"> 
+
+							      <a href="#popupAjouterThemeAutoFormation" class="btn btn-info btn-flat" data-toggle="tooltip" title="Ajouter"><i class="fa  fa-plus"></i></a>    		                      	
+		           				  </span>
+		                    </div>
+		                    </div>
+		                    
+			                 
+			                 <div class="form-group">
+		                    
+		                      <label for="exampleInputEmail1">Sujet :</label>                    
+		                      <h:inputText value="#{beanAutoFormation.autoFormationAajouter.sujet}" class="form-control" id="id1"  required="true" requiredMessage="Théme Oblégatoire (*)">
+		                      </h:inputText>
+		                      <h:message for="id1" style="color:red" />  
+		                              
+		          			</div>
+		          			
+		          			
+		          			<div class="form-group">
+		                    
+		                      <label for="exampleInputEmail1">Déscription :</label>                    
+		                      <h:inputText value="#{beanAutoFormation.autoFormationAajouter.description}" class="form-control" id="id2">
+		                      </h:inputText>
+		                      <h:message for="id2" style="color:red" />  
+		                              
+		          			</div>
+				  
+				           
+					        <div class="box-footer">
+						    	<h:commandButton class="btn btn-primary" value="Enregistrer" action="#{beanAutoFormation.ajouterAutoFormation}" />
+	                  		</div>
+                  
+                 	
+                    	
+	               </div>
+	              
+               
+
+			  			  		  
+			  </div>
+            </div>
+            
+         
+            
+           </h:form>
+           
+           <!-- Fin infoformation ***************************************************************************************** -->
+           
+  
+           
+           
+           
+           
+           
+                      
+           <!-- Upload les fichiers d'uen formation ******************************************************************** -->
+           
+           <h:form  id="fileUpoad" prependId="false" enctype="multipart/form-data">
+            <div class="col-md-6">
+              <div class="box box-primary"  style="min-height:344px;max-height:344px;overflow:auto;">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Charger les fichiers de la formation :</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                
+
+                  
+                  <div class="form-group">
+                  
+                  <p:fileUpload label="Parcourir ..." id="fileId"  fileUploadListener="#{beanAutoFormation.uploadFichier}" mode="advanced" dragDropSupport="false"
+             		multiple="false" update="listeFichierAttacher" sizeLimit="10000000" auto="true" >
+             		
+             		
+             		</p:fileUpload>
+                  
+
+
+                    <div class="btn btn-default btn-file" style="margin-top:10px;">
+                      <i class="fa fa-paperclip"></i> Liste des fichiers attachés
+                      
+                    </div>
+
+				
+					<h:panelGroup layout="block" id="listeFichierAttacher">
+                    <ul class="nav nav-pills nav-stacked">
+                    <ui:repeat var="f" value="#{beanAutoFormation.chargerLesFichierUneAutoFormationAuMomentAjout()}">
+                    
+                    
+                    <li> 
+                    <p:commandLink update="listeFichierAttacher" action="#{beanAutoFormation.supprimerUnFichierAttacherAautoFormation(f)}"> <font color="red"> <i class="fa fa-trash-o"></i> </font>  </p:commandLink>  &nbsp;
+                    <a> #{f.nomReel} </a>
+                    </li>
+                   
+                    	 
+                    </ui:repeat>
+                   </ul>
+                   </h:panelGroup>
+                   <br />
+                    
+         
+                    
+                    
+                  </div>
+                  
+                  
+                </div><!-- /.box-body -->
+                
+              </div><!-- /. box -->
+            </div><!-- /.col -->
+            
+            </h:form>
+
+           <!-- Fin Upload les fichiers d'uen formation ******************************************************************** --> 
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           <!-- Liste des auto formation ***************************************************************** -->
+           
+           <h:form id="list" prependId="false">
+
+           
+            <div class="col-md-9" style="width:100%;">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">La liste des formations :</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                
+
+
+                  <c:if test="#{beanAutoFormation.chargerListeDesAutoFormatio().size() eq 0}">
+                  
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Théme</th>
+                        <th>Sujet</th>
+                        <th>Date Lancemant</th>
+                        <th>Déscription</th>
+                        <th>Nombre support</th>                        
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    	<td colspan="6"><font color="#00c0ef"><h:outputLabel value="Aucune auto formation enregistrée."/></font></td>
+                    </tr>
+                    </tbody>
+                    
+                  </table>
+                  
+                  </c:if>
+                
+                
+                
+                <c:if test="#{beanAutoFormation.chargerListeDesAutoFormatio().size() gt 0}">
+                
+                               
+                  <table id="example2" class="table table-bordered table-hover" style="margin-top:10px;margin-bottom:10px;border-top:solid 2px black;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Théme</th>
+                        <th>Sujet</th>
+                        <th>Date Lancemant</th>
+                        <th>Déscription</th>
+                        <th>Nombre support</th>
+                        <th>Modification</th>
+                        <th>Suppression</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                    <ui:repeat var="a" value="#{beanAutoFormation.chargerListeDesAutoFormatio()}">
+                    <tr>
+                    	<td align="center"><font color="#00c0ef"><h:outputLabel value="#{a.idAutoFormation}"/></font></td>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.themeAutoFormation.designation}"/></font></td>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.sujet}"/></font></td>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.dateLancelent}"> <f:convertDateTime timeStyle="long"></f:convertDateTime> </h:outputLabel></font></td>
+                    	<td><font color="#00c0ef"><h:outputLabel value="#{a.description}"/></font></td>
+                        <td align="center"><font color="#00c0ef"><b>#{beanAutoFormation.chargerNombreDocumentUneFormation(a).get(0)}</b></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:commandLink value="Modifier" action="#{beanAutoFormation.allerVersModifierAutoFormation(a)}"></h:commandLink></font></td>
+                    	<td align="center"><font color="#00c0ef"><h:commandLink value="Supprimer" onclick="return confirm('Voulez vous vraiment supprimer ? ');" action="#{beanAutoFormation.supprimerAutoFormation(a)}"></h:commandLink></font></td>
+                    </tr>
+                    </ui:repeat>
+                    </tbody>
+                    
+                  </table>
+                  
+                 
+                   
+               
+                  
+                  </c:if>
+   					
+                  
+                </div>
+                
+              </div>
+            </div>
+
+            
+            </h:form>
+            
+            <!-- Fin Liste des auto formation *****************************************************************  -->
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+            </div>
+            
+            
+        </div>
+  	
+  	
+
+  		  		
+  		
+  		
+  		
+  		
+  		</div>
+
+  
+  
+  		           <!-- PopUp ajouter theme auto formation ************************************************************************ -->
+           
+				<h:form>
+				<div id="popupAjouterThemeAutoFormation" class="overlayPOPUP">
+					<div class="popupPOPUP" style="width:500px;max-height:500px;overflow:auto;">
+					  
+					   <div class="contentPOPUP" style="width:460px;">
+	
+							   
+									
+<!-- 									<h3 style="float:left;">Ajouter un théme de formation : </h3> -->
+									
+<!-- 									<a href="#" class="btn btn-default btn-sm" data-toggle="tooltip" title="Fermer"  style="float:right;background-color:#3c8dbc;"><i class="fa fa-close"></i></a> -->
+									
+								<center>	 <a class="btn btn-primary" href="#"><i class="fa fa-close"></i> </a> </center>
+								<br />
+	
+									<div class="col-md-9" style="width:100%;">
+						              <div class="box box-primary">
+						                <div class="box-header with-border">
+						                  <h3 class="box-title">Ajouter Théme auto formation :</h3>
+						                </div><!-- /.box-header -->
+						                <div class="box-body">
+						               
+							                 <div class="form-group">
+						                    
+							                      <label for="exampleInputEmail1">Théme :</label>                    
+							                      <h:inputText value="#{beanAutoFormation.autoFormationThemeAajouter.designation}" class="form-control" id="id3"  required="true" requiredMessage="Théme Oblégatoire (*)">
+							                      </h:inputText>
+							                      <h:message for="id3" style="color:red" />  
+						                              
+						          			 </div>
+						          			 
+						          			 <div class="box-footer">
+										    	<h:commandButton class="btn btn-primary" value="Enregistrer" action="#{beanAutoFormation.ajouterAutoFormationTheme}" />
+					                  		</div>
+						                
+						                </div>
+						              </div>
+						             </div>
+						             
+						             
+									<div class="col-md-9" style="width:100%;">
+						              <div class="box box-primary">
+						                <div class="box-header with-border">
+						                  <h3 class="box-title">Liste des Thémes des auto formations :</h3>
+						                </div><!-- /.box-header -->
+						                <div class="box-body">
+						               
+									
+						                  <table id="example1" class="table table-bordered table-striped">
+						                    <thead>
+						                      <tr>
+						                      	
+						                        <th>Identifiant</th>
+						                        <th>Désignation</th>
+	
+						                      </tr>
+						                    </thead>
+						                    <tbody>
+						                    
+						                    <ui:repeat var="t" value="#{beanAutoFormation.chargerListeThemeAutoFormation()}">
+						                    <tr>
+												<td><font color="#00c0ef"><h:outputLabel value="#{t.idAutoFormationTheme}"/></font></td>
+												<td><font color="#00c0ef"><h:outputLabel value="#{t.designation}"/></font></td>
+											
+											</tr>
+						                    </ui:repeat>
+						                    
+						                    </tbody>
+						
+						                  </table>
+						                
+						                </div>
+						              </div>
+						             </div>
+
+						   
+					   </div>
+					</div>			
+				</div>
+				</h:form>
+				
+				<!-- Fin PopUp ajouter theme auto formation ************************************************************************ -->
+				
+  	
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+   <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 2.3.0
+        </div>
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+      </footer>
+      
+      
+      
+            <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                    <p>Will be 23 on April 24th</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-user bg-yellow"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                    <p>New phone +1(800)555-1234</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                    <p>nora@example.com</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                    <p>Execution time 5 seconds</p>
+                  </div>
+                </a>
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Custom Template Design
+                    <span class="label label-danger pull-right">70%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Update Resume
+                    <span class="label label-success pull-right">95%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Laravel Integration
+                    <span class="label label-warning pull-right">50%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Back End Framework
+                    <span class="label label-primary pull-right">68%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                  </div>
+                </a>
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+          </div><!-- /.tab-pane -->
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+              <h3 class="control-sidebar-heading">General Settings</h3>
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Report panel usage
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+                <p>
+                  Some information about this general settings option
+                </p>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Allow mail redirect
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+                <p>
+                  Other sets of options are available
+                </p>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Expose author name in posts
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+                <p>
+                  Allow the user to show his name in blog posts
+                </p>
+              </div><!-- /.form-group -->
+
+              <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Show me as online
+                  <input type="checkbox" class="pull-right" checked="checked"/>
+                </label>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Turn off notifications
+                  <input type="checkbox" class="pull-right"/>
+                </label>
+              </div><!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Delete chat history
+                  <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                </label>
+              </div><!-- /.form-group -->
+            </form>
+          </div><!-- /.tab-pane -->
+        </div>
+      </aside><!-- /.control-sidebar -->
+      
+      
+       <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+   
+		
+		
+		    <!-- jQuery 2.1.4 -->
+<!--     <script src="resources/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+    <!-- Bootstrap 3.3.5 -->
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="resources/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="resources/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="resources/dist/js/demo.js"></script>
+			
+		
+	
+		
+
+  </h:body>
+</html>
