@@ -430,6 +430,63 @@
            <!-- Fin Upload les fichiers d'uen formation ******************************************************************** --> 
 
            
+           
+                      <!-- Upload d'autre fichiers d'une formation ******************************************************************** -->
+           
+
+         <h:form  id="fileUpoad111" prependId="false" enctype="multipart/form-data">
+            <div class="col-md-6">
+              <div class="box box-primary"  style="min-height:394px;max-height:394px;overflow:auto;">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Ajouter des nouveaux fichiers à la formation :</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+              
+
+                            
+                  <div class="form-group">
+                  
+                
+
+
+                    <div class="btn btn-default btn-file" style="margin-top:10px;">
+                      <i class="fa fa-paperclip"></i> Liste des fichiers attachés déja attachées
+                      
+                    </div>
+
+				
+					<h:panelGroup layout="block" id="listeFichierDejaAttacher">
+                    <ul class="nav nav-pills nav-stacked">
+                    <ui:repeat var="f" value="#{beanAutoFormation.chargerLesDocumentsUneFormation()}">
+                    
+                    
+                    <li> 
+                    <p:commandLink update="listeFichierDejaAttacher" action="#{beanAutoFormation.supprimerUnFichierAttacherAautoFormation(f)}"> <font color="red"> <i class="fa fa-trash-o"></i> </font>  </p:commandLink>  &nbsp;
+                    <a> #{f.nomReel} </a>
+                    </li>
+                   
+                    	 
+                    </ui:repeat>
+                   </ul>
+                   </h:panelGroup>
+                   <br />
+                    
+         
+                    
+                    
+                  </div>
+                  
+           
+               
+                  
+                </div><!-- /.box-body -->
+                
+              </div><!-- /. box -->
+            </div><!-- /.col -->
+    	</h:form>
+
+           <!-- Fin Upload les fichiers d'uen formation ******************************************************************** --> 
+           
 
 			
 

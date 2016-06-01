@@ -29,6 +29,7 @@ import ma.bps.metier.IAutoFormationMetier;
 import ma.bps.metier.IAutoFormationThemeMetier;
 
 @ManagedBean
+@SessionScoped
 public class BeanAutoFormation {
 	
 	IAutoFormationMetier metierAutoFormation = new AutoFormationMetierImpl();
