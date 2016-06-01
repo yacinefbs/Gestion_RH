@@ -1122,6 +1122,7 @@ public class BeanSalarie {
 		avanceMetier.modifierAvance(this.avance);
 		this.setMsgSuccesAvance("Cette avance a été modifié avec succès !!!");
 		this.setModificationAvance(0);
+		this.avance = new Avances();
 		return "gestionAvances.xhtml?faces-redirect=true";
 	}
 	
