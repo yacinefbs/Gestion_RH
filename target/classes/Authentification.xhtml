@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>AdminLTE 2 | General Form Elements</title>
+    <title>Authentification</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <!-- Bootstrap 3.3.5 -->
@@ -43,9 +43,18 @@
     
         <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
-      </div><!-- /.login-logo -->
+<!--         <a href="../../index2.html"><h:graphicImage value="images/logo.png" width="250px" height="100px"></h:graphicImage></a> -->
+     
+     <h:graphicImage value="images/logo.png" styleClass="profile-user-img img-responsive img-circle" class="profile-user-img img-responsive img-circle" alt="User Image"/>
+      
+      </div>
+
+
       <div class="login-box-body">
+      
+      
+      
+      
         <p class="login-box-msg">Veuillez vous connecter pour continuer ... </p>
         
         <c:if test="#{msgErreurAuthentif ne null}">
@@ -69,7 +78,7 @@
           </div>
           <div class="row">
             <div class="col-xs-4">
-              <h:commandButton value="Sign In" action="#{beanUtilisateur.authentificationUtilisateur}"  class="btn btn-primary btn-block btn-flat"/>
+              <h:commandButton value="Connexion" action="#{beanUtilisateur.authentificationUtilisateur}"  class="btn btn-primary btn-block btn-flat"/>
             </div><!-- /.col -->
           </div>
        

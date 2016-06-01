@@ -300,8 +300,6 @@ public class BeanUtilisateur {
 	}
 	
 	
-	
-	
 	// charger nombres absence salarie
 	public List<Object[]> chargerLeNombreAbsenceSalarie(){
 		return metierSalarie.chargerNombreAbsenceSalarie(salarieConnecte.getIdSalarie());
