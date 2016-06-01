@@ -320,7 +320,7 @@
 			                 <div class="form-group">
 		                    
 		                      <label for="exampleInputEmail1">Désignation :</label>                    
-		                      <h:inputText value="#{beanPlanTravail.planTravailAajouter.designation}" class="form-control" id="id1" placeholder="Enter la désignation du plan"  required="true" requiredMessage="Désignation Oblégatoire (*)">
+		                      <h:inputText value="#{beanPlanTravail.planTravailAajouter.designation}" class="form-control" id="id1" placeholder="Enter la désignation du plan"  required="true" requiredMessage="Désignation obligatoire (*)">
 		                      	<f:validator validatorId="ValidateurDesignationPlanTravailNonRepeterAjout" />
 		                      </h:inputText>
 		                      <h:message for="id1" style="color:red" />          
@@ -330,7 +330,7 @@
 							<div class="form-group">
 	                      		<label for="dateDebutContrat">Date Début Plan </label>
 	                      		<br />
-	                      		<p:calendar id="dateDebut" binding="#{dateDebutPlan}" value="#{beanPlanTravail.planTravailAajouter.dateDebut}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+	                      		<p:calendar id="dateDebut" binding="#{dateDebutPlan}" value="#{beanPlanTravail.planTravailAajouter.dateDebut}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
 	                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
 	                      		</p:calendar>
 								<h:message for="dateDebut" style="color:red" />
@@ -342,7 +342,7 @@
 	                      		<label for="dateDebutContrat">Date Fin Plan </label>
 	                      		<br />
 	                      		
-	                      		<p:calendar  id="dateFin"  value="#{beanPlanTravail.planTravailAajouter.dateFin}" required="true" requiredMessage="Date fin oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+	                      		<p:calendar  id="dateFin"  value="#{beanPlanTravail.planTravailAajouter.dateFin}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
 	                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
 	                      			<f:validator validatorId="ValidateurDateFinPlanSupDateDebut" />
     								<f:attribute name="dateDebutPlan" value="#{dateDebutPlan}" />
@@ -419,7 +419,7 @@
 			                 <div class="form-group">
 		                    
 		                      <label for="exampleInputEmail1">Désignation :</label>                    
-		                      <h:inputText value="#{beanPlanTravail.planTravailAmodifier.designation}" class="form-control" id="id1" placeholder="Enter la désignation du plan" required="true" requiredMessage="Désignation Oblégatoire (*)" >
+		                      <h:inputText value="#{beanPlanTravail.planTravailAmodifier.designation}" class="form-control" id="id1" placeholder="Enter la désignation du plan" required="true" requiredMessage="Désignation obligatoire (*)" >
 		                      	                     
 		                      </h:inputText>
 		                      <h:message for="id1" style="color:red" />          
@@ -429,7 +429,7 @@
 							<div class="form-group">
 	                      		<label for="dateDebutContrat">Date Début Plan </label>
 	                      		<br />
-	                      		<p:calendar id="dateDebut" binding="#{dateDebutPlan}" value="#{beanPlanTravail.planTravailAmodifier.dateDebut}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+	                      		<p:calendar id="dateDebut" binding="#{dateDebutPlan}" value="#{beanPlanTravail.planTravailAmodifier.dateDebut}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
 	                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
 	                      		</p:calendar>
 								<h:message for="dateDebut" style="color:red" />
@@ -441,7 +441,7 @@
 	                      		<label for="dateDebutContrat">Date Fin Plan </label>
 	                      		<br />
 	                      		
-	                      		<p:calendar  id="dateFin"  value="#{beanPlanTravail.planTravailAmodifier.dateFin}" required="true" requiredMessage="Date fin oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+	                      		<p:calendar  id="dateFin"  value="#{beanPlanTravail.planTravailAmodifier.dateFin}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
 	                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
 	                      			<f:validator validatorId="ValidateurDateFinPlanSupDateDebut" />
     								<f:attribute name="dateDebutPlan" value="#{dateDebutPlan}" />

@@ -33,6 +33,23 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+    
+    
+        <style type="text/css">
+        .ui-growl {
+			position:absolute;
+   			top:10%;
+	        left:80%;
+      		width:301px;
+            z-index:9999;
+        }
+    </style>
+    
+    
+    
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -225,22 +242,35 @@
                 <!-- form start -->
 <!--                 <form role="form"> -->
                 <h:form>
+                
+                
+                 <p:growl id="msgs" showDetail="true" />
+                
                   <div class="box-body">
+                  
+                  
+                       <div class="col-md-9" style="width:100%;">
+                  
                    <c:if test="#{row==1}">
-                   <div class="col-md-6">
+ 
                   <div class="form-group">
                       <label for="idAvance">ID Avance</label>
-                      	<h:inputText readonly="true" value="#{beanSalarie.avance.idAvance}" class="form-control" id="idAvance" placeholder="Enter le nom de la banque" ></h:inputText>
+                      <h:inputText readonly="true" value="#{beanSalarie.avance.idAvance}" class="form-control" id="idAvance" placeholder="Enter le nom de la banque" ></h:inputText>
                     </div>
-                    </div>
+              
                   </c:if>
-                  <div class="col-md-6">
+             
 			      <div class="form-group">
 			       	  <label for="montant" >Montant</label>
-                      <h:inputText value="#{beanSalarie.avance.montant}" class="form-control input-sm" id="montant" placeholder="Enter le nom de la banque" ></h:inputText>
+                      <h:inputText converterMessage="Montant doit être numérique (*)" value="#{beanSalarie.avance.montant}" class="form-control input-sm" id="montant" a:placeholder="Enter le montant" >
+                      
+						<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      
+                      </h:inputText>
+                      <font color="red"> <h:message for="montant"></h:message> </font>
                     </div>
-			    </div>
-			    <div class="col-md-6">
+			    
+			   
 			      <div class="form-group">
 			      <label for="typeAvance" >Type de l'avance</label>
                   <h:selectOneMenu value="#{beanSalarie.avance.typeAvance}" class="form-control input-sm" id="typeAvance">
@@ -253,8 +283,8 @@
                   	<f:selectItem itemLabel="Bihebdomadaire" itemValue="Bihebdomadaire" />
                   </h:selectOneMenu>  
                   </div>
-			    </div>
-			    <div class="col-md-6">
+
+
 			      <div class="form-group">
 			      <label for="modePaiement" >Mode de paiement</label>
                   <h:selectOneMenu value="#{beanSalarie.avance.modePaiement.idPaiement}" class="form-control input-sm" id="modePaiement">

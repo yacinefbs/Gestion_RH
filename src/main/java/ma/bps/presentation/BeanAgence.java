@@ -26,6 +26,28 @@ public class BeanAgence {
 	private String msgSuccesAgence = null;
 	private int modificationAgence = 0;
 	
+	private Long idBanque;
+	
+	
+	
+	public IAgenceMetier getAgenceMetier() {
+		return agenceMetier;
+	}
+	public void setAgenceMetier(IAgenceMetier agenceMetier) {
+		this.agenceMetier = agenceMetier;
+	}
+	public IBanqueMetier getBanqueMetier() {
+		return banqueMetier;
+	}
+	public void setBanqueMetier(IBanqueMetier banqueMetier) {
+		this.banqueMetier = banqueMetier;
+	}
+	public Long getIdBanque() {
+		return idBanque;
+	}
+	public void setIdBanque(Long idBanque) {
+		this.idBanque = idBanque;
+	}
 	public Agences getAgence() {
 		return agence;
 	}
@@ -54,8 +76,10 @@ public class BeanAgence {
 	public Agences ajouterAgence(ActionEvent e){
 		this.setMsgSuccesAgence("Cette agence a été ajouté avec succès !!!");
 		Agences a = new Agences();
+		this.agence.setBanque(banqueMetier.getBanqueById(this.idBanque));
 		a = agenceMetier.ajouterAgence(this.agence);
 		this.agence = new Agences();
+		this.idBanque=0L;
 		return a;
 	}
 	
@@ -68,14 +92,17 @@ public class BeanAgence {
 		this.setMsgSuccesAgence(null);
 		this.setModificationAgence(1);
 		this.agence = a;
+		this.idBanque = agence.getBanque().getIdBanque();
 		return "gestionAgences?faces-redirect=true";
 	}
 	
 	public String modifierAgence(){
 		this.setModificationAgence(0);
+		this.agence.setBanque(banqueMetier.getBanqueById(this.idBanque));
 		agenceMetier.modifierAgence(this.agence);
 		this.setMsgSuccesAgence("Cette agence a été modifié avec succès !!!");
 		this.agence = new Agences();
+		this.idBanque=0L;
 		return "gestionAgences?faces-redirect=true";
 	}
 	
