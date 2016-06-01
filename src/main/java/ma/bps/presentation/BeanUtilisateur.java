@@ -256,11 +256,11 @@ public class BeanUtilisateur {
 			
 			if (u.getRole().equals("admin")) 
 			{
-				resultat = "AcceuilAdmin";
+				resultat = "AcceuilAdmin?faces-redirect=true";
 			} 
 			else
 			{
-				resultat = "AcceuilSalarie";
+				resultat = "AcceuilSalarie?faces-redirect=true";
 				salarieConnecte = metierSalarie.getSalarieById(u.getSalarie().getIdSalarie());
 			}
 			
@@ -269,7 +269,7 @@ public class BeanUtilisateur {
 		else
 		{
 			messageAuthentification = "Erreur d'authentification !! veuillez vérifiez votre login et passe.";
-			return "Authentification";
+			return "Authentification?faces-redirect=true";
 		}
 		
 	}
@@ -280,7 +280,7 @@ public class BeanUtilisateur {
 	public String deconnexionUtilisateur(){
 		
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "Authentification";
+		return "Authentification?faces-redirect=true";
 		
 	}
 	
