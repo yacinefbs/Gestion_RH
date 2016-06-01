@@ -15,6 +15,8 @@ public class testAhmed {
 	public void getPath() throws UnsupportedEncodingException {
 		
 		// bismilah 1
+		// yacine
+		// azeaze
 
 		String path = this.getClass().getClassLoader().getResource("").getPath();
 
