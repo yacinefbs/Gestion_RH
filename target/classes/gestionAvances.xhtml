@@ -274,6 +274,7 @@
 			      <div class="form-group">
 			      <label for="typeAvance" >Type de l'avance</label>
                   <h:selectOneMenu value="#{beanSalarie.avance.typeAvance}" class="form-control input-sm" id="typeAvance">
+                  	<f:selectItem itemLabel="Sélectionner le type d'avance" itemValue="0" />
                   	<f:selectItem itemLabel="Heure" itemValue="Heure" />
                   	<f:selectItem itemLabel="Jour" itemValue="Jour" />
                   	<f:selectItem itemLabel="Semaine" itemValue="Semaine" />
@@ -281,16 +282,22 @@
                   	<f:selectItem itemLabel="Exercice" itemValue="Exercice" />
                   	<f:selectItem itemLabel="Bimensuel" itemValue="Bimensuel" />
                   	<f:selectItem itemLabel="Bihebdomadaire" itemValue="Bihebdomadaire" />
+                  	<f:validator validatorId="validateurSelectOneMenuString" />
                   </h:selectOneMenu>  
+                  <font color="red"> <h:message for="typeAvance"></h:message> </font>
                   </div>
 
 
 			      <div class="form-group">
 			      <label for="modePaiement" >Mode de paiement</label>
                   <h:selectOneMenu value="#{beanSalarie.avance.modePaiement.idPaiement}" class="form-control input-sm" id="modePaiement">
+                  	<f:selectItem itemLabel="Sélectionner un mode de paiement" itemValue="0" />
                   	<f:selectItem itemLabel="Espèce" itemValue="1" />
                   	<f:selectItem itemLabel="Chèque" itemValue="2" />
+                  	<f:selectItem itemLabel="Virement" itemValue="3" />
+                  	<f:validator validatorId="validateurSelectOneMenu" />
                   </h:selectOneMenu>  
+                  <font color="red"> <h:message for="modePaiement"></h:message> </font>
                   </div>
 			    </div>
 	              </div><!-- /.box-body -->

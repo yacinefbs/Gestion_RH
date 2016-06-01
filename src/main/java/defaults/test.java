@@ -178,6 +178,7 @@ public class test {
 			
 			modePaiement.ajouterModePaiment(new ModePaiements("Espèce"));
 			modePaiement.ajouterModePaiment(new ModePaiements("Chèque"));
+			modePaiement.ajouterModePaiment(new ModePaiements("Virement"));
 			
 			
 	}
