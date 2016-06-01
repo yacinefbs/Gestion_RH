@@ -82,7 +82,15 @@
     
     </style>    
 
-
+<style type="text/css">
+        .ui-growl {
+			position:absolute;
+   			top:10%;
+	        left:80%;
+      		width:301px;
+            z-index:9999;
+        }
+    </style>
 </h:head>
   <h:body class="hold-transition skin-blue sidebar-mini">
   
@@ -273,7 +281,7 @@
 		<!-- infos info formation ***************************************************************************************** -->
                        
           <h:form id="autoFormation" prependId="false" enctype="multipart/form-data">
-            
+           <p:growl id="msgs" showDetail="true" />
 
             <div class="col-md-6">
 
@@ -287,23 +295,18 @@
                  <div class="box-body">
 
 
-                	<p:growl id="msgs" showDetail="true" />
-                
-
-
-			                
 			                <div class="form-group">
-								  <label for="exampleInputEmail1">Identifiant :</label>
-						          <h:inputText value="#{beanAutoFormation.autoFormationAmodifier.idAutoFormation}" class="form-control" id="id11"  required="true" requiredMessage="Théme Oblégatoire (*)">
-		                      	  </h:inputText>
+						          <h:inputHidden value="#{beanAutoFormation.autoFormationAmodifier.idAutoFormation}" class="form-control" id="id11">
+		                      	  </h:inputHidden>
 		                    </div>
 		                    			                	                
 			                
 			                <div class="form-group">
-								  <label for="exampleInputEmail1">Théme :</label>
+								  <label for="exampleInputEmail1">Thème :</label>
 						          <h:selectOneMenu value="#{beanAutoFormation.idAutoFormationTheme}" class="form-control" style="height:35px;font-size:14px;">
 							          <f:selectItem itemLabel="Sélectionner le théme de la liste" itemValue="0" />
 							          <f:selectItems value="#{beanAutoFormation.chargerListeThemeAutoFormation()}" var="p" itemLabel="#{p.designation}" itemValue="#{p.idAutoFormationTheme}"/>
+							          <f:validator validatorId="validateurSelectOneMenu"></f:validator>
 							      </h:selectOneMenu> 
 		                    </div>
 		                    
@@ -311,7 +314,7 @@
 			                 <div class="form-group">
 		                    
 		                      <label for="exampleInputEmail1">Sujet :</label>                    
-		                      <h:inputText value="#{beanAutoFormation.autoFormationAmodifier.sujet}" class="form-control" id="id1"  required="true" requiredMessage="Théme Oblégatoire (*)">
+		                      <h:inputText value="#{beanAutoFormation.autoFormationAmodifier.sujet}" class="form-control" id="id1" required="true" requiredMessage="Sujet est obligatoire (*)">
 		                      </h:inputText>
 		                      <h:message for="id1" style="color:red" />  
 		                              
@@ -320,7 +323,7 @@
 		          			
 		          			<div class="form-group">
 		                    
-		                      <label for="exampleInputEmail1">Déscription :</label>                    
+		                      <label for="exampleInputEmail1">Description :</label>                    
 		                      <h:inputText value="#{beanAutoFormation.autoFormationAmodifier.description}" class="form-control" id="id2">
 		                      </h:inputText>
 		                      <h:message for="id2" style="color:red" />  
