@@ -33,6 +33,17 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style type="text/css">
+        .ui-growl {
+			position:absolute;
+   			top:10%;
+	        left:80%;
+      		width:301px;
+            z-index:9999;
+        }
+   		 </style>
+   		 
   </h:head>
   <h:body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -225,6 +236,7 @@
                 <!-- form start -->
 <!--                 <form role="form"> -->
                 <h:form>
+                <p:growl id="msgs" showDetail="true" />
                   <div class="box-body">
                   <c:if test="#{row==1}">
                   <div class="form-group">
@@ -233,9 +245,10 @@
                     </div>
                   </c:if>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nom banque</label>
+                      <label for="banque">Nom banque</label>
 <!--                       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/> -->
-                      	<h:inputText value="#{beanBanque.banque.nomBanque}" class="form-control" id="exampleInputEmail2" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputText value="#{beanBanque.banque.nomBanque}" class="form-control" id="banque" a:placeholder="Enter le nom de la banque" required="true" requiredMessage="Ce champs est obligatoire (*)" ></h:inputText>
+                      	<font color="red"> <h:message for="banque"></h:message> </font>
                     </div>
 	            </div><!-- /.box-body -->
 				<c:if test="#{row==0}">
