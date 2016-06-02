@@ -848,7 +848,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterLundi.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursLundi}" value="#{beanPlanTravail.trancheAajouterLundi.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -877,7 +877,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheLundi}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourLundi" value="#{surDeuxJoursLundi}"/>
     								
 								    <f:attribute name="jour" value="lundi" />
 								  
@@ -1009,7 +1009,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterMardi.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursMardi}" value="#{beanPlanTravail.trancheAajouterMardi.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1038,7 +1038,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheMardi}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourMardi" value="#{surDeuxJoursMardi}"/>
     								
 								    <f:attribute name="jour" value="mardi" />
 								  
@@ -1164,7 +1164,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterMercredi.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursMercredi}" value="#{beanPlanTravail.trancheAajouterMercredi.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1193,7 +1193,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheMercredi}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourMercredi" value="#{surDeuxJoursMercredi}"/>
     								
 								    <f:attribute name="jour" value="mercredi" />
 								  
@@ -1321,7 +1321,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterJeudi.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursJeudi}" value="#{beanPlanTravail.trancheAajouterJeudi.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1350,7 +1350,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheJeudi}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourJeudi" value="#{surDeuxJoursJeudi}"/>
     								
 								    <f:attribute name="jour" value="jeudi" />
 								  
@@ -1474,7 +1474,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterVendredi.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursVendredi}" value="#{beanPlanTravail.trancheAajouterVendredi.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1503,7 +1503,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheVendredi}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourVendredi" value="#{surDeuxJoursVendredi}"/>
     								
 								    <f:attribute name="jour" value="vendredi" />
 								  
@@ -1627,7 +1627,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterSamedi.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursSamedi}" value="#{beanPlanTravail.trancheAajouterSamedi.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1656,7 +1656,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheSamedi}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourSamedi" value="#{surDeuxJoursSamedi}"/>
     								
 								    <f:attribute name="jour" value="samedi" />
 								  
@@ -1783,7 +1783,7 @@
 				      	<div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterDimanche.deuxJour}" />
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJoursDimanche}" value="#{beanPlanTravail.trancheAajouterDimanche.deuxJour}" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1812,7 +1812,7 @@
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheDimanche}" />
     								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
-    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								<f:attribute name="deuxJourDimanche" value="#{surDeuxJoursDimanche}"/>
     								
 								    <f:attribute name="jour" value="dimanche" />
 								  

@@ -39,9 +39,60 @@ public class ValidateurHeureDebutEtHeureFinTranchePlanTravail implements Validat
 		 
 		 Long idPlan = (Long) idPlanComponent.getValue();
 		 
-		 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJour");
 		 
-		 Boolean deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 Boolean deuxJour = false;
+		 
+		 
+		 if (jour.equals("lundi"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourLundi");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+		 if (jour.equals("mardi"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourMardi");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+		 if (jour.equals("mercredi"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourMercredi");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+		 if (jour.equals("jeudi"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourJeudi");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+		 if (jour.equals("vendredi"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourVendredi");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+		 if (jour.equals("samedi"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourSamedi");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+		 if (jour.equals("dimanche"))
+		 {
+			 UIInput deuxJoursComponent = (UIInput) component.getAttributes().get("deuxJourDimanche");
+			 
+			 deuxJour = (Boolean) deuxJoursComponent.getValue();
+		 }
+		 
+
 		
 		 
 		 
