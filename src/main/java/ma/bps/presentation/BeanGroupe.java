@@ -234,10 +234,18 @@ public class BeanGroupe {
 		
 	}
 	
-	// charger la liste des salarie d'un groupe
-	public List<Salaries> chargerListeSalarieUnGroupe(){
+	// charger la liste des salarie d'un groupe a afficher ces employe
+	public List<Salaries> chargerListeSalarieUnGroupeAafficherCesEmp(){
 		
 		return groupeMetier.chargerListeSalarieUnGroupe(this.groupeAfficherCesEmp.getIdGroupe());
+		
+	}
+	
+	
+	// charger la liste des salarie d'un groupe a ajouter ces employe
+	public List<Salaries> chargerListeSalarieUnGroupeAajouterDesEmp(){
+		
+		return groupeMetier.chargerListeSalarieUnGroupe(this.groupeAjouterDesEmp.getIdGroupe());
 		
 	}
 	

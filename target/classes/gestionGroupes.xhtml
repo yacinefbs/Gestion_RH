@@ -6,6 +6,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	>
 <head>
     <meta charset="utf-8"/>
@@ -31,6 +33,25 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+    
+    
+    
+    
+    <style type="text/css">
+        .ui-growl {
+			position:absolute;
+   			top:10%;
+	        left:75%;
+      		width:301px;
+            z-index:9999;
+        }
+    </style>
+    
+    
+    
+    
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -218,7 +239,7 @@
           <div class="row">
             
             
-            
+            <p:growl id="msgs" showDetail="true" />
             
             
             <!-- left column -->
@@ -236,6 +257,9 @@
                 <!-- form start -->
 <!--                 <form role="form"> -->
                 <h:form>
+                
+                <p:growl id="msgs" showDetail="true" />
+                
                   <div class="box-body">
                   <c:if test="#{row==1}">
                   <div class="form-group">
@@ -247,13 +271,15 @@
                   
                   
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Libellé groupe</label>
+                      <label for="exampleInputEmail1">Libellé groupe : </label>
 <!--                       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/> -->
 					  <c:if test="#{row==0}">
-                      	<h:inputText value="#{beanGroupe.groupeAjouter.libelleGroupe}" class="form-control" id="exampleInputEmail2" placeholder="Enter le nom du groupe" ></h:inputText>
+                      	<h:inputText value="#{beanGroupe.groupeAjouter.libelleGroupe}" class="form-control" id="exampleInputEmail2" a:placeholder="Libellé groupe" required="true" requiredMessage="Libellé groupe obligatoire (*)" ></h:inputText>
+                      	<font color="red"> <h:message for="exampleInputEmail2"></h:message> </font> 
                       </c:if>
                       <c:if test="#{row==1}">
-                      	<h:inputText value="#{beanGroupe.groupeModifier.libelleGroupe}" class="form-control" id="exampleInputEmail2" placeholder="Enter le nom du groupe" ></h:inputText>
+                      	<h:inputText value="#{beanGroupe.groupeModifier.libelleGroupe}" class="form-control" id="exampleInputEmail2" a:placeholder="Libellé groupe" required="true" requiredMessage="Libellé groupe obligatoire (*)" ></h:inputText>
+                      	<font color="red"> <h:message for="exampleInputEmail2"></h:message> </font> 
                       </c:if>
                     </div>
                     
@@ -421,7 +447,7 @@
 				  <div class="col-md-6">
 	                  <div class="form-group">
 	                      <label for="exampleInputEmail1">Nombres des employées :</label>
-	                      <h:outputLabel value="#{beanGroupe.chargerListeSalarieUnGroupe().size()}" class="form-control" id="modif3"></h:outputLabel>
+	                      <h:outputLabel value="#{beanGroupe.chargerListeSalarieUnGroupeAafficherCesEmp().size()}" class="form-control" id="modif3"></h:outputLabel>
 	                  </div>
                   </div>
             
@@ -448,7 +474,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <ui:repeat var="s" value="#{beanGroupe.chargerListeSalarieUnGroupe()}">
+                    <ui:repeat var="s" value="#{beanGroupe.chargerListeSalarieUnGroupeAafficherCesEmp()}">
                       <tr>
                         <td><font color="#00c0ef"><h:outputLabel value="#{s.idSalarie}"/></font></td>
                     	<td><font color="#00c0ef"><h:outputLabel value="#{s.nom}"/></font></td>
@@ -540,6 +566,14 @@
 	                  <div class="form-group">
 	                      <label for="exampleInputEmail1">Intitulé Groupe :</label>
 	                      <h:outputLabel value="#{beanGroupe.groupeAjouterDesEmp.libelleGroupe}" class="form-control" id="modif2"></h:outputLabel>
+	                  </div>
+                  </div>
+               
+               
+               	<div class="col-md-6">
+	                  <div class="form-group">
+	                      <label for="exampleInputEmail1">Nombres des employées :</label>
+	                      <h:outputLabel value="#{beanGroupe.chargerListeSalarieUnGroupeAajouterDesEmp().size()}" class="form-control" id="modif3"></h:outputLabel>
 	                  </div>
                   </div>
                

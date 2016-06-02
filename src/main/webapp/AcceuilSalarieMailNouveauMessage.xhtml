@@ -32,7 +32,15 @@
     <link rel="stylesheet" href="resources/bootstrap/css/calendar.css"/>
  
  
- 	
+ 	    <style type="text/css">
+        .ui-growl {
+			position:absolute;
+   			top:10%;
+	        left:75%;
+      		width:301px;
+            z-index:9999;
+        }
+    </style>
 
  	
  
@@ -448,6 +456,9 @@
             <!-- Editeur text ******************************************** -->
             
             <h:form  id="fileUpoad" prependId="false" enctype="multipart/form-data">
+            
+            <p:growl id="msgs" showDetail="true" />
+            
             <div class="col-md-9">
               <div class="box box-primary">
                 <div class="box-header with-border">
@@ -456,20 +467,29 @@
                 <div class="box-body">
                 
                   <div class="form-group">
-                    <h:selectOneMenu value="#{beanMessage.idDestinataire}" class="form-control" >
+                  <label for="destinataire">Destinataire :</label>
+                  
+                    <h:selectOneMenu validatorMessage="Sélectionner destinataire de la liste (*)" id="destinataire" value="#{beanMessage.idDestinataire}" class="form-control" >
 					    <f:selectItem itemLabel="Sélectionner un déstinataire" itemValue="0" />
 					    <f:selectItems value="#{beanMessage.chargerNomPrenomSalarie()}" var="p" itemLabel="#{p[1]}" itemValue="#{p[0]}"/>
+					
+						<f:validator validatorId="validateurSelectOneMenu"></f:validator>
+					
 					</h:selectOneMenu> 
+
+					<font color="red"> <h:message for="destinataire"></h:message> </font>
+					
                   </div>
                   
                   <div class="form-group">
-                  
-                    <h:inputText value="#{beanMessage.messageAenvoyer.objet}" class="form-control" placeholder="Subject:"></h:inputText>
+                  	<label for="objet">Objet de votre E-mail :</label>
+                    <h:inputText id="objet" value="#{beanMessage.messageAenvoyer.objet}" class="form-control" a:placeholder="Objet" required="true" requiredMessage="Objet obligatoire (*)"></h:inputText>
+                    <font color="red"> <h:message color="red" for="objet"></h:message> </font>
                   </div>
                   
                   <div class="form-group">
-                  
-                  <h:inputTextarea value="#{beanMessage.messageAenvoyer.contenu}" id="compose-textarea" class="form-control" style="height:200px" ></h:inputTextarea>
+	                  <label for="contenu">Contenu de votre E-mail :</label>
+	                  <h:inputTextarea value="#{beanMessage.messageAenvoyer.contenu}" id="contenu" a:placeholder="Contenu de votre message" class="form-control" style="height:200px" ></h:inputTextarea>
 
                   </div>
                   
