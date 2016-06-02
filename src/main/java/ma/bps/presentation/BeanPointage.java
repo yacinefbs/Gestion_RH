@@ -69,8 +69,18 @@ public class BeanPointage implements Serializable {
 	
 //	private Part file;
 	
-	private UploadedFile fichierPointage;
+	private UploadedFile fichierDePointage;
 	
+	
+	public UploadedFile getFichierDePointage() {
+		return fichierDePointage;
+	}
+
+	public void setFichierDePointage(UploadedFile fichierDePointage) {
+		this.fichierDePointage = fichierDePointage;
+	}
+
+
 	private String fileContent;
 	
 	private IPointageMetier metierPointage = new PointageMetierImpl();
@@ -217,11 +227,11 @@ public class BeanPointage implements Serializable {
 	
 	
 	public UploadedFile getFichierPointage() {
-		return fichierPointage;
+		return fichierDePointage;
 	}
 
 	public void setFichierPointage(UploadedFile fichierPointage) {
-		this.fichierPointage = fichierPointage;
+		this.fichierDePointage = fichierPointage;
 	}
 
 	public String getFileContent() {
@@ -327,43 +337,45 @@ public class BeanPointage implements Serializable {
 	// pour enregistrer le fichier pointage dans la base
 	public void enregistrerFichierPointageDansLaBase() throws ParseException, IOException {
 		
-//		    try {
+	    try {
 		    		    	
 		     // fileContent = new Scanner(file.getInputStream()).useDelimiter("\\A").next();
 		    	
-//	    	fileContent = new Scanner(file.getInputstream()).useDelimiter("\\A").next();
+	    	fileContent = new Scanner(fichierDePointage.getInputstream()).useDelimiter("\\A").next();
 		      
+   	
+//   	System.out.println(fileContent);
 		      
 		      
 //		      System.out.println(fileContent);
 		      
-//		      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//				
-//		      String[] strs = fileContent.split("[ \n]");
-//		      
-//		      for (int i = 0; i < strs.length; i+=3) {
-//		    	System.out.println(i + "************");
-//				System.out.println(strs[i]);
-//				
-//				// ta nchoufo dak pointage wach ma kaynch déja 3an nzidouh
-//				if (!metierPointage.chercherSiPointageExist(formatter.parse(strs[i+1]), strs[i+2], Long.parseLong(strs[i],10))) 
-//				{
-//					
-//					pointageAjouter.setSalarie(metierSalarie.getSalarieById(Long.parseLong(strs[i],10)));
-//					pointageAjouter.setDatePointage(formatter.parse(strs[i+1]));
-//					pointageAjouter.setHeurePointage(strs[i+2]);
-//					metierPointage.ajouterPointage(this.pointageAjouter);
-//					this.pointageAjouter = new Pointages();
-//					
-//				}
-//				
-//				
-//			}
+		      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				
+		      String[] strs = fileContent.split("[ \n]");
+		      
+		      for (int i = 0; i < strs.length; i+=3) {
+		    	System.out.println(i + "************");
+				System.out.println(strs[i]);
+				
+				// ta nchoufo dak pointage wach ma kaynch déja 3an nzidouh
+				if (!metierPointage.chercherSiPointageExist(formatter.parse(strs[i+1]), strs[i+2], Long.parseLong(strs[i],10))) 
+				{
+					
+					pointageAjouter.setSalarie(metierSalarie.getSalarieById(Long.parseLong(strs[i],10)));
+					pointageAjouter.setDatePointage(formatter.parse(strs[i+1]));
+					pointageAjouter.setHeurePointage(strs[i+2]);
+					metierPointage.ajouterPointage(this.pointageAjouter);
+					this.pointageAjouter = new Pointages();
+					
+				}
+				
+				
+			}
 		      
 		      
-//		    } catch (IOException e) {
-//		      System.out.println("Erreur Lecture fichier");
-//		    }
+		    } catch (IOException e) {
+		      System.out.println("Erreur Lecture fichier");
+		    }
 		
 		
 		
@@ -371,21 +383,21 @@ public class BeanPointage implements Serializable {
 		
 		
 		
+		// upload du fichier sur le serveur
 		
-		
-		System.out.println("je suis la ***************************************");
+		System.out.println("je suis la **************** Upload sur serveur ***********************");
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyyHHmmss");
 		String filePath="D:/ahmed/AHMED projet PFE/eclipseMars/mesProjets/Gestion_RH/src/main/webapp/fichierProjetPfeGrh/fichiersDePointage/";
       
         byte[] bytes=null;
         String chemin="";
-            if (null!=this.fichierPointage) 
+            if (null!=this.fichierDePointage) 
             {
             	
             	
-                bytes = this.fichierPointage.getContents();
-                String filename = FilenameUtils.getName(this.fichierPointage.getFileName());
+                bytes = this.fichierDePointage.getContents();
+                String filename = FilenameUtils.getName(this.fichierDePointage.getFileName());
                 String extension = filename.substring(filename.lastIndexOf('.'), filename.length());
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath+formatter.format(new Date())+extension)));
                 chemin = filePath+formatter.format(new Date())+extension;
