@@ -1,5 +1,8 @@
 package ma.bps.presentation;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -19,6 +22,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FilenameUtils;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
@@ -27,6 +31,7 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+import org.primefaces.model.UploadedFile;
 
 import ma.bps.dao.IA_Non_Justifiee;
 import ma.bps.entities.A_Non_Justifiee;
@@ -62,7 +67,10 @@ import ma.bps.metier.TranchePlanTravailMetierImpl;
 @SessionScoped
 public class BeanPointage implements Serializable {
 	
-	private Part file;
+//	private Part file;
+	
+	private UploadedFile fichierPointage;
+	
 	private String fileContent;
 	
 	private IPointageMetier metierPointage = new PointageMetierImpl();
@@ -107,10 +115,7 @@ public class BeanPointage implements Serializable {
 	// getters and setters
     
     
-		
-	public Part getFile() {
-	    return file;
-	}
+
 	 
 	public IGroupeMetier getMetierGroupe() {
 		return metierGroupe;
@@ -208,8 +213,15 @@ public class BeanPointage implements Serializable {
 		this.lazyEventModel = lazyEventModel;
 	}
 
-	public void setFile(Part file) {
-	    this.file = file;
+
+	
+	
+	public UploadedFile getFichierPointage() {
+		return fichierPointage;
+	}
+
+	public void setFichierPointage(UploadedFile fichierPointage) {
+		this.fichierPointage = fichierPointage;
 	}
 
 	public String getFileContent() {
@@ -313,40 +325,89 @@ public class BeanPointage implements Serializable {
 	
 	
 	// pour enregistrer le fichier pointage dans la base
-	public void enregistrerFichierPointageDansLaBase() throws ParseException {
+	public void enregistrerFichierPointageDansLaBase() throws ParseException, IOException {
 		
-		    try {
+//		    try {
 		    		    	
-		      fileContent = new Scanner(file.getInputStream()).useDelimiter("\\A").next();
-		      System.out.println(fileContent);
-		      
-		      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				
-		      String[] strs = fileContent.split("[ \n]");
-		      
-		      for (int i = 0; i < strs.length; i+=3) {
-		    	System.out.println(i + "************");
-				System.out.println(strs[i]);
-				
-				// ta nchoufo dak pointage wach ma kaynch déja 3an nzidouh
-				if (!metierPointage.chercherSiPointageExist(formatter.parse(strs[i+1]), strs[i+2], Long.parseLong(strs[i],10))) 
-				{
-					
-					pointageAjouter.setSalarie(metierSalarie.getSalarieById(Long.parseLong(strs[i],10)));
-					pointageAjouter.setDatePointage(formatter.parse(strs[i+1]));
-					pointageAjouter.setHeurePointage(strs[i+2]);
-					metierPointage.ajouterPointage(this.pointageAjouter);
-					this.pointageAjouter = new Pointages();
-					
-				}
-				
-				
-			}
+		     // fileContent = new Scanner(file.getInputStream()).useDelimiter("\\A").next();
+		    	
+//	    	fileContent = new Scanner(file.getInputstream()).useDelimiter("\\A").next();
 		      
 		      
-		    } catch (IOException e) {
-		      System.out.println("Erreur Lecture fichier");
-		    }
+		      
+//		      System.out.println(fileContent);
+		      
+//		      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//				
+//		      String[] strs = fileContent.split("[ \n]");
+//		      
+//		      for (int i = 0; i < strs.length; i+=3) {
+//		    	System.out.println(i + "************");
+//				System.out.println(strs[i]);
+//				
+//				// ta nchoufo dak pointage wach ma kaynch déja 3an nzidouh
+//				if (!metierPointage.chercherSiPointageExist(formatter.parse(strs[i+1]), strs[i+2], Long.parseLong(strs[i],10))) 
+//				{
+//					
+//					pointageAjouter.setSalarie(metierSalarie.getSalarieById(Long.parseLong(strs[i],10)));
+//					pointageAjouter.setDatePointage(formatter.parse(strs[i+1]));
+//					pointageAjouter.setHeurePointage(strs[i+2]);
+//					metierPointage.ajouterPointage(this.pointageAjouter);
+//					this.pointageAjouter = new Pointages();
+//					
+//				}
+//				
+//				
+//			}
+		      
+		      
+//		    } catch (IOException e) {
+//		      System.out.println("Erreur Lecture fichier");
+//		    }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		System.out.println("je suis la ***************************************");
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyyHHmmss");
+		String filePath="D:/ahmed/AHMED projet PFE/eclipseMars/mesProjets/Gestion_RH/src/main/webapp/fichierProjetPfeGrh/fichiersDePointage/";
+      
+        byte[] bytes=null;
+        String chemin="";
+            if (null!=this.fichierPointage) 
+            {
+            	
+            	
+                bytes = this.fichierPointage.getContents();
+                String filename = FilenameUtils.getName(this.fichierPointage.getFileName());
+                String extension = filename.substring(filename.lastIndexOf('.'), filename.length());
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath+formatter.format(new Date())+extension)));
+                chemin = filePath+formatter.format(new Date())+extension;
+                stream.write(bytes);
+                stream.close();
+            }
+            
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

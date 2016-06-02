@@ -1202,6 +1202,8 @@ public class BeanSalarie {
 		this.setMsgSuccesFInitiales("Cette formation a été supprimé avec succès !!!");
 		return "GestionFProfessionnelle?faces-redirect=true";
 	}
+	
+	
 	public String uploadPhoto() throws IOException{
 		 
 		System.out.println("je suis la ***************************************");
@@ -1228,4 +1230,7 @@ public class BeanSalarie {
  
 //        FacesContext.getCurrentInstance().addMessage("messages",new FacesMessage(FacesMessage.SEVERITY_INFO,"Your Photo (File Name "+ this.photoSalarie.getFileName()+ " with size "+ this.photoSalarie.getSize()+ ")  Uploaded Successfully", ""));
     }
+	
+	
+	
 }
