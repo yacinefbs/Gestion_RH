@@ -219,9 +219,9 @@
             <small></small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+<!--             <li><a href="#">Forms</a></li> -->
+            <li class="active">Gestion des prêts</li>
           </ol>
         </section>
 
@@ -266,50 +266,58 @@
                   <div class="col-md-6">
 			      <div class="form-group">
                       <label for="dateDebutPret">Date début prêt</label>
-                      	<p:calendar id="dateDebutPret" value="#{beanPret.pret.dateDebutPret}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebutPret" value="#{beanPret.pret.dateDebutPret}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
-                     		</p:calendar>
+                     	</p:calendar>
+                     	<h:message for="dateDebutPret" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="dateFinPret">Date fin prêt</label>
-                      	<p:calendar id="dateFinPret" value="#{beanPret.pret.dateFinPret}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFinPret" value="#{beanPret.pret.dateFinPret}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                      	</p:calendar>
+                     	<h:message for="dateFinPret" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="montantGlobal">Montant global</label>
-                      	<h:inputText value="#{beanPret.pret.montant}" class="form-control" id="montantGlobal" a:placeholder="Enter le montant global" >
-<!--                       		<p:ajax event="change" update="nbreEcheance" /> -->
-<!-- 								<f:ajax event="keyup" render="nbreEcheance" execute="@this" /> -->
-<!-- 								<p:ajax event="change" listener="#{beanSalarie.calculAutomatique}" /> -->
-<!-- 								<p:ajax event="keyup" listener="#{beanSalarie.calculAutomatique}" /> -->
-									<f:ajax event="keyup" render="nbreEcheance montantEcheance" />
+                      	<h:inputText converterMessage="Le montant doit être numérique (*)" value="#{beanPret.pret.montant}" class="form-control" id="montantGlobal" required="true" requiredMessage="Le montant global est obligatoire (*)" a:placeholder="Enter le montant global" >
+							<f:ajax event="keyup" render="nbreEcheance montantEcheance" />
+							<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
                       	</h:inputText>
+                      	<h:message for="montantGlobal" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="nbreEcheance">Nombre d'échéances</label>
-                      	<h:inputText value="#{beanPret.pret.nbrEcheances}" class="form-control" id="nbreEcheance" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputText converterMessage="Le nombre d'échanges doit être numérique (*)" value="#{beanPret.pret.nbrEcheances}" class="form-control" id="nbreEcheance" required="true" requiredMessage="Le nombre d'une échéance est obligatoire (*)" a:placeholder="Enter le nombre d'échéance" >
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<h:message for="nbreEcheance" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="montantEcheance">Montant d'une échéance</label>
-                      	<h:inputText value="#{beanPret.pret.montantEcheance}" class="form-control" id="montantEcheance" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputText converterMessage="Le montant d'une échéance doit être numérique (*)" value="#{beanPret.pret.montantEcheance}" class="form-control" id="montantEcheance" required="true" requiredMessage="Le montant d'une échéance est obligatoire (*)" a:placeholder="Enter le montant d'échéance" >
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<h:message for="montantEcheance" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 				  <div class="form-group">
-                     <label for="profil">Matricule salarié</label>
-                     	<h:selectOneMenu value="#{beanPret.pret.salarie.idSalarie}" class="form-control">
-<!--                      		<f:selectItem itemLabel="Séléctionné un salarié" itemValue="#{null}"/> -->
-                     		<f:selectItems value="#{beanPret.allSalaries}" var="s" itemLabel="#{s.idSalarie}" itemValue="#{s.idSalarie}"></f:selectItems>
+                     <label for="salarie">Salarié</label>
+                     	<h:selectOneMenu id="salarie" value="#{beanPret.pret.salarie.idSalarie}" class="form-control">
+							<f:selectItem itemLabel="Sélectionner un salarié" itemValue="0" />
+                     		<f:selectItems value="#{beanPret.allSalaries}" var="s" itemLabel="#{s.nom} #{s.prenom}" itemValue="#{s.idSalarie}"></f:selectItems>
+                     		<f:validator validatorId="validateurSelectOneMenu" />
                        </h:selectOneMenu>
+                       <h:message for="salarie" style="color : red;" />
                   </div>
 				  </div>
 	              </div><!-- /.box-body -->

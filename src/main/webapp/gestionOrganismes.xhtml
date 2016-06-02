@@ -208,10 +208,10 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <c:if test="#{row==1}">
-                  	<h3 class="box-title">Modification organismes</h3>
+                  	<h3 class="box-title">Modification organisme</h3>
                   </c:if>
                   <c:if test="#{row==0}">
-                  	<h3 class="box-title">Ajout d'un organismes</h3>
+                  	<h3 class="box-title">Ajout d'un organisme</h3>
                   </c:if>
                 <c:if test="#{rowMSG ne null}">
 	            <br />
@@ -229,25 +229,35 @@
                   <div class="col-md-6">
 			      <div class="form-group">
                       <label for="libelleOrganisme">Libellé organisme</label>
-                      	<h:inputText value="#{beanOrganisme.organisme.libelleOrganisme}" class="form-control" id="libelleOrganisme" a:placeholder="Entrer la date début" ></h:inputText>
+                      	<h:inputText value="#{beanOrganisme.organisme.libelleOrganisme}" class="form-control" id="libelleOrganisme" required="true" requiredMessage="Le libellé de l'organisme est obligatoire (*)" a:placeholder="Entrer le libellé de l'organisme" ></h:inputText>
+                 		<h:message for="libelleOrganisme" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="ville">Ville</label>
-                      	<h:inputText value="#{beanOrganisme.organisme.ville}" class="form-control" id="ville" a:placeholder="Enter la date de fin" ></h:inputText>
+                      	<h:inputText value="#{beanOrganisme.organisme.ville}" class="form-control" id="ville" required="true" requiredMessage="La ville est obligatoire (*)" a:placeholder="Enter la ville" ></h:inputText>
+                    	<h:message for="ville" style="color : red;" />
                     </div>
+			    </div>
+			    <div class="col-md-12">
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="telephone">Téléphone</label>
-                      	<h:inputText value="#{beanOrganisme.organisme.telephone}" class="form-control" id="telephone" a:placeholder="Enter le numéro de téléphone" maxlength="10" ></h:inputText>
+                      	<h:inputText validatorMessage="Le numéro de téléphone n'est pas valide !!!" value="#{beanOrganisme.organisme.telephone}" class="form-control" id="telephone" required="true" requiredMessage="Le numéro de téléphone est obligatoire (*)" a:placeholder="Enter le numéro du téléphone" maxlength="10" >
+                      		<f:validateRegex pattern="^0[5-6]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$" />
+                      	</h:inputText>
+                      	<h:message for="telephone" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="email">Email</label>
-                      	<h:inputText value="#{beanOrganisme.organisme.email}" class="form-control" id="email" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputText value="#{beanOrganisme.organisme.email}" class="form-control" id="email" required="true" requiredMessage="L'email est obligatoire (*)" a:placeholder="Enter l'email" >
+                      		<f:validator validatorId="validateurEmail" />
+                      	</h:inputText>
+                      	<h:message for="email" style="color : red;" />
                     </div>
 			    </div>
 	              </div><!-- /.box-body -->

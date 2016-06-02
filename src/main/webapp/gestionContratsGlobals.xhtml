@@ -273,6 +273,7 @@
                      		<f:selectItem itemLabel="ANAPEC" itemValue="ANAPEC"/>
                      		<f:selectItem itemLabel="Temporaire" itemValue="Temporaire"/>
                      		<f:validator validatorId="validateurSelectOneMenuString" />
+                     		<p:ajax event="change" update="dateFinHidden" />
                        </h:selectOneMenu>
                        <font color="red"> <h:message for="profil"></h:message> </font>
                   </div>
@@ -282,7 +283,7 @@
 				   <div class="col-md-6">
 					<div class="form-group">
                       <label for="dateDebutContrat">Date début contrat</label>
-                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebutContrat" value="#{beanContrat.contrat.dateDebutContrat}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar binding="#{dateDebut}" converterMessage="La date de début est incorrecte (*)" id="dateDebutContrat" value="#{beanContrat.contrat.dateDebutContrat}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                      	</p:calendar>
                   </div>
@@ -290,10 +291,14 @@
 				  </div>
 			      <div class="col-md-6">
 					<div class="form-group">
-                      <label for="dateFinContrat">Date fin contrat</label>
-                      	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFinContrat" value="#{beanContrat.contrat.dateFinContrat}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+					<h:panelGrid id="dateFinHidden">
+                      <h:outputLabel for="dateFin" rendered="#{beanContrat.contrat.profil ne 'CDI'}" >Date fin contrat</h:outputLabel>
+                      	<p:calendar rendered="#{beanContrat.contrat.profil ne 'CDI'}" converterMessage="La date de fin est incorrecte (*)" id="dateFinContrat" value="#{beanContrat.contrat.dateFinContrat}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
+                     			<f:validator validatorId="validateurDateDebutEtDateFin"/>
+                   				<f:attribute name="dateDebut" value="#{dateDebut}"/>
                      	</p:calendar>
+                     	</h:panelGrid>
                      	<font color="red"> <h:message for="dateFinContrat"></h:message> </font>
                   </div>
 				  </div>
@@ -303,7 +308,7 @@
 				  <div class="form-group">
                      <label for="salarie">Salarié</label>
                      	<h:selectOneMenu value="#{beanContrat.contrat.salarie.idSalarie}" id="salarie" class="form-control">
-                     	<f:selectItem itemLabel="Sélectionner un salarié" itemValue="0" />
+                     		<f:selectItem itemLabel="Sélectionner un salarié" itemValue="0" />
                      		<f:selectItems value="#{beanContrat.allSalarie}" var="s" itemLabel="#{s.nom} #{s.prenom}" itemValue="#{s.idSalarie}"></f:selectItems>
                      		<f:validator validatorId="validateurSelectOneMenu" />
                        </h:selectOneMenu>

@@ -265,7 +265,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                       <label for="dateDebut">Date début</label>
-                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebut" value="#{beanSalarie.conge.dateDebutC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar binding="#{dateDebut}" converterMessage="La date de début est incorrecte (*)" id="dateDebut" value="#{beanSalarie.conge.dateDebutC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                    		</p:calendar>
 					<font color="red"> <h:message for="dateDebut"></h:message></font>		
@@ -276,6 +276,8 @@
                       <label for="dateFin">Date fin</label>
                       	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFin" value="#{beanSalarie.conge.dateFinC}" required="true" requiredMessage="Date fin oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
+                   			<f:validator validatorId="validateurDateDebutEtDateFin"/>
+                   			<f:attribute name="dateDebut" value="#{dateDebut}"/>
                    		</p:calendar>
                    		<font color="red"> <h:message for="dateFin"></h:message></font>
                     </div>
@@ -326,7 +328,7 @@
           
 			<div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">La liste des congés demandée : </h3>
+                  <h3 class="box-title">La liste des congés demandés : </h3>
                 </div><!-- /.box-header -->
                 <h:form>
                 <div class="box-body">
