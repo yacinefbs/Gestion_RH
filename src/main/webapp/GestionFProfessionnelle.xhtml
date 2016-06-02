@@ -215,13 +215,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Gestion des prêts
+            Gestion des formations professionnelles
             <small></small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+<!--             <li><a href="#">Forms</a></li> -->
+            <li class="active">Gestion des formations professionnelles</li>
           </ol>
         </section>
 
@@ -258,41 +258,49 @@
                   <div class="col-md-6">
 			      <div class="form-group">
                       <label for="dateDebutFormation">Date début formation</label>
-                      	<p:calendar id="dateDebutFormation" value="#{beanSalarie.f_professionnelle.dateDebut}" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebutFormation" value="#{beanSalarie.f_professionnelle.dateDebut}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
-                     		</p:calendar>
+                     	</p:calendar>
+                     	<h:message for="dateDebutFormation" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="dateFinFormation">Date fin formation</label>
-                      	<p:calendar id="dateFinFormation" value="#{beanSalarie.f_professionnelle.dateFin}" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFinFormation" value="#{beanSalarie.f_professionnelle.dateFin}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
-                     		</p:calendar>
+                     	</p:calendar>
+                     	<h:message for="dateFinFormation" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="employeur">Employeur</label>
-                      	<h:inputText value="#{beanSalarie.f_professionnelle.employeur}" class="form-control" id="employeur" a:placeholder="Enter le montant global" >
+                      	<h:inputText value="#{beanSalarie.f_professionnelle.employeur}" class="form-control" id="employeur" required="true" requiredMessage="L'employeur est obligatoire (*)" a:placeholder="Enter l'employeur" >
                       	</h:inputText>
+                      	<h:message for="employeur" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="poste">Poste</label>
-                      	<h:inputText value="#{beanSalarie.f_professionnelle.poste}" class="form-control" id="poste" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputText value="#{beanSalarie.f_professionnelle.poste}" class="form-control" id="poste" required="true" requiredMessage="Le poste est obligatoire (*)" a:placeholder="Enter le poste" ></h:inputText>
+                      	<h:message for="poste" style="color : red;" />
                     </div>
+			    </div>
+			    <div class="col-md-12">
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="remarques">Remarques</label>
-                      	<h:inputText value="#{beanSalarie.f_professionnelle.remarques}" class="form-control" id="remarques" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputTextarea value="#{beanSalarie.f_professionnelle.remarques}" class="form-control" id="remarques" required="true" requiredMessage="Les remarques sont obligatoires (*)" a:placeholder="Enter les remarques"></h:inputTextarea>
+<!--                       	<h:inputText value="#{beanSalarie.f_professionnelle.remarques}" class="form-control" id="remarques" required="true" requiredMessage="Les remarques est obligatoire (*)" a:placeholder="Enter le poste" ></h:inputText> -->
+						<h:message for="remarques" style="color : red;" />
                     </div>
 			    </div>
 	            </div><!-- /.box-body -->
                   <div class="box-footer">
-                  	<h:commandLink style="margin-right : 5px;" class="btn btn-primary" value="Retour" action="gestionSalaries?faces-redirect=true" />
+                  	<a style="margin-right : 5px;" class="btn btn-primary" href="gestionSalaries.xhtml">Retour</a>
                     <c:if test="#{row==0}">
                    		 <h:commandButton class="btn btn-primary" value="Ajouter" action="#{beanSalarie.ajouterF_ProfessionneleForSalarie(e)}" />
                     </c:if>
