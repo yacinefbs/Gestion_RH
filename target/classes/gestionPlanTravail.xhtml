@@ -845,16 +845,23 @@
 				          <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure debut tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterLundi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      	<p:calendar id="heureDebutLundi" binding="#{heureDebutTrancheLundi}" value="#{beanPlanTravail.trancheAajouterLundi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutLundi" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure fin tranche : </label>
-								  <p:calendar value="#{beanPlanTravail.trancheAajouterLundi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>
-			
+								  <p:calendar id="heureFinLundi" value="#{beanPlanTravail.trancheAajouterLundi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheLundi}" />
+								    <f:attribute name="jour" value="lundi" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinLundi" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
