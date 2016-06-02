@@ -239,7 +239,6 @@
                   	<h3 class="box-title">Ajout congé</h3>
                   </c:if>
 				
-                  <h:messages styleClass="alert alert-danger alert-dismissable" />
                   
 				  <c:set scope="request" var="msg" value="#{beanSalarie.msgSuccesConge}"  />
                 
@@ -266,31 +265,33 @@
                     <div class="col-md-6">
                     <div class="form-group">
                       <label for="dateDebut">Date début</label>
-                      	<p:calendar id="dateDebut" value="#{beanSalarie.conge.dateDebutC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebut" value="#{beanSalarie.conge.dateDebutC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                    		</p:calendar>
-<!--                       	<h:message for="dateDebut" style="color :red;"></h:message> -->
+					<font color="red"> <h:message for="dateDebut"></h:message></font>		
                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                       <label for="dateFin">Date fin</label>
-                      	<p:calendar id="dateFin" value="#{beanSalarie.conge.dateFinC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFin" value="#{beanSalarie.conge.dateFinC}" required="true" requiredMessage="Date fin oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                    		</p:calendar>
-<!--                       	<h:message for="dateDebut" style="color :red;"></h:message> -->
+                   		<font color="red"> <h:message for="dateFin"></h:message></font>
                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                       <label for="nature">Nature</label>
                       	<h:selectOneMenu value="#{beanSalarie.conge.nature}" class="form-control input-sm" id="nature">
-                      		<f:selectItem itemLabel="#{null}" itemValue="Sélectionner une nature" />
+                      		<f:selectItem itemLabel="Sélectionner la nature du congé" itemValue="0" />
                       		<f:selectItem itemLabel="normal" itemValue="normal" />
                       		<f:selectItem itemLabel="paternité" itemValue="paternité" />
                       		<f:selectItem itemLabel="maternité" itemValue="maternité" />
                       		<f:selectItem itemLabel="maladie" itemValue="maladie" />
+                      		<f:validator validatorId="validateurSelectOneMenuString" />
                       	</h:selectOneMenu>
+                      	<font color="red"> <h:message for="nature"></h:message> </font>
                     </div>
                     </div>
 	            </div><!-- /.box-body -->

@@ -814,7 +814,7 @@
 				      </c:if>
 					  <c:if test="#{row==1}">
        			      <h3>La liste des congés</h3>
-       			      <h5><font color="red">Le nombre de jours restant est <h:outputText value="#{beanSalarie.nbrJoursCongeRestant}"></h:outputText> </font></h5>
+       			      <h5><font color="red">Le nombre de jours restant est <h:outputText value="#{beanSalarie.nbrJourConge}"></h:outputText> </font></h5>
        			      <div class="col-md-6"> 
                   <div class="box-footer">
                     <a class="btn btn-primary" href="gestionConges.xhtml">Ajouter congé </a>
@@ -831,7 +831,7 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					    <ui:repeat var="conge" value="#{beanSalarie.salaries.conges}">
+					    <ui:repeat var="conge" value="#{beanSalarie.allCongesBySalarie}">
 					    	<tr>
 						        <td>
 						        	<h:outputText value="#{conge.idConge}" />

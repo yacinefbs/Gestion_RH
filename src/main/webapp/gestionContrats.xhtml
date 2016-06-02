@@ -254,55 +254,44 @@
                   <div class="col-md-6">
 					<div class="form-group">
                       <label for="date">Date</label>
-<!--                       	<h:inputText value="#{beanSalarie.contrat.date}" class="form-control" id="date" a:placeholder="Enter la date de début" > -->
-<!--                        		<f:convertDateTime pattern="dd/MM/yyyy" /> -->
-<!--                       	</h:inputText>  -->
-<!--                       	<p:calendar value="#{beanContrat.contrat.date}" pattern="dd/MM/yyyy" > -->
-                      	
-<!--                       	</p:calendar> -->
-						<p:calendar id="date" value="#{beanSalarie.contrat.date}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+						<p:calendar converterMessage="La date est incorrecte (*)" id="date" value="#{beanSalarie.contrat.date}" required="true" requiredMessage="Date obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                    		</p:calendar>
                   </div>
-                  <h:message for="dateDebutContrat" style="color : red;" />
+                  <h:message for="date" style="color : red;" />
 				  </div>
 				  <div class="col-md-6">
 				  <div class="form-group">
                      <label for="profil">Profil</label>
-                     	<h:selectOneMenu value="#{beanSalarie.contrat.profil}" class="form-control">
+                     	<h:selectOneMenu value="#{beanSalarie.contrat.profil}" id="profil" class="form-control">
+                     		<f:selectItem itemLabel="Sélectionner le profil du contrat" itemValue="0" />
 							<f:selectItem itemLabel="CDD" itemValue="CDD"/>
 							<f:selectItem itemLabel="CDI" itemValue="CDI"/>
                      		<f:selectItem itemLabel="ANAPEC" itemValue="ANAPEC"/>
                      		<f:selectItem itemLabel="Temporaire" itemValue="Temporaire"/>
+                     		<f:validator validatorId="validateurSelectOneMenuString" />
                        </h:selectOneMenu>
+                       <font color="red"> <h:message for="profil"></h:message> </font>
                   </div>
+				  </div>
+				  <div class="col-md-12">
 				  </div>
 				   <div class="col-md-6">
 					<div class="form-group">
                       <label for="dateDebutContrat">Date début contrat</label>
-<!--                       	<h:inputText value="#{beanSalarie.contrat.dateDebutContrat}" class="form-control" id="dateDebutContrat" a:placeholder="Enter la date de début" > -->
-<!--                        		<f:convertDateTime pattern="dd/MM/yyyy" />  -->
-<!--                       	</h:inputText>  -->
-                      	<p:calendar id="dateDebutContrat" value="#{beanSalarie.contrat.dateDebutContrat}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebutContrat" value="#{beanSalarie.contrat.dateDebutContrat}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                    		</p:calendar>
-<!-- 						<p:calendar value="#{beanSalarie.dateDebutContrat}" pattern="dd/MM/yyyy" > -->
-                      	
-<!--                       	</p:calendar> -->
+                   		<font color="red"> <h:message for="dateDebutContrat"></h:message> </font>
                   </div>
-                  <h:message for="dateDebutContrat" style="color : red;" />
 				  </div>
 			      <div class="col-md-6">
 					<div class="form-group">
-                      <label for="exampleInputdateFinContrat">Date fin contrat</label>
-<!--                       	<h:inputText value="#{beanSalarie.contrat.dateFinContrat}" class="form-control" id="exampleInputdateFinContrat" a:placeholder="Enter la date de fin" > -->
-<!--                         		<f:convertDateTime pattern="dd/MM/yyyy" />  -->
-<!--                       	</h:inputText> -->
-                      	<p:calendar id="exampleInputdateFinContrat" value="#{beanSalarie.contrat.dateFinContrat}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      <label for="dateFin">Date fin contrat</label>
+                      	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFin" value="#{beanSalarie.contrat.dateFinContrat}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                    			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                    		</p:calendar>
-<!-- 						<p:calendar value="#{beanSalarie.dateFinContrat}" pattern="dd/MM/yyyy" > -->
-<!--                       	</p:calendar> -->
+                   		<font color="red"> <h:message for="dateFin"></h:message> </font>
                   </div>
 				  </div>
 	            </div><!-- /.box-body -->

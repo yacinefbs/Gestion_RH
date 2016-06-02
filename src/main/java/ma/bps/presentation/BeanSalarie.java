@@ -1001,6 +1001,10 @@ public class BeanSalarie {
 		return "gestionPrets?faces-redirect=true";
 	}
 	
+	public double getNbrJourConge(){
+		return congeMetier.nbrJoursCongeRestant(this.salaries.getIdSalarie(), 1L);
+	}
+	
 	public Conges ajouterCongeBySalarie(ActionEvent e) throws ParseException {
 		// TODO Ajouter un congé
 		
@@ -1035,7 +1039,7 @@ public class BeanSalarie {
 		
 		this.msgSucces = "";
 		this.conge.setSalarie(this.salaries);
-		this.conge.setValide("pas encore");
+		this.conge.setValide("validé");
 		congeMetier.ajouterConge(this.conge);
 
 		//Charger la liste des Congés

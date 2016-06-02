@@ -105,7 +105,7 @@ public class BeanConge {
 		
 		
 		this.setMsgSuccesConge(null);
-		this.conge.setValide("pas encore");
+		this.conge.setValide("validé");
 		congeMetier.ajouterConge(this.conge);
 
 		//Charger la liste des Congés

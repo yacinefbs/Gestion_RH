@@ -33,6 +33,15 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .ui-growl {
+			position:absolute;
+   			top:10%;
+	        left:80%;
+      		width:301px;
+            z-index:9999;
+        }
+   		 </style>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -225,32 +234,44 @@
                 <!-- form start -->
 <!--                 <form role="form"> -->
                 <h:form>
+                <p:growl id="msgs" showDetail="true" />
                   <div class="box-body">
                   <div class="col-md-6">
 			      <div class="form-group">
                       <label for="libelleCotisation">Libellé cotisation</label>
-                      	<h:inputText value="#{beanCotisation.cotisation.libelleCotisation}" class="form-control" id="libelleCotisation" a:placeholder="Entrer libellé" ></h:inputText>
+                      	<h:inputText value="#{beanCotisation.cotisation.libelleCotisation}" class="form-control" id="libelleCotisation" required="true" requiredMessage="Champs obligatoire (*)" a:placeholder="Entrer libellé de la cotisations" ></h:inputText>
+                      	<font color="red"> <h:message for="libelleCotisation"></h:message></font>
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="taux">Taux</label>
-                      	<h:inputText value="#{beanCotisation.cotisation.taux}" class="form-control" id="taux" a:placeholder="Enter le taux" ></h:inputText>
+                      	<h:inputText converterMessage="Montant doit être numérique (*)" value="#{beanCotisation.cotisation.taux}" class="form-control" id="taux" a:placeholder="Enter le taux" >
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<font color="red"> <h:message for="taux"></h:message> </font>
                     </div>
+			    </div>
+			    <div class="col-md-12">
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="plafond">Plafond</label>
-                      	<h:inputText value="#{beanCotisation.cotisation.plafond}" class="form-control" id="plafond" a:placeholder="Enter le numéro de téléphone" maxlength="10" ></h:inputText>
+                      	<h:inputText converterMessage="Montant doit être numérique (*)" value="#{beanCotisation.cotisation.plafond}" class="form-control" id="plafond" a:placeholder="Enter le numéro de téléphone" maxlength="10" >
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<font color="red"> <h:message for="plafond"></h:message> </font>
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="organisme">Organisme</label>
                       	<h:selectOneMenu value="#{beanCotisation.idOrganisme}" class="form-control input-sm" id="organisme">
-                     		 	<f:selectItem itemLabel="Sélectionner un organisme" itemValue="#{null}" />
+                     		 	<f:selectItem itemLabel="Sélectionner un organisme" itemValue="0" />
                       			<f:selectItems value="#{beanCotisation.allOrganisme}" var="o" itemValue="#{o.idOrganisme}" itemLabel="#{o.libelleOrganisme}"/>
+                      			<f:validator validatorId="validateurSelectOneMenu" />
                       		</h:selectOneMenu>
+                      		<font color="red"> <h:message for="organisme"></h:message> </font>
                     </div>
 			    </div>
 	              </div><!-- /.box-body -->
