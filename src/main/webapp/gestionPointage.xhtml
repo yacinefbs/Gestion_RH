@@ -1,4 +1,4 @@
-                         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -427,12 +427,14 @@
                 <h:form id="form" enctype="multipart/form-data">
                 
                  <div class="box-body">
+
                 
 			                 
 			                 <div class="form-group">
 		                    
 		                      <label for="exampleInputEmail1">Choisir votre fichier de pointage :</label>                    
-		                       <h:inputFile id="file" value="#{beanPointage.file}"/>
+<!-- 		                       <h:inputFile id="file" value="#{beanPointage.file}"/> -->
+								<p:fileUpload value="#{beanPointage.fichierDePointage}" description="Images" mode="simple" skinSimple="true" />
 		                     		                  
 		          			</div>
 				
@@ -784,7 +786,6 @@
 		
 		
 		    <!-- jQuery 2.1.4 -->
-		    
     <script src="resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <script type="text/javascript">var $j = jQuery.noConflict(true);</script>
     <!-- Bootstrap 3.3.5 -->
