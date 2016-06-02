@@ -716,8 +716,7 @@
           <div class="box-footer">
        
        
-            
-             <h:form>
+
           
           
           
@@ -728,15 +727,17 @@
                 <div class="box-body">
                 
                 
-              
+              <h:form>
                          
            		<h:commandButton class="btn btn-primary" value="Annuler la planification de ce plan de travail" actionListener="#{beanPlanTravail.annulerplanificationPlanTravail()}" />
-                
+             
+             </h:form> 
 				
        			  <br />
        			  <br />
                
                
+               <h:form>
                
                   <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#27DB7B;">
@@ -752,7 +753,7 @@
 				      <div class="panel-body">
 				        
 
-	              <h:inputHidden readonly="true" value="#{beanPlanTravail.planTravailAplanifier.idPlan}" class="form-control" id="modif1"></h:inputHidden>
+	              <h:inputHidden binding="#{idPlanTravailAPlanifier}" value="#{beanPlanTravail.planTravailAplanifier.idPlan}" class="form-control" id="modif1"></h:inputHidden>
 	                 
 	               
 	              <div class="col-md-6">
@@ -800,7 +801,7 @@
 				  </div>
                
                
-               
+               </h:form>
                
                
                
@@ -829,6 +830,8 @@
                
                <!-- Lundi ************************************************ -->
                 
+                <h:form>
+                
            		<div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:#27DB7B;">
 				      <h4 class="panel-title">
@@ -841,6 +844,21 @@
 <!-- 				    <div id="lundi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"> -->
 					<div id="lundi">
 				      <div class="panel-body">
+				      
+				      	<div class="col-md-6">
+								<div class="form-group">
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterLundi.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'lundi')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupLundi">Importer des tranches</a>
+			                  </div>
+			              </div> 
 				        
 				          <div class="col-md-6">
 								<div class="form-group">
@@ -858,6 +876,9 @@
 								  
 								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
     								<f:attribute name="heureDebut" value="#{heureDebutTrancheLundi}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
 								    <f:attribute name="jour" value="lundi" />
 								  
 								  </p:calendar>
@@ -883,25 +904,15 @@
 			                  </div>
 				  		  </div>
 				  		  
-				  		  <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterLundi.deuxJour}" />
-			                  </div>
-				  		  </div>
+
 				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'lundi')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupLundi">Importer des tranches</a>
-			                  </div>
-			              </div> 
+				  		  
 			              
 			              
 			              
 			              
 			              
-			              <!-- Tables pour Afficher les tranches -->
+			              <!-- Tables pour Afficher les tranches **************************************************-->
 			              
 			              
 			          
@@ -967,7 +978,7 @@
 				    </div>
 				  </div>
 				  
-				  
+				  </h:form>
 				  
 				  
 				  
@@ -977,6 +988,8 @@
 				  
 				   <!-- Mardi ************************************************ -->
 				  
+				<h:form>  
+				
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingThree" style="background-color:#27DB7B;">
 				      <h4 class="panel-title">
@@ -989,19 +1002,48 @@
 <!-- 				    <div id="mardi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"> -->
 				     <div id="mardi">
 				      <div class="panel-body">
+				      
+				      
+				      
+				        
+				      	<div class="col-md-6">
+								<div class="form-group">
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterMardi.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'mardi')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupMardi">Importer des tranches</a>
+			                  </div>
+			              </div> 
 				        
 				          <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure debut tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterMardi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>   
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      	<p:calendar id="heureDebutMardi" binding="#{heureDebutTrancheMardi}" value="#{beanPlanTravail.trancheAajouterMardi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutMardi" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
-			                      <label for="dateDebutContrat">Heure fin tranche : </label>  
-								<p:calendar value="#{beanPlanTravail.trancheAajouterMardi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>   
+			                      <label for="dateDebutContrat">Heure fin tranche : </label>
+								  <p:calendar id="heureFinMardi" value="#{beanPlanTravail.trancheAajouterMardi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheMardi}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
+								    <f:attribute name="jour" value="mardi" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinMardi" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1018,27 +1060,13 @@
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Taux : </label>
-			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterMardi.taux}" class="form-control" id="tauxTMAR" placeholder="Enter le nom de la banque" >
+			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterMardi.taux}" class="form-control" id="tauxTM" placeholder="Enter le nom de la banque" >
 			                      	</h:inputText>
 			                  </div>
 				  		  </div>
 				  		  
-				  		   <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterMardi.deuxJour}" />
-			                  </div>
-				  		  </div>
 				  		  
-				  		 
 				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'mardi')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupMardi">Importer des tranches</a>
-			                  </div>
-			              </div> 
-			              
 			              
 			              
 			              
@@ -1108,13 +1136,15 @@
 				    </div>
 				  </div>
 				  
-				  
+				 </h:form> 
 				  
 				  
 				  
 				  
 				  
 				   <!-- Mercredi ************************************************ -->
+				  
+				  <h:form>
 				  
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingThree" style="background-color:#27DB7B;">
@@ -1128,20 +1158,47 @@
 <!-- 				    <div id="mercredi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"> -->
 				    <div id="mercredi">
 				      <div class="panel-body">
+				      
+				      
+				        
+				      	<div class="col-md-6">
+								<div class="form-group">
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterMercredi.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'mercredi')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupMercredi">Importer des tranches</a>
+			                  </div>
+			              </div> 
 				        
 				          <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure debut tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterMercredi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      	<p:calendar id="heureDebutMercredi" binding="#{heureDebutTrancheMercredi}" value="#{beanPlanTravail.trancheAajouterMercredi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutMercredi" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
-			                      <label for="dateDebutContrat">Heure fin tranche : </label> 
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterMercredi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			
+			                      <label for="dateDebutContrat">Heure fin tranche : </label>
+								  <p:calendar id="heureFinMercredi" value="#{beanPlanTravail.trancheAajouterMercredi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheMercredi}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
+								    <f:attribute name="jour" value="mercredi" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinMercredi" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1158,24 +1215,16 @@
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Taux : </label>
-			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterMercredi.taux}" class="form-control" id="tauxTMER" placeholder="Enter le nom de la banque" >
+			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterMercredi.taux}" class="form-control" id="tauxTMer" placeholder="Enter le nom de la banque" >
 			                      	</h:inputText>
 			                  </div>
 				  		  </div>
 				  		  
-				  		  <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterMercredi.deuxJour}" />
-			                  </div>
-				  		  </div>
 				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'mercredi')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupMercredi">Importer des tranches</a>
-			                  </div>
-			              </div> 
+				  		  
+				  		  
+				  		  
+				  		  
 			              
 			              
 			              <!-- Tables pour Afficher les tranches -->
@@ -1243,12 +1292,14 @@
 				    </div>
 				  </div>
 				  
-				  
+				  </h:form>
 				  
 				  
 				  
 				  
 				   <!-- Jeudi ************************************************ -->
+				  
+				  <h:form>
 				  
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingThree" style="background-color:#27DB7B;">
@@ -1262,21 +1313,49 @@
 <!-- 				    <div id="jeudi" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"> -->
 				    <div id="jeudi">
 				      <div class="panel-body">
+				      
+				      
+				      
+				      
 				        
-				          				          <div class="col-md-6">
+				      	<div class="col-md-6">
+								<div class="form-group">
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterJeudi.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'jeudi')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupJeudi">Importer des tranches</a>
+			                  </div>
+			              </div> 
+				        
+				          <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure debut tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterJeudi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			     
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      	<p:calendar id="heureDebutJeudi" binding="#{heureDebutTrancheJeudi}" value="#{beanPlanTravail.trancheAajouterJeudi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutJeudi" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
-			                      <label for="dateDebutContrat">Heure fin tranche : </label>    
-									<p:calendar value="#{beanPlanTravail.trancheAajouterJeudi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			
+			                      <label for="dateDebutContrat">Heure fin tranche : </label>
+								  <p:calendar id="heureFinJeudi" value="#{beanPlanTravail.trancheAajouterJeudi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheJeudi}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
+								    <f:attribute name="jour" value="jeudi" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinJeudi" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1293,25 +1372,16 @@
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Taux : </label>
-			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterJeudi.taux}" class="form-control" id="tauxTJEU" placeholder="Enter le nom de la banque" >
+			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterJeudi.taux}" class="form-control" id="tauxTJeud" placeholder="Enter le nom de la banque" >
 			                      	</h:inputText>
 			                  </div>
 				  		  </div>
 				  		  
-				  		  <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterJeudi.deuxJour}" />
-			                  </div>
-				  		  </div>
 				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'jeudi')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupJeudi">Importer des tranches</a>
-			                  </div>
-			              </div> 
-			              
+				  		  
+				  		  
+				  		  
+				  		  
 			              
 			              <!-- Tables pour Afficher les tranches -->
 			              
@@ -1378,11 +1448,13 @@
 				    </div>
 				  </div>
 				  
-				  
+				  </h:form>
 				  
 				  
 				  
 				   <!-- Vendredi ************************************************ -->
+				  
+				 <h:form> 
 				  
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingThree" style="background-color:#27DB7B;">
@@ -1397,21 +1469,46 @@
 				    <div id="vendredi">
 				      <div class="panel-body">
 				        
-				          				          <div class="col-md-6">
+
+
+				      	<div class="col-md-6">
+								<div class="form-group">
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterVendredi.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'vendredi')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupVendredi">Importer des tranches</a>
+			                  </div>
+			              </div> 
+				        
+				          <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure debut tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterVendredi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			         
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      	<p:calendar id="heureDebutVendredi" binding="#{heureDebutTrancheVendredi}" value="#{beanPlanTravail.trancheAajouterVendredi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutVendredi" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure fin tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterVendredi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			       
-			
+								  <p:calendar id="heureFinVendredi" value="#{beanPlanTravail.trancheAajouterVendredi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheVendredi}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
+								    <f:attribute name="jour" value="vendredi" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinVendredi" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1428,25 +1525,14 @@
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Taux : </label>
-			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterVendredi.taux}" class="form-control" id="tauxTVEN" placeholder="Enter le nom de la banque" >
+			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterVendredi.taux}" class="form-control" id="tauxTVendr" placeholder="Enter le nom de la banque" >
 			                      	</h:inputText>
 			                  </div>
 				  		  </div>
-				  		  
-				  		  <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterVendredi.deuxJour}" />
-			                  </div>
-				  		  </div>
-				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'vendredi')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupVendredi">Importer des tranches</a>
-			                  </div>
-			              </div> 
-			              
+
+
+
+
 			              
 			              <!-- Tables pour Afficher les tranches -->
 			              
@@ -1513,11 +1599,14 @@
 				    </div>
 				  </div>
 				  
+				  </h:form>
 				  
 				  
 				  
 				  
 				   <!-- Samedi ************************************************ -->
+				
+				<h:form>
 				  
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingThree" style="background-color:#27DB7B;">
@@ -1532,21 +1621,47 @@
 				    <div id="samedi">
 				      <div class="panel-body">
 				        
-				          				          <div class="col-md-6">
+
+
+
+				      	<div class="col-md-6">
+								<div class="form-group">
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterSamedi.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'samedi')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupSamedi">Importer des tranches</a>
+			                  </div>
+			              </div> 
+				        
+				          <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure debut tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterSamedi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			             
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      	<p:calendar id="heureDebutSamedi" binding="#{heureDebutTrancheSamedi}" value="#{beanPlanTravail.trancheAajouterSamedi.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutSamedi" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure fin tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterSamedi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			             
-			
+								  <p:calendar id="heureFinSamedi" value="#{beanPlanTravail.trancheAajouterSamedi.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheSamedi}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
+								    <f:attribute name="jour" value="samedi" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinSamedi" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1563,24 +1678,13 @@
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Taux : </label>
-			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterSamedi.taux}" class="form-control" id="tauxTSAM" placeholder="Enter le nom de la banque" >
+			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterSamedi.taux}" class="form-control" id="tauxTSamedi" placeholder="Enter le nom de la banque" >
 			                      	</h:inputText>
 			                  </div>
 				  		  </div>
-				  		  
-				  		  <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterSamedi.deuxJour}" />
-			                  </div>
-				  		  </div>
-				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'samedi')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupSamedi">Importer des tranches</a>
-			                  </div>
-			              </div> 
+
+
+
 			              
 			              
 			              <!-- Tables pour Afficher les tranches -->
@@ -1649,7 +1753,7 @@
 				    </div>
 				  </div>
 				  
-				  
+				</h:form>  
 				  
 				  
 				  
@@ -1657,6 +1761,8 @@
 				  
 				   <!-- Dimanche ************************************************ -->
 				  
+				  
+				  <h:form>
 				  
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingThree" style="background-color:#27DB7B;">
@@ -1671,21 +1777,47 @@
 				    <div id="dimanche">
 				      <div class="panel-body">
 				        
-				          				          <div class="col-md-6">
+
+
+
+				      	<div class="col-md-6">
 								<div class="form-group">
-			                      <label for="dateDebutContrat">Heure debut tranche : </label> 
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterDimanche.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			                
-			<!--                       	<h:message for="dateDebutContrat" style="color:red" />     -->
+			                      <label for="profil">Tranche sur deux jours : </label> 
+			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox binding="#{surDeuxJours}" value="#{beanPlanTravail.trancheAajouterDimanche.deuxJour}" />
+			                  </div>
+				  		  </div>
+				  		  
+				  		  
+				  		  <div class="col-md-6">
+			                  <div class="form-group" >			
+			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'dimanche')}" />			                    
+			                  	<a class="btn btn-primary" href="#popupDimanche">Importer des tranches</a>
+			                  </div>
+			              </div> 
+				        
+				          <div class="col-md-6">
+								<div class="form-group">
+			                      <label for="dateDebutContrat">Heure debut tranche : </label>
+			                      	<p:calendar id="heureDebutDimanche" binding="#{heureDebutTrancheDimanche}" value="#{beanPlanTravail.trancheAajouterDimanche.heureDebut}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass" required="true" requiredMessage="Heure début obligatoire (*)">  
+			                      	</p:calendar>
+			                      	<h:message for="heureDebutDimanche" style="color:red" />    
 			                  </div>
 				  		  </div>
 				  		  
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="dateDebutContrat">Heure fin tranche : </label>
-			                      	<p:calendar value="#{beanPlanTravail.trancheAajouterDimanche.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"/>    
-			               
-			
+								  <p:calendar id="heureFinDimanche" value="#{beanPlanTravail.trancheAajouterDimanche.heureFin}" pattern="HH:mm" timeOnly="true" effect="fold" styleClass="calendarClass"  required="true" requiredMessage="Heure début obligatoire (*)">
+								  
+								  	<f:validator validatorId="ValidateurHeureDebutEtHeureFinTranchePlanTravail" />
+    								<f:attribute name="heureDebut" value="#{heureDebutTrancheDimanche}" />
+    								<f:attribute name="idPlan" value="#{idPlanTravailAPlanifier}"/>
+    								<f:attribute name="deuxJour" value="#{surDeuxJours}"/>
+    								
+								    <f:attribute name="jour" value="dimanche" />
+								  
+								  </p:calendar>
+								  <h:message for="heureFinDimanche" style="color:red" />
 			                  </div>
 				  		  </div>
 				  		  
@@ -1702,25 +1834,14 @@
 				  		  <div class="col-md-6">
 								<div class="form-group">
 			                      <label for="profil">Taux : </label>
-			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterDimanche.taux}" class="form-control" id="tauxTDIM" placeholder="Enter le nom de la banque" >
+			                      	<h:inputText value="#{beanPlanTravail.trancheAajouterDimanche.taux}" class="form-control" id="tauxTDimanche" placeholder="Enter le nom de la banque" >
 			                      	</h:inputText>
 			                  </div>
 				  		  </div>
-				  		  
-				  		  <div class="col-md-6">
-								<div class="form-group">
-			                      <label for="profil">Tranche sur deux jours : </label> 
-			                      &nbsp; &nbsp;	<h:selectBooleanCheckbox value="#{beanPlanTravail.trancheAajouterDimanche.deuxJour}" />
-			                  </div>
-				  		  </div>
-				  		  
-				  		  <div class="col-md-6">
-			                  <div class="form-group" >			
-			                    <h:commandButton class="btn btn-primary" value="Enregistrer" actionListener="#{beanPlanTravail.ajouterTranchePlanTravail(e,'dimanche')}" />			                    
-			                  	<a class="btn btn-primary" href="#popupDimanche">Importer des tranches</a>
-			                  </div>
-			              </div> 
-			              
+
+
+
+
 			              
 			              <!-- Tables pour Afficher les tranches -->
 			              
@@ -1788,7 +1909,7 @@
 				    </div>
 				  </div>
                 
-                
+                </h:form>
                 
                 
                 
@@ -1797,8 +1918,7 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
           
-          
-            </h:form>
+
             
             
            
