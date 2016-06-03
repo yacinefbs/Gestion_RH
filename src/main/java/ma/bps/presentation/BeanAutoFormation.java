@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,11 +53,30 @@ public class BeanAutoFormation {
 	// varriable pour presiser si modification ou ajout
 	private String ajoutOuModif = "ajout";
 	
+	// cette va stocker temporairement la liste des fichiers li gha nbghiw n7aydo l une formation au moment de la modification
+	private List <AutoFormationDocuments> listeAutoFormationDocumentsAuMomentModification = new ArrayList<AutoFormationDocuments>();
+	
+	private List <AutoFormationDocuments> listeAutoFormationDocumentsDuneFormationAuMomentModification = new ArrayList<AutoFormationDocuments>();
+	
 		
 	
 	
 	// Getters and Setters
 	
+	public List<AutoFormationDocuments> getListeAutoFormationDocumentsDuneFormationAuMomentModification() {
+		return listeAutoFormationDocumentsDuneFormationAuMomentModification;
+	}
+	public void setListeAutoFormationDocumentsDuneFormationAuMomentModification(
+			List<AutoFormationDocuments> listeAutoFormationDocumentsDuneFormationAuMomentModification) {
+		this.listeAutoFormationDocumentsDuneFormationAuMomentModification = listeAutoFormationDocumentsDuneFormationAuMomentModification;
+	}
+	public List<AutoFormationDocuments> getListeAutoFormationDocumentsAuMomentModification() {
+		return listeAutoFormationDocumentsAuMomentModification;
+	}
+	public void setListeAutoFormationDocumentsAuMomentModification(
+			List<AutoFormationDocuments> listeAutoFormationDocumentsAuMomentModification) {
+		this.listeAutoFormationDocumentsAuMomentModification = listeAutoFormationDocumentsAuMomentModification;
+	}
 	public long getIdAutoFormationAModifier() {
 		return idAutoFormationAModifier;
 	}
@@ -274,10 +294,33 @@ public class BeanAutoFormation {
 		
 	// charger les documents d'une formation
 		
-		public List<AutoFormationDocuments> chargerLesDocumentsUneFormation(){
+		public void chargerLesDocumentsUneFormation(){
 			
 			System.out.println("*******************************charger liste des fichuer auto form**************************" + this.idAutoFormationAModifier);
-			return metierAutoFormation.chargerLesDocumentUneFormation(this.autoFormationAmodifier.getIdAutoFormation());
+			
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification = new ArrayList<AutoFormationDocuments>();
+			
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification = metierAutoFormation.chargerLesDocumentUneFormation(this.autoFormationAmodifier.getIdAutoFormation());
+
+			
+			
+			//had la liste bach ndiro fiha ghi li fichier li ba9in dyal une formation ila n9as chi wa7d maybanch
+//			List<AutoFormationDocuments> temp = metierAutoFormation.chargerLesDocumentUneFormation(this.autoFormationAmodifier.getIdAutoFormation());
+//			
+//			for (AutoFormationDocuments fichier : this.listeAutoFormationDocumentsAuMomentModification) 
+//			{
+//				
+//				for (AutoFormationDocuments fichier1 : metierAutoFormation.chargerLesDocumentUneFormation(this.autoFormationAmodifier.getIdAutoFormation())) 
+//				{
+//					if (fichier.getIdFichier() == fichier1.getIdFichier()) 
+//					{
+//						temp.remove(fichier);
+//					}
+//				}
+//				
+//			}
+//			
+//			return temp;
 
 			
 		}
@@ -290,30 +333,74 @@ public class BeanAutoFormation {
 			this.autoFormationAmodifier = a;
 			this.idAutoFormationTheme = a.getThemeAutoFormation().getIdAutoFormationTheme();	
 			this.idAutoFormationAModifier = a.getIdAutoFormation();
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification = new ArrayList<AutoFormationDocuments>();
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification = metierAutoFormation.chargerLesDocumentUneFormation(a.getIdAutoFormation());
+
 			return "gestionAutoFormationModifier";
 		}
 		
 	// Enregistrer la modification
 		
-		public String modifierAutoFormation(){
+		public String modifierAutoFormation() throws IOException{
 			
 			System.out.println("id = ***************************************  " + this.autoFormationAmodifier.getIdAutoFormation());
 			
 			autoFormationAmodifier.setThemeAutoFormation(metierAutoFormationTheme.getAutoFormationThemeById(this.idAutoFormationTheme));
 			metierAutoFormation.modifierAutoFormation(this.autoFormationAmodifier);
 			
+			// ndiro l id d formation les fichiers li zadna jdad
 			for (AutoFormationDocuments fichier : metierAutoFormationDocuments.chargerListDocumentAutoFormationNonAffecterAuneAutoFormation()) {
 				
 				fichier.setAutoFormation(this.autoFormationAmodifier);
 				metierAutoFormationDocuments.modifierAutoFormationDocuments(fichier);
 			}
 			
+			// nsupprimiw li fichier li n9asna
+			for (AutoFormationDocuments fichier : this.listeAutoFormationDocumentsAuMomentModification) {
+				
+				this.supprimerUnFichierAttacherAautoFormation(fichier);
+			}
+			
 			this.autoFormationAmodifier = new AutoFormation();
 			this.idAutoFormationTheme = 0;
-			
+			this.listeAutoFormationDocumentsAuMomentModification = new ArrayList<AutoFormationDocuments>();
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification = new ArrayList<AutoFormationDocuments>();
 			return "gestionAutoFormation";
 			
 		}
+		
+		
+	// methode li katzid les fichier li bghina n7aydo l une formation au moment de la modification f la liste
+		
+		public void ajouterLesFichierAsupprimerDuneFormationAuMomentModification(AutoFormationDocuments a){
+			
+			this.listeAutoFormationDocumentsAuMomentModification.add(a);
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification.remove(a);
+			
+			for (AutoFormationDocuments autoFormationDocuments : listeAutoFormationDocumentsAuMomentModification) 
+			{
+				System.out.println("*********************************************** ajouter fichier a la liste a supprimer : " + autoFormationDocuments.getIdFichier());
+			}
+			
+		}
+		
+		
+
+	// methode li ka t annuler ta7yad dyal ls fichier li bghina na9so man une formation
+		
+		public void annulerAjouterLesFichierAsupprimerDuneFormationAuMomentModification(AutoFormationDocuments a){
+			
+			this.listeAutoFormationDocumentsAuMomentModification.remove(a);
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification.add(a);
+			
+			for (AutoFormationDocuments autoFormationDocuments : listeAutoFormationDocumentsAuMomentModification) 
+			{
+				System.out.println("*********************************************** ajouter fichier a la liste a supprimer : " + autoFormationDocuments.getIdFichier());
+			}
+			
+		}
+		
+		
 		
 	// annuler modification auto formation
 		
@@ -324,6 +411,9 @@ public class BeanAutoFormation {
 			this.autoFormationAmodifier = new AutoFormation();
 			this.idAutoFormationTheme = 0;
 			this.idAutoFormationAModifier = 0;
+			
+			this.listeAutoFormationDocumentsAuMomentModification = new ArrayList<AutoFormationDocuments>();
+			this.listeAutoFormationDocumentsDuneFormationAuMomentModification = new ArrayList<AutoFormationDocuments>();
 			
 			return "gestionAutoFormation";
 			
