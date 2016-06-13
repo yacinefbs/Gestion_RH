@@ -16,10 +16,14 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import ma.bps.entities.Conges;
 import ma.bps.entities.Contrats;
 import ma.bps.entities.Salaries;
+import ma.bps.impression.AttestationConge;
 import ma.bps.impression.AttestationTravail;
+import ma.bps.metier.CongeMetierImpl;
 import ma.bps.metier.DemandeDesCertificatsParSalarieMetierImpl;
+import ma.bps.metier.ICongeMetier;
 import ma.bps.metier.IDemandeDesCertificatsParSalarieMetier;
 import ma.bps.metier.ISalarieMetier;
 import ma.bps.metier.SalarieMetierImpl;
@@ -44,9 +48,9 @@ public class BeanAdmin {
 	
 	
 	// imprimer une attestation de travail demander par un salarie
-	public void imprimerAttestationTravail() throws JRException, IOException{
+	public void imprimerAttestationTravail(Long idSalarie) throws JRException, IOException{
 		
-		Salaries s = metierSalarie.getSalarieById(1L);
+		Salaries s = metierSalarie.getSalarieById(idSalarie);
 		
 		Date dateDebutContrat = null;
 		Collection<Contrats> listeContrat = s.getContrats();
@@ -168,22 +172,11 @@ public class BeanAdmin {
 			attestation.setPoste("........................");
 		}
 		
-		
-		
-		System.out.println("**************************************************************");
-		
-		System.out.println(attestation.getNomSociete());
-		System.out.println(attestation.getNomPrenomSalarie());
-		System.out.println(attestation.getCin());
-		System.out.println(attestation.getCnss());
-		System.out.println(attestation.getDateDebutContrat());
-		System.out.println(attestation.getPoste());
-		
-		System.out.println("**************************************************************");
-		
-		
-		
 
+		
+		
+		
+		// hada ghi zayd ma khdamtch bih f impression
 		Map<String,Object> parametre = new HashMap<String, Object>();
 		parametre.put("z_nomSociete", "nomSociete");
 
@@ -197,8 +190,10 @@ public class BeanAdmin {
 		
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametre,new JRBeanCollectionDataSource(vide));
 		
+		SimpleDateFormat forme = new SimpleDateFormat("dd-MM-yyyy");
+		
 	    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-	    response.addHeader("Content-disposition","attachement; filename=jsfReporte.pdf");
+	    response.addHeader("Content-disposition","attachement; filename=AttestationTravail_" + attestation.getNomPrenomSalarie().replace(" ", "_") + "_" + forme.format(new Date()) +  ".pdf");
 	    ServletOutputStream stream = response.getOutputStream();
 	   
 	    JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
@@ -210,6 +205,145 @@ public class BeanAdmin {
 		
 	}
 	
+	
+	// imprimer une attestation de conge demander par un salarie	
+	
+	public void imprimerAttestationConge(Long idSalarie, Long idConge) throws JRException, IOException{
+		
+		
+		ISalarieMetier metierSalarie = new SalarieMetierImpl();
+		ICongeMetier metierConge = new CongeMetierImpl();
+		
+		Salaries s = metierSalarie.getSalarieById(idSalarie);
+		Conges c = metierConge.getCongeById(idConge);
+		
+		
+		
+		
+		// creation de l'objet d'impression
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
+		AttestationConge attestation = new AttestationConge();
+		
+		
+		// nom societe
+		if (s.getSociete() != null) 
+		{
+			attestation.setNomSociete(s.getSociete().getNomSociete());
+		}
+		else
+		{
+			attestation.setNomSociete("............................");
+		}
+		
+		// nom prenom
+		if (s.getNom() != null) 
+		{
+			if (s.getPrenom() != null) 
+			{
+				attestation.setNomPrenomSalarie(s.getNom() + " " + s.getPrenom());
+			}
+			else
+			{
+				attestation.setNomPrenomSalarie(s.getNom() + " ............... ");
+			}
+		}
+		else
+		{
+			if (s.getPrenom() != null) 
+			{
+				attestation.setNomPrenomSalarie(" ............... " + s.getPrenom());
+			}
+			else
+			{
+				attestation.setNomPrenomSalarie(" .............................. ");
+			}
+		}
+		
+
+		// CIN
+		if (!s.getCIN().equals("")) 
+		{
+			attestation.setCin(s.getCIN());
+		}
+		else
+		{
+			attestation.setCin("................");
+		}		
+	
+
+		// date debut contrat
+		if (s.getQualification() != null) 
+		{
+			attestation.setPoste(s.getQualification().getPoste());
+		}
+		else
+		{
+			attestation.setPoste("........................");
+		}
+		
+		
+		// date debut conge
+		if (c.getDateDebutC() != null) 
+		{
+			attestation.setDateDebutConge(formatter.format(c.getDateDebutC()));
+		} 
+		else 
+		{
+			attestation.setDateDebutConge("........................");
+		}
+		
+
+		
+		// date fin conge
+		if (c.getDateFinC() != null) 
+		{
+			attestation.setDateFinConge(formatter.format(c.getDateFinC()));
+		} 
+		else 
+		{
+			attestation.setDateFinConge("........................");
+		}
+		
+		
+		
+		
+		// hada ghi zayd ma khdamtch bih f impression
+		Map<String,Object> parametre = new HashMap<String, Object>();
+		parametre.put("z_nomSociete", "nomSociete");
+
+		
+		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/attestationConge.jasper"));
+		
+		List<AttestationConge> vide = new ArrayList<AttestationConge>();
+		
+	
+		vide.add(attestation);	
+		
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametre,new JRBeanCollectionDataSource(vide));
+		
+		SimpleDateFormat forme = new SimpleDateFormat("dd-MM-yyyy");
+		
+	    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+	    response.addHeader("Content-disposition","attachement; filename=AttestationConge_" + attestation.getNomPrenomSalarie().replace(" ", "_") + "_" + forme.format(new Date()) +".pdf");
+	    	    
+	    ServletOutputStream stream = response.getOutputStream();
+	   
+	    JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+	    
+	    stream.flush();
+	    stream.close();
+
+	    FacesContext.getCurrentInstance().responseComplete();
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 

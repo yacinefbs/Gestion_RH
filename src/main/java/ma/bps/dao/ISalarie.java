@@ -62,7 +62,6 @@ public interface ISalarie {
 	// pour auto complete nom destinataire
 	public List<Object[]> ChargerNomPrenomSalarie();
 	
-	// charger les contrat d'un salarie
-	public List<Contrats> chargerLesContratUnSalarie(Long idSalarie);
+
 	
 }
