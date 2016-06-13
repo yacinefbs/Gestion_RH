@@ -266,7 +266,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                       <label for="dateDebut">Date début</label>
-                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebut" value="#{beanConge.conge.dateDebutC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar binding="#{dateDebut}" converterMessage="La date de début est incorrecte (*)" id="dateDebut" value="#{beanConge.conge.dateDebutC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
                      		</p:calendar>
 						<font color="red"> <h:message for="dateDebut"></h:message> </font>
@@ -277,6 +277,8 @@
                       <label for="dateFin">Date fin</label>
                       	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFin" value="#{beanConge.conge.dateFinC}" required="true" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
+                     			<f:validator validatorId="validateurDateDebutEtDateFin"/>
+                   				<f:attribute name="dateDebut" value="#{dateDebut}"/>
                      		</p:calendar>
 						<font color="red"> <h:message for="dateFin"></h:message> </font>
                     </div>

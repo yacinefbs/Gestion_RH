@@ -6,6 +6,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	>
 <head>
     <meta charset="utf-8"/>
@@ -190,9 +192,9 @@
             <small></small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+<!--             <li><a href="#">Forms</a></li> -->
+            <li class="active">Gestion des services</li>
           </ol>
         </section>
 
@@ -236,7 +238,8 @@
                   </c:if>
                     <div class="form-group">
                       <label for="nomService">Nom du service</label>
-                      <h:inputText value="#{beanService.service.libelle}" class="form-control" id="exampleInputEmail2" placeholder="Enter le nom du service" ></h:inputText>
+                      <h:inputText value="#{beanService.service.libelle}" class="form-control" id="nomService" required="true" requiredMessage="Ce service est obligatoire (*)" a:placeholder="Enter le nom du service" ></h:inputText>
+                      <h:message for="nomService" style="color : red;" />
                     </div>
 	                  </div><!-- /.box-body -->
 
@@ -284,10 +287,11 @@
                     	<td><font color="#00c0ef"><h:outputLabel value="#{s.idService}"/></font></td>
                     	<td><font color="#00c0ef"><h:outputLabel value="#{s.libelle}"/></font></td>
                     	<td>
-                    		<h:commandLink  style="width : 100px; float : center;" class="btn btn-block btn-success" value="Modifier" action="#{beanService.editerService(s)}" immediate="true"/>
+<!--                     		<h:commandLink  style="width : 100px; float : center;" class="btn btn-block btn-success" value="Modifier" action="#{beanService.editerService(s)}" immediate="true"/> -->
+                    		<h:commandLink value="Modifier" action="#{beanService.editerService(s)}" immediate="true"  />
                     	</td>
                     	<td>
-                    		<h:commandLink style="width : 100px; text-align : center;" class="btn btn-block btn-danger" value="Supprimer" action="#{beanService.supprimerService}" immediate="true">
+                    		<h:commandLink style="width : 100px; text-align : center;" value="Supprimer" action="#{beanService.supprimerService}" immediate="true">
                     			<f:setPropertyActionListener value="#{s.idService}" target="#{beanService.service.idService}"></f:setPropertyActionListener>
                     		</h:commandLink> 
                     	</td>

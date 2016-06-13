@@ -229,112 +229,139 @@
                   <div class="col-md-3">
 			      <div class="form-group">
                       <label for="libelleRub">Libellé rubrique</label>
-                      	<h:inputText value="#{beanRubrique.rubrique.libelleRubrique}" class="form-control" id="libelleRub" a:placeholder="Entrer libellé" ></h:inputText>
+                      	<h:inputText value="#{beanRubrique.rubrique.libelleRubrique}" class="form-control" id="libelleRub" required="true" requiredMessage="Le libellé de la rubrique est obligatoire (*)" a:placeholder="Entrer le libellé de la rubrique" ></h:inputText>
+                      	<h:message for="libelleRub" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="type">Type</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.type}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="Sélectionner un type" itemValue="#{null}" />
+                      	<h:selectOneMenu validatorMessage="Choisir le type !!!" id="type" value="#{beanRubrique.rubrique.type}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner le type" itemValue="0" />
                       			<f:selectItem itemLabel="Obligatoire" itemValue="Obligatoire" />
                       			<f:selectItem itemLabel="Facultative" itemValue="Facultative" />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="type" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="valeur">Valeur</label>
-                      	<h:inputText value="#{beanRubrique.rubrique.valeur}" class="form-control" id="valeur" a:placeholder="Enter la valeur"></h:inputText>
+                      	<h:inputText converterMessage="Le montant d'une échéance doit être numérique (*)" value="#{beanRubrique.rubrique.valeur}" class="form-control" id="valeur" required="true" requiredMessage="La valeur est obligatoire (*)" a:placeholder="Enter la valeur">
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<h:message for="valeur" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="taux">Taux</label>
-                      	<h:inputText value="#{beanRubrique.rubrique.taux}" class="form-control" id="taux" a:placeholder="Enter le taux"></h:inputText>
+                      	<h:inputText converterMessage="Le montant d'une échéance doit être numérique (*)" value="#{beanRubrique.rubrique.taux}" class="form-control" id="taux" required="true" requiredMessage="Le taux est obligatoire (*)" a:placeholder="Enter le taux">
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<h:message for="taux" style="color : red;" />
                     </div>
+			    </div>
+			    <div class="col-md-12">
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="plafond">Plafond</label>
-                      	<h:inputText value="#{beanRubrique.rubrique.plafond}" class="form-control" id="plafond" a:placeholder="Enter le plafond"></h:inputText>
+                      	<h:inputText converterMessage="Le montant d'une échéance doit être numérique (*)" value="#{beanRubrique.rubrique.plafond}" class="form-control" id="plafond" required="true" requiredMessage="Le plafond est obligatoire (*)" a:placeholder="Enter le plafond">
+                      		<f:validateDoubleRange minimum="0.00" maximum="999999999999999999.99"></f:validateDoubleRange>
+                      	</h:inputText>
+                      	<h:message for="plafond" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
-                      <label for="type">Imposable</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.imposable}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
+                      <label for="imposable">Imposable</label>
+                      	<h:selectOneMenu id="imposable" value="#{beanRubrique.rubrique.imposable}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
                       			<f:selectItem itemLabel="Oui" itemValue="Oui" />
                       			<f:selectItem itemLabel="Non" itemValue="Non"  />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="imposable" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="positive">Positive</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.positive}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
+                      	<h:selectOneMenu id="positive" value="#{beanRubrique.rubrique.positive}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
                       			<f:selectItem itemLabel="Oui" itemValue="Oui" />
                       			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="positive" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="soumiseCNSS">Soumise à la CNSS</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.soumiseCNSS}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
+                      	<h:selectOneMenu id="soumiseCNSS" value="#{beanRubrique.rubrique.soumiseCNSS}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
                       			<f:selectItem itemLabel="Oui" itemValue="Oui" />
                       			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="soumiseCNSS" style="color : red;" />
                     </div>
 			    </div>
-			    
+			    <div class="col-md-12">
+			    </div>
 			    <div class="col-md-12">
 			      <div class="form-group">
                     </div>
 			    </div>
-			    
-			   
 			  	<div class="col-md-3">
 			      <div class="form-group">
                       <label for="soumiseMutuelle">Soumise à la mutuelle</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.soumiseMutuelle}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
+                      	<h:selectOneMenu id="soumiseMutuelle" value="#{beanRubrique.rubrique.soumiseMutuelle}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
                       			<f:selectItem itemLabel="Oui" itemValue="Oui" />
                       			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="soumiseMutuelle" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="soumiseIGR">Soumise à la IGR</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.soumiseIGR}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
+                      	<h:selectOneMenu id="soumiseIGR" value="#{beanRubrique.rubrique.soumiseIGR}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
                       			<f:selectItem itemLabel="Oui" itemValue="Oui" />
                       			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="soumiseIGR" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
-                      <label for="soumiseIGR">Soumise à l'ancienneté</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.soumiseAnciennete}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
+                      <label for="soumiseAnc">Soumise à l'ancienneté</label>
+                      	<h:selectOneMenu id="soumiseAnc" value="#{beanRubrique.rubrique.soumiseAnciennete}" class="form-control input-sm">
+                      			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
                       			<f:selectItem itemLabel="Oui" itemValue="Oui" />
                       			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="soumiseAnc" style="color : red;" />
                     </div>
 			    </div>
 			     <div class="col-md-3">
 			      <div class="form-group">
-                      <label for="soumiseIGR">Soumise à la CIMR</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.soumiseCIMR}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
-                      			<f:selectItem itemLabel="Oui" itemValue="Oui" />
-                      			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      <label for="soumiseCIMR">Soumise à la CIMR</label>
+                      	<h:selectOneMenu id="soumiseCIMR" value="#{beanRubrique.rubrique.soumiseCIMR}" class="form-control input-sm">
+                  			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
+                  			<f:selectItem itemLabel="Oui" itemValue="Oui" />
+                  			<f:selectItem itemLabel="Non" itemValue="Non" />
+                  			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="soumiseCIMR" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-12">
@@ -344,51 +371,63 @@
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="affichagePrelevement">Affichage de l'état du prélèvement</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.affichageEtatPrelev}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
-                      			<f:selectItem itemLabel="Oui" itemValue="Oui" />
-                      			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      	<h:selectOneMenu id="affichagePrelevement" value="#{beanRubrique.rubrique.affichageEtatPrelev}" class="form-control input-sm">
+                   			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
+                   			<f:selectItem itemLabel="Oui" itemValue="Oui" />
+                   			<f:selectItem itemLabel="Non" itemValue="Non" />
+                   			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="affichagePrelevement" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
-                      <label for="affichagePrelevement">Indemnité versées de frais pro</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.indemniteverseFraisPro}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
-                      			<f:selectItem itemLabel="Oui" itemValue="Oui" />
-                      			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      <label for="indemniteFrais">Indemnité versées de frais pro</label>
+                      	<h:selectOneMenu id="indemniteFrais" value="#{beanRubrique.rubrique.indemniteverseFraisPro}" class="form-control input-sm">
+                  			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
+                  			<f:selectItem itemLabel="Oui" itemValue="Oui" />
+                  			<f:selectItem itemLabel="Non" itemValue="Non" />
+                  			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="indemniteFrais" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="remborseeOrganisme">Remborsée par un organisme</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.remborseeOrganisme}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
-                      			<f:selectItem itemLabel="Oui" itemValue="Oui" />
-                      			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      	<h:selectOneMenu id="remborseeOrganisme" value="#{beanRubrique.rubrique.remborseeOrganisme}" class="form-control input-sm">
+                   			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
+                   			<f:selectItem itemLabel="Oui" itemValue="Oui" />
+                   			<f:selectItem itemLabel="Non" itemValue="Non" />
+                   			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="remborseeOrganisme" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="rubriquePret">Rubrique prêt</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.rubriquePret}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
-                      			<f:selectItem itemLabel="Oui" itemValue="Oui" />
-                      			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      	<h:selectOneMenu id="rubriquePret" value="#{beanRubrique.rubrique.rubriquePret}" class="form-control input-sm">
+                   			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
+                   			<f:selectItem itemLabel="Oui" itemValue="Oui" />
+                   			<f:selectItem itemLabel="Non" itemValue="Non" />
+                   			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="rubriquePret" style="color : red;" />
                     </div>
+			    </div>
+			    <div class="col-md-12">
 			    </div>
 			    <div class="col-md-3">
 			      <div class="form-group">
                       <label for="rubriqueAvance">Rubrique avance</label>
-                      	<h:selectOneMenu value="#{beanRubrique.rubrique.rubriqueAvance}" class="form-control input-sm">
-                      			<f:selectItem itemLabel="" itemValue="" />
-                      			<f:selectItem itemLabel="Oui" itemValue="Oui" />
-                      			<f:selectItem itemLabel="Non" itemValue="Non" />
+                      	<h:selectOneMenu id="rubriqueAvance" value="#{beanRubrique.rubrique.rubriqueAvance}" class="form-control input-sm">
+                   			<f:selectItem itemLabel="Sélectionner Oui/Non" itemValue="0" />
+                   			<f:selectItem itemLabel="Oui" itemValue="Oui" />
+                   			<f:selectItem itemLabel="Non" itemValue="Non" />
+                   			<f:validator validatorId="validateurSelectOneMenuString" />
                       </h:selectOneMenu>
+                      <h:message for="rubriqueAvance" style="color : red;" />
                     </div>
 			    </div>
 			    

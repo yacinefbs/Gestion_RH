@@ -6,6 +6,7 @@ import ma.bps.entities.A_Justifiee;
 import ma.bps.entities.A_Non_Justifiee;
 import ma.bps.entities.Avances;
 import ma.bps.entities.Conges;
+import ma.bps.entities.Contrats;
 import ma.bps.entities.F_Initiale;
 import ma.bps.entities.F_Professionnelles;
 import ma.bps.entities.HeureSupplementaire;
@@ -60,5 +61,8 @@ public interface ISalarie {
 	
 	// pour auto complete nom destinataire
 	public List<Object[]> ChargerNomPrenomSalarie();
+	
+	// charger les contrat d'un salarie
+	public List<Contrats> chargerLesContratUnSalarie(Long idSalarie);
 	
 }

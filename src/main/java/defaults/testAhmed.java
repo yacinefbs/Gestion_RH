@@ -3,6 +3,11 @@ package defaults;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import ma.bps.dao.SalarieDaoImpl;
+import ma.bps.entities.Salaries;
+import ma.bps.metier.ISalarieMetier;
+import ma.bps.metier.SalarieMetierImpl;
+
 public class testAhmed {
 
 	
@@ -43,10 +48,16 @@ public class testAhmed {
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
 
-		System.out.println( System.getProperty( "catalina.base" ));
+//		System.out.println( System.getProperty( "catalina.base" ));
+//		
+//		String ch = "adzee/dzzdzd/123456.jpg";
+//		System.out.println(ch.substring(ch.lastIndexOf("/")+1,ch.length()));
 		
-		String ch = "adzee/dzzdzd/123456.jpg";
-		System.out.println(ch.substring(ch.lastIndexOf("/")+1,ch.length()));
+		ISalarieMetier metier = new SalarieMetierImpl();
+		
+		Salaries s = metier.getSalarieById(1L);
+		
+		System.out.println(s.getContrats().size());
 				
 		
 	}

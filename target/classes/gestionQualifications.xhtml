@@ -6,6 +6,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	>
 <head>
     <meta charset="utf-8"/>
@@ -189,9 +191,9 @@
             <small></small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+<!--             <li><a href="#">Forms</a></li> -->
+            <li class="active">Gestion des qualifications</li>
           </ol>
         </section>
 
@@ -226,12 +228,13 @@
                   <c:if test="#{row==1}">
                   <div class="form-group">
                       <label for="exampleInputEmail1">ID Qualification</label>
-                      <h:inputText readonly="true" value="#{beanQualification.qualification.idQualification}" class="form-control" id="exampleInputEmail1" placeholder="Enter le nom de la qualification" ></h:inputText>
+                      <h:inputText readonly="true" value="#{beanQualification.qualification.idQualification}" class="form-control" id="exampleInputEmail1"  ></h:inputText>
                     </div>
                   </c:if>
                     <div class="form-group">
-                      <label for="poste">Nom de la qualification</label>
-                         <h:inputText value="#{beanQualification.qualification.poste}" class="form-control" id="poste" placeholder="Enter le nom de la qualification" ></h:inputText>
+                      <label for="nomQualification">Nom de la qualification</label>
+                         <h:inputText value="#{beanQualification.qualification.poste}" class="form-control" id="nomQualification" required="true" requiredMessage="Le nom de la qualification est obligatoire (*)"  a:placeholder="Enter le nom de la qualification" ></h:inputText>
+                         <h:message for="nomQualification" style="color : red;" />
                     </div>
 	                </div><!-- /.box-body -->
 				  <c:if test="#{row==0}">

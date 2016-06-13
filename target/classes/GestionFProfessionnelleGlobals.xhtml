@@ -215,13 +215,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Gestion des prêts
+            Gestion des formations professionnelles
             <small></small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+<!--             <li><a href="#">Forms</a></li> -->
+            <li class="active">Gestion des formations professionnelles</li>
           </ol>
         </section>
 
@@ -268,45 +268,53 @@
                   <div class="col-md-6">
 			      <div class="form-group">
                       <label for="dateDebutFormation">Date début formation</label>
-                      	<p:calendar id="dateDebutFormation" value="#{beanFormationPro.f_Professionnelles.dateDebut}" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de début est incorrecte (*)" id="dateDebutFormation" value="#{beanFormationPro.f_Professionnelles.dateDebut}" required="true" requiredMessage="Date début obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
-                     		</p:calendar>
+                     	</p:calendar>
+                     	<h:message for="dateDebutFormation" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="dateFinFormation">Date fin formation</label>
-                      	<p:calendar id="dateFinFormation" value="#{beanFormationPro.f_Professionnelles.dateFin}" requiredMessage="Date début oblégatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
+                      	<p:calendar converterMessage="La date de fin est incorrecte (*)" id="dateFinFormation" value="#{beanFormationPro.f_Professionnelles.dateFin}" required="true" requiredMessage="Date fin obligatoire (*)" pattern="dd/MM/yyyy" effect="fold" navigator="true" yearRange="c-100:c+100" styleClass="calendarClass">
                      			<p:ajax event="dateSelect" listener="#{beanPlanTravail.onDateSelect}" update="msgs" />
-                     		</p:calendar>
+                     	</p:calendar>
+                     	<h:message for="dateFinFormation" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="employeur">Employeur</label>
-                      	<h:inputText value="#{beanFormationPro.f_Professionnelles.employeur}" class="form-control" id="employeur" a:placeholder="Enter le montant global" >
+                      	<h:inputText value="#{beanFormationPro.f_Professionnelles.employeur}" class="form-control" id="employeur" required="true" requiredMessage="L'employeur est obligatoire (*)" a:placeholder="Enter l'employeur" >
                       	</h:inputText>
+                      	<h:message for="employeur" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="poste">Poste</label>
-                      	<h:inputText value="#{beanFormationPro.f_Professionnelles.poste}" class="form-control" id="poste" placeholder="Enter le nom de la banque" ></h:inputText>
+                      	<h:inputText value="#{beanFormationPro.f_Professionnelles.poste}" class="form-control" id="poste" required="true" requiredMessage="Le poste est obligatoire (*)" a:placeholder="Enter le poste" ></h:inputText>
+                   		<h:message for="poste" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 			      <div class="form-group">
                       <label for="remarques">Remarques</label>
-                      	<h:inputText value="#{beanFormationPro.f_Professionnelles.remarques}" class="form-control" id="remarques" placeholder="Enter le nom de la banque" ></h:inputText>
+<!--                       	<h:inputText value="#{beanFormationPro.f_Professionnelles.remarques}" class="form-control" id="remarques" placeholder="Enter le nom de la banque" ></h:inputText> -->
+                      	<h:inputTextarea value="#{beanFormationPro.f_Professionnelles.remarques}" class="form-control" id="remarques" required="true" requiredMessage="Les remarques sont obligatoires (*)" a:placeholder="Enter les remarques"></h:inputTextarea>
+                      	<h:message for="remarques" style="color : red;" />
                     </div>
 			    </div>
 			    <div class="col-md-6">
 				  <div class="form-group">
-                     <label for="profil">Matricule salarié</label>
-                     	<h:selectOneMenu value="#{beanFormationPro.f_Professionnelles.salarie.idSalarie}" class="form-control">
-<!--                      		<f:selectItem itemLabel="Séléctionné un salarié" itemValue="#{null}"/> -->
-                     		<f:selectItems value="#{beanFormationInitiale.allSalaries}" var="s" itemLabel="#{s.idSalarie}" itemValue="#{s.idSalarie}"></f:selectItems>
+                     <label for="salarie">Salarié</label>
+                     	<h:selectOneMenu id="salarie" value="#{beanFormationPro.f_Professionnelles.salarie.idSalarie}" class="form-control">
+                     		<f:selectItem itemLabel="Sélectionner un salarié" itemValue="0" />
+                     		<f:selectItems value="#{beanFormationInitiale.allSalaries}" var="s" itemLabel="#{s.nom} #{s.prenom}" itemValue="#{s.idSalarie}"></f:selectItems>
+                     		<f:validator validatorId="validateurSelectOneMenu" />
                        </h:selectOneMenu>
+                       <h:message for="salarie" style="color : red;" />
                   </div>
 				  </div>
 	            </div><!-- /.box-body -->
