@@ -444,13 +444,6 @@ public class BeanUtilisateur {
 		this.sujetEnRecherche = "";
 	}
 	
-	//-------- Yacine : gestion des utilisateurs -------------------
-	
-	public List<Utilisateurs> getAllUtilisateurs(){
-		return metierUtilisateur.getAllUtilisateurs();
-	}
-	//--------------------------------------------------------------
-	
 	
 	// demandes des certificats
 	
