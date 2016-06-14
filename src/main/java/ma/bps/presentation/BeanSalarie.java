@@ -756,6 +756,8 @@ public class BeanSalarie {
 		this.setDateValiditePassport(null);
 		this.setDateEmissionPassport(null);
 		this.setDateNaissance(null);
+		this.salaire = new Salaires();
+		this.primeAvantage = new PrimesAvantages();
 		System.out.println("ici 5 ");
 	}
 	
