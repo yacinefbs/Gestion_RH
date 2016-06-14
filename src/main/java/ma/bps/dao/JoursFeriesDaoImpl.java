@@ -148,7 +148,7 @@ public class JoursFeriesDaoImpl implements IJoursFeries {
 		EntityManager em = emf.createEntityManager();
 		try {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");		
-			Query query = em.createQuery("select j from JourFeries j where j.dateF='" + formatter.format(dateVoulu) + "'");
+			Query query = em.createQuery("select j from JourFeries j where '" + formatter.format(dateVoulu) + "' between j.dateDebut and j.dateFin");
 			if (query.getResultList().size()>0) 
 			{
 				return true;

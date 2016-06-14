@@ -17,12 +17,11 @@ public class JourFeries {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idJourF;
 	@Temporal(TemporalType.DATE)
-	private Date dateF;
+	private Date dateDebut;
+	@Temporal(TemporalType.DATE)
+	private Date dateFin;
 	private String description;
-	
-	//Debut relations
-	@ManyToMany(mappedBy="jourFeries")
-	private Collection<Salaries> salaries;
+
 	
 	//Fin relations
 	
@@ -30,23 +29,53 @@ public class JourFeries {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public JourFeries(Date dateF, String description) {
+
+
+	
+	
+	public JourFeries(Long idJourF, Date dateDebut, Date dateFin, String description) {
 		super();
-		this.dateF = dateF;
+		this.idJourF = idJourF;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 		this.description = description;
 	}
+
+
+
+
 	public Long getIdJourF() {
 		return idJourF;
 	}
 	public void setIdJourF(Long idJourF) {
 		this.idJourF = idJourF;
 	}
-	public Date getDateF() {
-		return dateF;
+	
+	public Date getDateDebut() {
+		return dateDebut;
 	}
-	public void setDateF(Date dateF) {
-		this.dateF = dateF;
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
 	}
+
+
+
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+
+
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
+
+
+
 	public String getDescription() {
 		return description;
 	}

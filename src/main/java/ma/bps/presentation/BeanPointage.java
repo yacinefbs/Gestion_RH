@@ -298,25 +298,14 @@ public class BeanPointage implements Serializable {
 			this.siTousEstReglerPourPointage = 1;
 			this.siKayninDesSalarieMa3andhomchGroupe=1;
 		}
-//		else
-//		{
-//			this.siTousEstReglerPourPointage = 0;
-//			this.siKayninDesSalarieMa3andhomchGroupe=0;
-//		}
-//		
+
 		if (metierGroupe.chargerListeGroupeQuiNePossedePasDePlan().size()>0) 
 		{
 			msgQuelqueGroupePossedePasDePlan = "Il exist des groupes qui ne posséde aucun plan de travail !! Merci de leurs affectés un plan de travail avant d'éffectuer le pointage.";
 			this.siTousEstReglerPourPointage = 1;
 			this.siKayninDesGroupeMa3andhomchPlan=1;
 		}
-//		else
-//		{
-//			this.siTousEstReglerPourPointage = 0;
-//			this.siKayninDesGroupeMa3andhomchPlan=0;
-//		}
-//		
-		
+
 		
 	}
 	
@@ -388,7 +377,7 @@ public class BeanPointage implements Serializable {
 		System.out.println("je suis la **************** Upload sur serveur ***********************");
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyyHHmmss");
-		String filePath="C:/Users/NAOUI/workspaceMars/Gestion_RH/src/main/webapp/fichierProjetPfeGrh/fichiersDePointage/";
+		String filePath="D:/ahmed/AHMED projet PFE/eclipseMars/mesProjets/Gestion_RH/src/main/webapp/fichierProjetPfeGrh/fichiersDePointage/";
       
         byte[] bytes=null;
         String chemin="";
@@ -587,9 +576,29 @@ public class BeanPointage implements Serializable {
 							// hna la tranche sur un seule jour
 							if (!tranche.isDeuxJour()) 
 							{
+								
+								// had les heures homa la79i9iyin dyal la tranche
+								Date heureDebutTrancheReel = tranche.getHeureDebut();
+								Date heureFinTrancheReel = tranche.getHeureFin();
+								
+								// had les heure homa 3lach ghadi ndir test gha n9os sa3a man badyao nzid sa3a f la fin
 								Date heureDebutTranche = tranche.getHeureDebut();
 								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
+								
+						        Calendar cal = Calendar.getInstance();
+						        cal.setTime(heureDebutTranche);
+						        cal.add(Calendar.HOUR, -1);
+						        heureDebutTranche = cal.getTime();
+						        
+						        cal.setTime(heureFinTranche);
+						        cal.add(Calendar.HOUR, 1);
+						        heureFinTranche = cal.getTime();
+								
+						        System.out.println("heure debut : **************************** " + heureDebutTranche);
+						        System.out.println("heure Fin : **************************** " + heureFinTranche);
+						        
+								
+								long diffMinuteTranche = (heureFinTrancheReel.getTime() - heureDebutTrancheReel.getTime()) / 60000l;
 								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
 								
 								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
@@ -627,7 +636,7 @@ public class BeanPointage implements Serializable {
 										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
 										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
 										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
+										if (heurePointage.after(heureDebutTranche) && heureFinTranche.after(heurePointage))
 										{
 											wach_kayn_pointage = true;
 											pointageDyalDikTranche = pointage;
@@ -639,14 +648,15 @@ public class BeanPointage implements Serializable {
 									{
 										// kayn pointage ya3ni inseret le retard
 										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
+										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTrancheReel.getTime()) / 60000l;
+										long diffMinutePointageHeureFin = (heureFinTrancheReel.getTime() - heurePointage.getTime()) / 60000l;
 										
 										// khasni n inseret retard ila kan
 										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
 										Retards r = new Retards();
 										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
+										r.setHeureDebutTranche(formatterHeure.format(tranche.getHeureDebut()));
+										r.setHeureFinTranche(formatterHeure.format(tranche.getHeureFin()));
 										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
 										r.setDuree((int)diffMinutePointageHeureDebut);
 										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
@@ -683,10 +693,28 @@ public class BeanPointage implements Serializable {
 							else
 							{
 								
+								
+								// had les heures homa la79i9iyin dyal la tranche
+								Date heureDebutTrancheReel = tranche.getHeureDebut();
+								Date heureFinTrancheReel = tranche.getHeureFin();
+								heureFinTrancheReel.setDate(heureFinTrancheReel.getDate()+1);
+								
+								// had les heure homa 3lach ghadi ndir test gha n9os sa3a man badyao nzid sa3a f la fin
 								Date heureDebutTranche = tranche.getHeureDebut();
 								Date heureFinTranche = tranche.getHeureFin();
 								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
+								
+						        Calendar cal = Calendar.getInstance();
+						        cal.setTime(heureDebutTranche);
+						        cal.add(Calendar.HOUR, -1);
+						        heureDebutTranche = cal.getTime();
+						        
+						        cal.setTime(heureFinTranche);
+						        cal.add(Calendar.HOUR, 1);
+						        heureFinTranche = cal.getTime();
+								
+
+								long diffMinuteTranche = (heureFinTrancheReel.getTime() - heureDebutTrancheReel.getTime()) / 60000l;
 								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
 								
 								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
@@ -738,7 +766,7 @@ public class BeanPointage implements Serializable {
 											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
 											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
 											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
+											if (heurePointage.after(heureDebutTranche) && heureFinTranche.after(heurePointage)) 
 											{
 												wach_kayn_pointage = true;
 												pointageDyalDikTranche = pointage;
@@ -757,7 +785,7 @@ public class BeanPointage implements Serializable {
 											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
 											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
 											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
+											if (heurePointage.after(heureDebutTranche) && heureFinTranche.after(heurePointage)) 
 											{
 												wach_kayn_pointage = true;
 												pointageDyalDikTranche = pointage;
@@ -780,14 +808,15 @@ public class BeanPointage implements Serializable {
 										{
 											// 9bal 00:00
 											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
+											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTrancheReel.getTime()) / 60000l;
+											long diffMinutePointageHeureFin = (heureFinTrancheReel.getTime() - heurePointage.getTime()) / 60000l;
 											
 											// khasni n inseret retard ila kan
 											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
 											Retards r = new Retards();
 											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
+											r.setHeureDebutTranche(formatterHeure.format(tranche.getHeureDebut()));
+											r.setHeureFinTranche(formatterHeure.format(tranche.getHeureFin()));
 											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
 											r.setDuree((int)diffMinutePointageHeureDebut);
 											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
@@ -801,14 +830,15 @@ public class BeanPointage implements Serializable {
 											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
 											heurePointage.setDate(heurePointage.getDate()+1);
 											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
+											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTrancheReel.getTime()) / 60000l;
+											long diffMinutePointageHeureFin = (heureFinTrancheReel.getTime() - heurePointage.getTime()) / 60000l;
 											
 											// khasni n inseret retard ila kan
 											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
 											Retards r = new Retards();
 											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
+											r.setHeureDebutTranche(formatterHeure.format(tranche.getHeureDebut()));
+											r.setHeureFinTranche(formatterHeure.format(tranche.getHeureFin()));
 											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
 											r.setDuree((int)diffMinutePointageHeureDebut);
 											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
@@ -845,6 +875,11 @@ public class BeanPointage implements Serializable {
 								
 					
 							}
+							
+						}
+						else
+							// tranche suplémentaire
+						{
 							
 						}
 					}
@@ -856,568 +891,14 @@ public class BeanPointage implements Serializable {
 				System.out.println("Mardi");
 				
 				
-				List<TranchePlanTravail> listTrancheMardi = metierTranche.getTranchePlanTravailByJour("mardi",p.getIdPlan());
-				
-				// ila kano des tranche 3ad ndiro le pointage
-				if (listTrancheMardi.size()>0) 
-				{
-					for (TranchePlanTravail tranche : listTrancheMardi) 
-					{
-						// tester si la tranche est normale // khas salarie ikoun pointa fiha
-						if (tranche.getCode().equals("Normale")) 
-						{
-							
-							// tester si la tranche est sur deux jours
-							// hna la tranche sur un seule jour
-							if (!tranche.isDeuxJour()) 
-							{
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
-								
-								// ya3ni ma 3ando 7ta pointage 
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										System.out.println("Ma 3ando ta pointage fhad nhar********************************** id salarie" + idSalarie);
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								}
-								// hna 3ando des pointages
-								else
-								{
-									/////////////////////////////////////
-									boolean wach_kayn_pointage = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									// ghadi nchouf wach kayn un pointage fdik la tranche ou nn
-									for (Pointages pointage : listPointageSalarie)
-									{
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
-										{
-											wach_kayn_pointage = true;
-											pointageDyalDikTranche = pointage;
-										}
-									}
-									////////////////////////////////////
-									
-									if (wach_kayn_pointage) 
-									{
-										// kayn pointage ya3ni inseret le retard
-										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										
-										// khasni n inseret retard ila kan
-										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-										Retards r = new Retards();
-										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-										r.setDuree((int)diffMinutePointageHeureDebut);
-										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierRetard.ajouterRetard(r);
-										r = new Retards();
-										
-									} 
-									else 
-									{
-										// ma kaynch pointage inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											System.out.println("Insertion absence o kayn pointage********************************** id salarie" + idSalarie);
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
 
-									}
-									
-									
-								}
-															
-
-							}
-							// hna la tranche sur deux jour
-							else
-							{
-								
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
-								
-								// hna ma 3ando 7ta pointages
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								} 
-								// hna 3ando des pointages
-								else 
-								{
-									
-									//////////////////////////////////////////////////////////////////////
-									// khasni nchouf wach 3ando un pointage fdik la tranche ou nn
-									boolean wach_kayn_pointage = false;
-									boolean wach_pointa_9bal_12_dlil = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									for (Pointages pointage : listPointageSalarie) 
-									{
-										// hna khasni na3raf l'heure de pointage wach 9bal 00:00 ola man ba3dha bach nchouf wach nzid nhar ou nn
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										
-										SimpleDateFormat formatterHeureSeule = new SimpleDateFormat("HH");
-										int heureSeulePointage = Integer.parseInt(formatterHeureSeule.format(heurePointage));
-										int heureDebutTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureDebutTranche));
-										int heureFinTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureFinTranche));
-										
-										// hna rah pointi 9bal 00:00
-										if (heureSeulePointage >= heureDebutTrancheSeule && heureSeulePointage <=23) 
-										{
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = true;
-											}
-											
-											
-										}
-										// hna rah pointi man ba3d 00:00
-										else if ( heureSeulePointage >=0 && heureSeulePointage <= heureFinTrancheSeule)
-										{
-											
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = false;
-											}
-											
-										}
-										
-									}
-									///////////////////////////////////////////////////////////////////////
-									
-									
-									/////////////////////////////////////////////////////////////////////////////
-									// aprés had traitement gha nchoufo wach kan chi pointage ou nn
-									
-									if (wach_kayn_pointage) 
-									{
-										// wach 9bal oloa ba3d 12 dlil
-										if (wach_pointa_9bal_12_dlil) 
-										{
-											// 9bal 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-										else
-										{
-											// ba3d 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-									}
-									else
-									{
-										
-										// ma 3andoch pointage fdik tranche inseret lih absence
-										// khasni n inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
-										
-										
-									}
-									
-									/////////////////////////////////////////////////////////////////////////////
-									
-								}
-								
-					
-							}
-							
-						}
-					}
-				}
-				
 				
 				break;
 		 
 			case GregorianCalendar.WEDNESDAY:
 				System.out.println("Mercredi");
 				
-				
-				List<TranchePlanTravail> listTrancheMercredi = metierTranche.getTranchePlanTravailByJour("mercredi",p.getIdPlan());
-				
-				// ila kano des tranche 3ad ndiro le pointage
-				if (listTrancheMercredi.size()>0) 
-				{
-					for (TranchePlanTravail tranche : listTrancheMercredi) 
-					{
-						// tester si la tranche est normale // khas salarie ikoun pointa fiha
-						if (tranche.getCode().equals("Normale")) 
-						{
-							
-							// tester si la tranche est sur deux jours
-							// hna la tranche sur un seule jour
-							if (!tranche.isDeuxJour()) 
-							{
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
-								
-								// ya3ni ma 3ando 7ta pointage 
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										System.out.println("Ma 3ando ta pointage fhad nhar********************************** id salarie" + idSalarie);
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								}
-								// hna 3ando des pointages
-								else
-								{
-									/////////////////////////////////////
-									boolean wach_kayn_pointage = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									// ghadi nchouf wach kayn un pointage fdik la tranche ou nn
-									for (Pointages pointage : listPointageSalarie)
-									{
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
-										{
-											wach_kayn_pointage = true;
-											pointageDyalDikTranche = pointage;
-										}
-									}
-									////////////////////////////////////
-									
-									if (wach_kayn_pointage) 
-									{
-										// kayn pointage ya3ni inseret le retard
-										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										
-										// khasni n inseret retard ila kan
-										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-										Retards r = new Retards();
-										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-										r.setDuree((int)diffMinutePointageHeureDebut);
-										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierRetard.ajouterRetard(r);
-										r = new Retards();
-										
-									} 
-									else 
-									{
-										// ma kaynch pointage inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											System.out.println("Insertion absence o kayn pointage********************************** id salarie" + idSalarie);
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
 
-									}
-									
-									
-								}
-															
-
-							}
-							// hna la tranche sur deux jour
-							else
-							{
-								
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
-								
-								// hna ma 3ando 7ta pointages
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								} 
-								// hna 3ando des pointages
-								else 
-								{
-									
-									//////////////////////////////////////////////////////////////////////
-									// khasni nchouf wach 3ando un pointage fdik la tranche ou nn
-									boolean wach_kayn_pointage = false;
-									boolean wach_pointa_9bal_12_dlil = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									for (Pointages pointage : listPointageSalarie) 
-									{
-										// hna khasni na3raf l'heure de pointage wach 9bal 00:00 ola man ba3dha bach nchouf wach nzid nhar ou nn
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										
-										SimpleDateFormat formatterHeureSeule = new SimpleDateFormat("HH");
-										int heureSeulePointage = Integer.parseInt(formatterHeureSeule.format(heurePointage));
-										int heureDebutTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureDebutTranche));
-										int heureFinTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureFinTranche));
-										
-										// hna rah pointi 9bal 00:00
-										if (heureSeulePointage >= heureDebutTrancheSeule && heureSeulePointage <=23) 
-										{
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = true;
-											}
-											
-											
-										}
-										// hna rah pointi man ba3d 00:00
-										else if ( heureSeulePointage >=0 && heureSeulePointage <= heureFinTrancheSeule)
-										{
-											
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = false;
-											}
-											
-										}
-										
-									}
-									///////////////////////////////////////////////////////////////////////
-									
-									
-									/////////////////////////////////////////////////////////////////////////////
-									// aprés had traitement gha nchoufo wach kan chi pointage ou nn
-									
-									if (wach_kayn_pointage) 
-									{
-										// wach 9bal oloa ba3d 12 dlil
-										if (wach_pointa_9bal_12_dlil) 
-										{
-											// 9bal 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-										else
-										{
-											// ba3d 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-									}
-									else
-									{
-										
-										// ma 3andoch pointage fdik tranche inseret lih absence
-										// khasni n inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
-										
-										
-									}
-									
-									/////////////////////////////////////////////////////////////////////////////
-									
-								}
-								
-					
-							}
-							
-						}
-					}
-				}
 				
 				break;
 				
@@ -1425,1138 +906,28 @@ public class BeanPointage implements Serializable {
 				System.out.println("Jeudi");
 				
 				
-				
-				List<TranchePlanTravail> listTrancheJeudi = metierTranche.getTranchePlanTravailByJour("jeudi",p.getIdPlan());
-				
-				// ila kano des tranche 3ad ndiro le pointage
-				if (listTrancheJeudi.size()>0) 
-				{
-					for (TranchePlanTravail tranche : listTrancheJeudi) 
-					{
-						// tester si la tranche est normale // khas salarie ikoun pointa fiha
-						if (tranche.getCode().equals("Normale")) 
-						{
-							
-							// tester si la tranche est sur deux jours
-							// hna la tranche sur un seule jour
-							if (!tranche.isDeuxJour()) 
-							{
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
-								
-								// ya3ni ma 3ando 7ta pointage 
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										System.out.println("Ma 3ando ta pointage fhad nhar********************************** id salarie" + idSalarie);
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								}
-								// hna 3ando des pointages
-								else
-								{
-									/////////////////////////////////////
-									boolean wach_kayn_pointage = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									// ghadi nchouf wach kayn un pointage fdik la tranche ou nn
-									for (Pointages pointage : listPointageSalarie)
-									{
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
-										{
-											wach_kayn_pointage = true;
-											pointageDyalDikTranche = pointage;
-										}
-									}
-									////////////////////////////////////
-									
-									if (wach_kayn_pointage) 
-									{
-										// kayn pointage ya3ni inseret le retard
-										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										
-										// khasni n inseret retard ila kan
-										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-										Retards r = new Retards();
-										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-										r.setDuree((int)diffMinutePointageHeureDebut);
-										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierRetard.ajouterRetard(r);
-										r = new Retards();
-										
-									} 
-									else 
-									{
-										// ma kaynch pointage inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											System.out.println("Insertion absence o kayn pointage********************************** id salarie" + idSalarie);
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
 
-									}
-									
-									
-								}
-															
-
-							}
-							// hna la tranche sur deux jour
-							else
-							{
-								
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
-								
-								// hna ma 3ando 7ta pointages
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								} 
-								// hna 3ando des pointages
-								else 
-								{
-									
-									//////////////////////////////////////////////////////////////////////
-									// khasni nchouf wach 3ando un pointage fdik la tranche ou nn
-									boolean wach_kayn_pointage = false;
-									boolean wach_pointa_9bal_12_dlil = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									for (Pointages pointage : listPointageSalarie) 
-									{
-										// hna khasni na3raf l'heure de pointage wach 9bal 00:00 ola man ba3dha bach nchouf wach nzid nhar ou nn
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										
-										SimpleDateFormat formatterHeureSeule = new SimpleDateFormat("HH");
-										int heureSeulePointage = Integer.parseInt(formatterHeureSeule.format(heurePointage));
-										int heureDebutTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureDebutTranche));
-										int heureFinTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureFinTranche));
-										
-										// hna rah pointi 9bal 00:00
-										if (heureSeulePointage >= heureDebutTrancheSeule && heureSeulePointage <=23) 
-										{
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = true;
-											}
-											
-											
-										}
-										// hna rah pointi man ba3d 00:00
-										else if ( heureSeulePointage >=0 && heureSeulePointage <= heureFinTrancheSeule)
-										{
-											
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = false;
-											}
-											
-										}
-										
-									}
-									///////////////////////////////////////////////////////////////////////
-									
-									
-									/////////////////////////////////////////////////////////////////////////////
-									// aprés had traitement gha nchoufo wach kan chi pointage ou nn
-									
-									if (wach_kayn_pointage) 
-									{
-										// wach 9bal oloa ba3d 12 dlil
-										if (wach_pointa_9bal_12_dlil) 
-										{
-											// 9bal 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-										else
-										{
-											// ba3d 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-									}
-									else
-									{
-										
-										// ma 3andoch pointage fdik tranche inseret lih absence
-										// khasni n inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
-										
-										
-									}
-									
-									/////////////////////////////////////////////////////////////////////////////
-									
-								}
-								
-					
-							}
-							
-						}
-					}
-				}
-				
 				break;
 				
 			case GregorianCalendar.FRIDAY:
 				System.out.println("Vendredi");
 				
 				
-				
-				List<TranchePlanTravail> listTrancheVendredi = metierTranche.getTranchePlanTravailByJour("vendredi",p.getIdPlan());
-				
-				// ila kano des tranche 3ad ndiro le pointage
-				if (listTrancheVendredi.size()>0) 
-				{
-					for (TranchePlanTravail tranche : listTrancheVendredi) 
-					{
-						// tester si la tranche est normale // khas salarie ikoun pointa fiha
-						if (tranche.getCode().equals("Normale")) 
-						{
-							
-							// tester si la tranche est sur deux jours
-							// hna la tranche sur un seule jour
-							if (!tranche.isDeuxJour()) 
-							{
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
-								
-								// ya3ni ma 3ando 7ta pointage 
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										System.out.println("Ma 3ando ta pointage fhad nhar********************************** id salarie" + idSalarie);
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								}
-								// hna 3ando des pointages
-								else
-								{
-									/////////////////////////////////////
-									boolean wach_kayn_pointage = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									// ghadi nchouf wach kayn un pointage fdik la tranche ou nn
-									for (Pointages pointage : listPointageSalarie)
-									{
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
-										{
-											wach_kayn_pointage = true;
-											pointageDyalDikTranche = pointage;
-										}
-									}
-									////////////////////////////////////
-									
-									if (wach_kayn_pointage) 
-									{
-										// kayn pointage ya3ni inseret le retard
-										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										
-										// khasni n inseret retard ila kan
-										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-										Retards r = new Retards();
-										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-										r.setDuree((int)diffMinutePointageHeureDebut);
-										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierRetard.ajouterRetard(r);
-										r = new Retards();
-										
-									} 
-									else 
-									{
-										// ma kaynch pointage inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											System.out.println("Insertion absence o kayn pointage********************************** id salarie" + idSalarie);
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
 
-									}
-									
-									
-								}
-															
-
-							}
-							// hna la tranche sur deux jour
-							else
-							{
-								
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
-								
-								// hna ma 3ando 7ta pointages
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								} 
-								// hna 3ando des pointages
-								else 
-								{
-									
-									//////////////////////////////////////////////////////////////////////
-									// khasni nchouf wach 3ando un pointage fdik la tranche ou nn
-									boolean wach_kayn_pointage = false;
-									boolean wach_pointa_9bal_12_dlil = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									for (Pointages pointage : listPointageSalarie) 
-									{
-										// hna khasni na3raf l'heure de pointage wach 9bal 00:00 ola man ba3dha bach nchouf wach nzid nhar ou nn
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										
-										SimpleDateFormat formatterHeureSeule = new SimpleDateFormat("HH");
-										int heureSeulePointage = Integer.parseInt(formatterHeureSeule.format(heurePointage));
-										int heureDebutTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureDebutTranche));
-										int heureFinTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureFinTranche));
-										
-										// hna rah pointi 9bal 00:00
-										if (heureSeulePointage >= heureDebutTrancheSeule && heureSeulePointage <=23) 
-										{
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = true;
-											}
-											
-											
-										}
-										// hna rah pointi man ba3d 00:00
-										else if ( heureSeulePointage >=0 && heureSeulePointage <= heureFinTrancheSeule)
-										{
-											
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = false;
-											}
-											
-										}
-										
-									}
-									///////////////////////////////////////////////////////////////////////
-									
-									
-									/////////////////////////////////////////////////////////////////////////////
-									// aprés had traitement gha nchoufo wach kan chi pointage ou nn
-									
-									if (wach_kayn_pointage) 
-									{
-										// wach 9bal oloa ba3d 12 dlil
-										if (wach_pointa_9bal_12_dlil) 
-										{
-											// 9bal 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-										else
-										{
-											// ba3d 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-									}
-									else
-									{
-										
-										// ma 3andoch pointage fdik tranche inseret lih absence
-										// khasni n inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
-										
-										
-									}
-									
-									/////////////////////////////////////////////////////////////////////////////
-									
-								}
-								
-					
-							}
-							
-						}
-					}
-				}
-				
 				
 				break;
 				
 			case GregorianCalendar.SATURDAY:
 				System.out.println("Samedi");
 				
-				
-				List<TranchePlanTravail> listTrancheSamedi = metierTranche.getTranchePlanTravailByJour("samedi",p.getIdPlan());
-				
-				// ila kano des tranche 3ad ndiro le pointage
-				if (listTrancheSamedi.size()>0) 
-				{
-					for (TranchePlanTravail tranche : listTrancheSamedi) 
-					{
-						// tester si la tranche est normale // khas salarie ikoun pointa fiha
-						if (tranche.getCode().equals("Normale")) 
-						{
-							
-							// tester si la tranche est sur deux jours
-							// hna la tranche sur un seule jour
-							if (!tranche.isDeuxJour()) 
-							{
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
-								
-								// ya3ni ma 3ando 7ta pointage 
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										System.out.println("Ma 3ando ta pointage fhad nhar********************************** id salarie" + idSalarie);
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								}
-								// hna 3ando des pointages
-								else
-								{
-									/////////////////////////////////////
-									boolean wach_kayn_pointage = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									// ghadi nchouf wach kayn un pointage fdik la tranche ou nn
-									for (Pointages pointage : listPointageSalarie)
-									{
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
-										{
-											wach_kayn_pointage = true;
-											pointageDyalDikTranche = pointage;
-										}
-									}
-									////////////////////////////////////
-									
-									if (wach_kayn_pointage) 
-									{
-										// kayn pointage ya3ni inseret le retard
-										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										
-										// khasni n inseret retard ila kan
-										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-										Retards r = new Retards();
-										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-										r.setDuree((int)diffMinutePointageHeureDebut);
-										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierRetard.ajouterRetard(r);
-										r = new Retards();
-										
-									} 
-									else 
-									{
-										// ma kaynch pointage inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											System.out.println("Insertion absence o kayn pointage********************************** id salarie" + idSalarie);
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
 
-									}
-									
-									
-								}
-															
-
-							}
-							// hna la tranche sur deux jour
-							else
-							{
-								
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
-								
-								// hna ma 3ando 7ta pointages
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								} 
-								// hna 3ando des pointages
-								else 
-								{
-									
-									//////////////////////////////////////////////////////////////////////
-									// khasni nchouf wach 3ando un pointage fdik la tranche ou nn
-									boolean wach_kayn_pointage = false;
-									boolean wach_pointa_9bal_12_dlil = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									for (Pointages pointage : listPointageSalarie) 
-									{
-										// hna khasni na3raf l'heure de pointage wach 9bal 00:00 ola man ba3dha bach nchouf wach nzid nhar ou nn
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										
-										SimpleDateFormat formatterHeureSeule = new SimpleDateFormat("HH");
-										int heureSeulePointage = Integer.parseInt(formatterHeureSeule.format(heurePointage));
-										int heureDebutTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureDebutTranche));
-										int heureFinTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureFinTranche));
-										
-										// hna rah pointi 9bal 00:00
-										if (heureSeulePointage >= heureDebutTrancheSeule && heureSeulePointage <=23) 
-										{
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = true;
-											}
-											
-											
-										}
-										// hna rah pointi man ba3d 00:00
-										else if ( heureSeulePointage >=0 && heureSeulePointage <= heureFinTrancheSeule)
-										{
-											
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = false;
-											}
-											
-										}
-										
-									}
-									///////////////////////////////////////////////////////////////////////
-									
-									
-									/////////////////////////////////////////////////////////////////////////////
-									// aprés had traitement gha nchoufo wach kan chi pointage ou nn
-									
-									if (wach_kayn_pointage) 
-									{
-										// wach 9bal oloa ba3d 12 dlil
-										if (wach_pointa_9bal_12_dlil) 
-										{
-											// 9bal 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-										else
-										{
-											// ba3d 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-									}
-									else
-									{
-										
-										// ma 3andoch pointage fdik tranche inseret lih absence
-										// khasni n inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
-										
-										
-									}
-									
-									/////////////////////////////////////////////////////////////////////////////
-									
-								}
-								
-					
-							}
-							
-						}
-					}
-				}
 				
 				break;
 				
 			case GregorianCalendar.SUNDAY:
 				System.out.println("Dimanche");
 				
-				
-				List<TranchePlanTravail> listTrancheDimanche = metierTranche.getTranchePlanTravailByJour("dimanche",p.getIdPlan());
-				
-				// ila kano des tranche 3ad ndiro le pointage
-				if (listTrancheDimanche.size()>0) 
-				{
-					for (TranchePlanTravail tranche : listTrancheDimanche) 
-					{
-						// tester si la tranche est normale // khas salarie ikoun pointa fiha
-						if (tranche.getCode().equals("Normale")) 
-						{
-							
-							// tester si la tranche est sur deux jours
-							// hna la tranche sur un seule jour
-							if (!tranche.isDeuxJour()) 
-							{
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDate(idSalarie, datePointage);
-								
-								// ya3ni ma 3ando 7ta pointage 
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										System.out.println("Ma 3ando ta pointage fhad nhar********************************** id salarie" + idSalarie);
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								}
-								// hna 3ando des pointages
-								else
-								{
-									/////////////////////////////////////
-									boolean wach_kayn_pointage = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									// ghadi nchouf wach kayn un pointage fdik la tranche ou nn
-									for (Pointages pointage : listPointageSalarie)
-									{
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0)
-										{
-											wach_kayn_pointage = true;
-											pointageDyalDikTranche = pointage;
-										}
-									}
-									////////////////////////////////////
-									
-									if (wach_kayn_pointage) 
-									{
-										// kayn pointage ya3ni inseret le retard
-										Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-										long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-										long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-										
-										// khasni n inseret retard ila kan
-										//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-										Retards r = new Retards();
-										r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-										r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-										r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-										r.setDuree((int)diffMinutePointageHeureDebut);
-										r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierRetard.ajouterRetard(r);
-										r = new Retards();
-										
-									} 
-									else 
-									{
-										// ma kaynch pointage inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											System.out.println("Insertion absence o kayn pointage********************************** id salarie" + idSalarie);
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
 
-									}
-									
-									
-								}
-															
-
-							}
-							// hna la tranche sur deux jour
-							else
-							{
-								
-								Date heureDebutTranche = tranche.getHeureDebut();
-								Date heureFinTranche = tranche.getHeureFin();
-								heureFinTranche.setDate(heureFinTranche.getDate()+1);
-								long diffMinuteTranche = (heureFinTranche.getTime() - heureDebutTranche.getTime()) / 60000l;
-								SimpleDateFormat formatterHeure = new SimpleDateFormat("HH:mm:ss");
-								
-								List<Pointages> listPointageSalarie = metierPointage.chargerPointageSalarieUneDateEtDateDemain(idSalarie, datePointage);
-								
-								// hna ma 3ando 7ta pointages
-								if (listPointageSalarie.size()<=0) 
-								{
-									
-									// khasni n inseret absence
-									// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-									if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-									{
-										A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-										a_non_justifiee.setDateAbsence(datePointage);
-										a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-										a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-										a_non_justifiee.setDuree((int)diffMinuteTranche);
-										a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-										metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-										a_non_justifiee = new A_Non_Justifiee();
-										
-									}
-									
-								} 
-								// hna 3ando des pointages
-								else 
-								{
-									
-									//////////////////////////////////////////////////////////////////////
-									// khasni nchouf wach 3ando un pointage fdik la tranche ou nn
-									boolean wach_kayn_pointage = false;
-									boolean wach_pointa_9bal_12_dlil = false;
-									Pointages pointageDyalDikTranche = new Pointages();
-									for (Pointages pointage : listPointageSalarie) 
-									{
-										// hna khasni na3raf l'heure de pointage wach 9bal 00:00 ola man ba3dha bach nchouf wach nzid nhar ou nn
-										Date heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-										
-										SimpleDateFormat formatterHeureSeule = new SimpleDateFormat("HH");
-										int heureSeulePointage = Integer.parseInt(formatterHeureSeule.format(heurePointage));
-										int heureDebutTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureDebutTranche));
-										int heureFinTrancheSeule = Integer.parseInt(formatterHeureSeule.format(heureFinTranche));
-										
-										// hna rah pointi 9bal 00:00
-										if (heureSeulePointage >= heureDebutTrancheSeule && heureSeulePointage <=23) 
-										{
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = true;
-											}
-											
-											
-										}
-										// hna rah pointi man ba3d 00:00
-										else if ( heureSeulePointage >=0 && heureSeulePointage <= heureFinTrancheSeule)
-										{
-											
-											heurePointage = formatterHeure.parse(pointage.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											if (diffMinutePointageHeureDebut>=0 && diffMinutePointageHeureFin>=0) 
-											{
-												wach_kayn_pointage = true;
-												pointageDyalDikTranche = pointage;
-												wach_pointa_9bal_12_dlil = false;
-											}
-											
-										}
-										
-									}
-									///////////////////////////////////////////////////////////////////////
-									
-									
-									/////////////////////////////////////////////////////////////////////////////
-									// aprés had traitement gha nchoufo wach kan chi pointage ou nn
-									
-									if (wach_kayn_pointage) 
-									{
-										// wach 9bal oloa ba3d 12 dlil
-										if (wach_pointa_9bal_12_dlil) 
-										{
-											// 9bal 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-										else
-										{
-											// ba3d 00:00
-											Date heurePointage = formatterHeure.parse(pointageDyalDikTranche.getHeurePointage());
-											heurePointage.setDate(heurePointage.getDate()+1);
-											
-											long diffMinutePointageHeureDebut = (heurePointage.getTime() - heureDebutTranche.getTime()) / 60000l;
-											long diffMinutePointageHeureFin = (heureFinTranche.getTime() - heurePointage.getTime()) / 60000l;
-											
-											// khasni n inseret retard ila kan
-											//SimpleDateFormat formatterDate = new SimpleDateFormat("dd/MM/yyyy");
-											Retards r = new Retards();
-											r.setDateRetardPointage(pointageDyalDikTranche.getDatePointage());
-											r.setHeureNormalePointage(formatterHeure.format(tranche.getHeureDebut()));
-											r.setHeurePointageEnRetard(pointageDyalDikTranche.getHeurePointage());
-											r.setDuree((int)diffMinutePointageHeureDebut);
-											r.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierRetard.ajouterRetard(r);
-											r = new Retards();
-											
-										}
-									}
-									else
-									{
-										
-										// ma 3andoch pointage fdik tranche inseret lih absence
-										// khasni n inseret absence
-										// avant d'inseret l'absence il faut verifier yakma 3ando conger ola jours ferier
-										if (!metierJourFerie.testerSiJourFerie(datePointage) || metierConges.chargerCongesSalarieUneDate(idSalarie, datePointage).size()<=0) 
-										{
-											A_Non_Justifiee a_non_justifiee = new A_Non_Justifiee();
-											a_non_justifiee.setDateAbsence(datePointage);
-											a_non_justifiee.setHeureDebutAbsence(formatterHeure.format(tranche.getHeureDebut()));
-											a_non_justifiee.setHeureFinAbsence(formatterHeure.format(tranche.getHeureFin()));
-											a_non_justifiee.setDuree((int)diffMinuteTranche);
-											a_non_justifiee.setSalarie(metierSalarie.getSalarieById(idSalarie));
-											metierA_Non_Justifiee.ajouterA_Non_Justifiee(a_non_justifiee);
-											a_non_justifiee = new A_Non_Justifiee();
-											
-										}
-										
-										
-									}
-									
-									/////////////////////////////////////////////////////////////////////////////
-									
-								}
-								
-					
-							}
-							
-						}
-					}
-				}
 				
 				break;
 		 

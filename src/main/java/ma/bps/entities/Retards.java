@@ -19,7 +19,8 @@ public class Retards {
 	private Long idRetard;
 	@Temporal(TemporalType.DATE)
 	private Date dateRetardPointage;
-	private String heureNormalePointage;
+	private String heureDebutTranche;
+	private String heureFinTranche;
 	private String heurePointageEnRetard;
 	private int duree;
 	
@@ -37,13 +38,18 @@ public class Retards {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Retards(Date dateRetardPointage, String heureNormalePointage, String heurePointageEnRetard, int duree) {
+
+	public Retards(Date dateRetardPointage, String heureDebutTranche, String heureFinTranche,
+			String heurePointageEnRetard, int duree, Salaries salarie) {
 		super();
 		this.dateRetardPointage = dateRetardPointage;
-		this.heureNormalePointage = heureNormalePointage;
+		this.heureDebutTranche = heureDebutTranche;
+		this.heureFinTranche = heureFinTranche;
 		this.heurePointageEnRetard = heurePointageEnRetard;
 		this.duree = duree;
+		this.salarie = salarie;
 	}
+
 
 	public Long getIdRetard() {
 		return idRetard;
@@ -69,12 +75,29 @@ public class Retards {
 	public void setSalarie(Salaries salarie) {
 		this.salarie = salarie;
 	}
-	public String getHeureNormalePointage() {
-		return heureNormalePointage;
+
+
+	
+	public String getHeureDebutTranche() {
+		return heureDebutTranche;
 	}
-	public void setHeureNormalePointage(String heureNormalePointage) {
-		this.heureNormalePointage = heureNormalePointage;
+
+
+	public void setHeureDebutTranche(String heureDebutTranche) {
+		this.heureDebutTranche = heureDebutTranche;
 	}
+
+
+	public String getHeureFinTranche() {
+		return heureFinTranche;
+	}
+
+
+	public void setHeureFinTranche(String heureFinTranche) {
+		this.heureFinTranche = heureFinTranche;
+	}
+
+
 	public String getHeurePointageEnRetard() {
 		return heurePointageEnRetard;
 	}

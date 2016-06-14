@@ -130,9 +130,9 @@ public class Salaries {
 	@OneToMany(mappedBy="salarie",orphanRemoval=true, fetch=FetchType.EAGER)
 	private Collection<Conges> conges;
 	
-	@ManyToMany
-	@JoinTable(name="salaries_jourFeries")
-	private Collection<JourFeries> jourFeries;
+//	@ManyToMany
+//	@JoinTable(name="salaries_jourFeries")
+//	private Collection<JourFeries> jourFeries;
 	
 	
 	@ManyToOne
@@ -530,15 +530,6 @@ public class Salaries {
 	}
 
 
-	public Collection<JourFeries> getJourFeries() {
-		return jourFeries;
-	}
-
-
-	public void setJourFeries(Collection<JourFeries> jourFeries) {
-		this.jourFeries = jourFeries;
-	}
-
 
 	public Societes getSociete() {
 		return societe;
@@ -550,6 +541,8 @@ public class Salaries {
 	}
 
 
+	
+	
 	public Collection<Contrats> getContrats() {
 		return contrats;
 	}
