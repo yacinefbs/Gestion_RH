@@ -1,5 +1,6 @@
 package ma.bps.presentation;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import ma.bps.entities.AutoFormation;
 import ma.bps.entities.AutoFormationDocuments;
 import ma.bps.entities.AutoFormationTheme;
 import ma.bps.entities.Avances;
+import ma.bps.entities.Banques;
 import ma.bps.entities.Conges;
 import ma.bps.entities.DemandeDesCertificatsParSalarie;
 import ma.bps.entities.F_Initiale;
@@ -445,10 +447,94 @@ public class BeanUtilisateur {
 	}
 	
 	//-------- Yacine : gestion des utilisateurs -------------------
+	private Utilisateurs utilisateurs = new Utilisateurs();
+	private int modification = 0;
+	private String msgSuccesUtilisateur = null;
 	
+	
+	
+	
+
+	public String getMsgSuccesUtilisateur() {
+		return msgSuccesUtilisateur;
+	}
+
+	public void setMsgSuccesUtilisateur(String msgSuccesUtilisateur) {
+		this.msgSuccesUtilisateur = msgSuccesUtilisateur;
+	}
+
+	public int getModification() {
+		return modification;
+	}
+
+	public void setModification(int modification) {
+		this.modification = modification;
+	}
+
+	public Utilisateurs getUtilisateurs() {
+		return utilisateurs;
+	}
+
+	public void setUtilisateurs(Utilisateurs utilisateurs) {
+		this.utilisateurs = utilisateurs;
+	}
+	
+	public String ajouterUtilisateur(ActionEvent e){
+		this.utilisateurs.setPasse(this.utilisateurs.getLogin() + "123");
+		this.utilisateurs.setSalarie(null);
+		metierUtilisateur.ajouterUtilisateur(this.utilisateurs);
+		this.utilisateurs = new Utilisateurs();
+		this.msgSuccesUtilisateur = "Cet utilisateur a été ajouté avec succès !!!";
+		return "gestionUtilisateur?faces-redirect=true";
+	}
+
 	public List<Utilisateurs> getAllUtilisateurs(){
 		return metierUtilisateur.getAllUtilisateurs();
 	}
+	
+//	public String editerBanque(Banques b){
+//		this.setMsgSucces(null);
+//		modification=1;
+//		this.banque = banqueMetier.getBanqueById(b.getIdBanque());
+//		return "gestionBanques?faces-redirect=true";
+//	}
+	
+	public String editerUtilisateur(Utilisateurs u){
+		this.setMsgSuccesUtilisateur(null);
+		this.modification = 1;
+		this.utilisateurs = u;
+		return "gestionUtilisateur?faces-redirect=true";
+	}
+	
+//	
+//	public String modifierBanque(){
+//		modification=0;
+//		banqueMetier.modifierBanque(this.banque);
+//		this.setIdBanque(null);
+//		this.setNomBanque("");
+//		this.setMsgSucces("Cette banque a été modifié avec succès !!!");
+//		this.banque = new Banques();
+//		return "gestionBanques?faces-redirect=true";
+//	}
+	public String modifierUtilisateur(){
+		this.modification = 0;
+		metierUtilisateur.modifierUtilisateur(this.utilisateurs);
+		this.setMsgSuccesUtilisateur("Cet utulisateur a été modifié avec succès !!!");
+		this.utilisateurs = new Utilisateurs();
+		return "gestionUtilisateur?faces-redirect=true";
+	}
+//	
+//	public void supprimerBanque(Long idBanque){
+//		banqueMetier.supprimerBanque(idBanque);
+//		this.setMsgSucces("Cette banque a été supprimé avec succès !!!");
+//		System.out.println("suppression avec succès!!!");
+//	}
+	
+	public void supprimerUtilisateur(Long idUtilisateur){
+		metierUtilisateur.supprimerUtilisateur(idUtilisateur);
+		this.setMsgSuccesUtilisateur("Cet utilisateur a été supprimé avec succès !!!");
+	}
+	
 	//--------------------------------------------------------------
 	
 	

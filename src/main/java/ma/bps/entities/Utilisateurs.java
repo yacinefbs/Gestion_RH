@@ -79,7 +79,27 @@ public class Utilisateurs {
 	}
 	
 	
+	//--------- Yacine : Gestion des utilisateurs ----------------
+	private String etat;
+	private String profil;
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	public String getProfil() {
+		return profil;
+	}
+
+	public void setProfil(String profil) {
+		this.profil = profil;
+	}
 	
+	//------------------------------------------------------------
 	
 	
 
